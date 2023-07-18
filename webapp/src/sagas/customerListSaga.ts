@@ -10,7 +10,6 @@ export function* getCustomerList() {
     const request = yield call(getData, '/api/v1/customers');
     const customers = [] as CustomerType[];
     request.forEach(c => customers.push(camelcaseKeys(c)));
-    console.log('=============>', customers);
     yield put(setCustomerList(customers));
   } catch (e) {}
 }

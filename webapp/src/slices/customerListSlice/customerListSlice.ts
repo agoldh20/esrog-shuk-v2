@@ -8,9 +8,10 @@ export const customerListSlice = createSlice({
   initialState,
   reducers: {
     setCustomerList: (state: CustomerType[], action: PayloadAction<CustomerType[]>) => state.concat(action.payload),
+    resetCustomerList: () => initialState,
   },
 });
 
-export const { setCustomerList } = customerListSlice.actions
+export const { setCustomerList, resetCustomerList } = customerListSlice.actions
 
 export default customerListSlice.reducer;

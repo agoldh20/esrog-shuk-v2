@@ -32,7 +32,7 @@ const CustomerPage: FC = () => {
       <br/>
       <br/>
       { filteredCustomerList().length === 0 ?
-        <button type="button" className="btn btn-success">Primary</button>
+        <button type="button" className="btn btn-success" onClick={() => navigate('/new-customer')}>Add New Customer</button>
         :
         <CustomerList customerList={ filteredCustomerList() }/>
       }

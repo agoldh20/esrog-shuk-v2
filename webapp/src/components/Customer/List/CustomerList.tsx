@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { useNavigate } from "react-router";
 import { CustomerListProps } from './CustomerListProps';
+import './CustomerList.scss';
 
 const CustomerList: FC<CustomerListProps> = ({customerList}) => {
 
