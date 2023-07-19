@@ -8,9 +8,9 @@ import { CustomerType } from '../slices/types';
 export function* getCustomerList() {
   try {
     const request = yield call(getData, '/api/v1/customers');
-    const customers = [] as CustomerType[];
-    request.forEach(c => customers.push(camelcaseKeys(c)));
-    yield put(setCustomerList(customers));
+    const customerList = [] as CustomerType[];
+    request.forEach(c => customerList.push(camelcaseKeys(c)));
+    yield put(setCustomerList(customerList));
   } catch (e) {}
 }
 

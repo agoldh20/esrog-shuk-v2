@@ -1,12 +1,14 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from '@redux-saga/core';
 import customerListReducer from '../slices/customerListSlice/customerListSlice';
+import customerReducer from '../slices/customerSlice/customerSlice'
 import rootSaga from '../sagas/rootSaga';
 
 export const reducers = combineReducers({
-    customers: customerListReducer
+    customerList: customerListReducer,
+    customer: customerReducer,
 });
 
 const persistConfig = {

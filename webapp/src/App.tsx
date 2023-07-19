@@ -1,10 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes, useLocation, useParams } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.scss';
-import CustomerPage from './components/Customer/CustomerPage';
+import CustomerListPage from './components/Customer/CustomerListPage';
 import NewCustomerPage from './components/Customer/NewCustomer/NewCustomerPage';
 import { useDispatch } from 'react-redux';
 import { resetCustomerList } from './slices/customerListSlice/customerListSlice';
+import { resetCustomer } from './slices/customerSlice/customerSlice';
+import CustomerShowPage from './components/Customer/CustomerShow/CustomerShowPage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -12,13 +14,15 @@ const App = () => {
 
   if ( pathname === '/' ) {
     dispatch(resetCustomerList());
+    dispatch(resetCustomer())
   }
 
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={ <CustomerPage/> }/>
+        <Route path="/" element={ <CustomerListPage/> }/>
         <Route path="/new-customer" element={ <NewCustomerPage/> }/>
+        <Route path="/customer" element={ <CustomerShowPage/> }/>
       </Routes>
     </div>
   );

@@ -1,14 +1,12 @@
 import { call, put, takeEvery } from '@redux-saga/core/effects';
-import { GET_CUSTOMER_LIST, SAVE_NEW_CUSTOMER } from '../actions/actionsTypes';
-import { setCustomerList } from '../slices/customerListSlice/customerListSlice';
-import { getData, postData } from '../httpClient';
+import { SAVE_NEW_CUSTOMER } from '../actions/actionsTypes';
+import { postData } from '../httpClient';
 import camelcaseKeys from 'camelcase-keys';
-import { CustomerType } from '../slices/types';
 import { SaveNewCustomerActionType } from '../actions/newCustomerAction';
+import { setCustomer } from '../slices/customerSlice/customerSlice';
 
 export function* saveNewCustomer(action: SaveNewCustomerActionType): any {
   try {
-    console.log('=============>', 'in saga');
     const request = yield call(postData, '/api/v1/customers', {
       first_name: action.firstName,
       last_name: action.lastName,
@@ -16,7 +14,9 @@ export function* saveNewCustomer(action: SaveNewCustomerActionType): any {
       email: action.email,
     });
 
-    action.navigate(`/customer/${request.id}`)
+    yield put(setCustomer(camelcaseKeys(request)));
+
+    action.navigate(`/customer?id=${request.id}`)
 
     console.log('=============>', request);
   } catch (e) {}

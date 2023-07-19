@@ -2,13 +2,18 @@ import React, { FC } from 'react';
 import { useNavigate } from "react-router";
 import { CustomerListProps } from './CustomerListProps';
 import './CustomerList.scss';
+import { useDispatch } from 'react-redux';
+import { setCustomer } from '../../../slices/customerSlice/customerSlice';
+import { CustomerType } from '../../../slices/types';
 
 const CustomerList: FC<CustomerListProps> = ({customerList}) => {
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // TODO: create onClick
-  // const openCustomer = (id: number) => navigate(`/customer/${ id }`);
+  const handleClick = (customer: CustomerType) => {
+    dispatch(setCustomer(customer))
+    navigate(`/customer?id=${customer.id}`)
+  }
 
   return (
     <div className="container customer-list">
@@ -16,7 +21,7 @@ const CustomerList: FC<CustomerListProps> = ({customerList}) => {
         <tbody>
         {
           customerList.map((c, index) => (
-            <tr key={index}  >
+            <tr key={index}  onClick={ () => handleClick(c) }>
               <td>{ c.firstName }</td>
               <td>{ c.lastName }</td>
             </tr>

@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Form } from 'react-bootstrap';
 import "./NewCustomer.scss";
 import { useNavigate } from 'react-router';
 import { saveNewCustomerAction } from '../../../actions/newCustomerAction';

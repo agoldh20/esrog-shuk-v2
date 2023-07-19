@@ -1,4 +1,4 @@
-import {all, fork} from "@redux-saga/core/effects";
+import { all, fork } from "@redux-saga/core/effects";
 import { watchGetCustomerList } from './customerListSaga';
 import { watchSaveNewCustomer } from './saveNewCustomerSaga';
 

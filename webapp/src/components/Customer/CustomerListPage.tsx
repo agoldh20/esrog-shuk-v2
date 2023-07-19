@@ -6,11 +6,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import { CustomerType } from '../../slices/types';
 
-const CustomerPage: FC = () => {
+const CustomerListPage: FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const customers = useSelector<RootState, CustomerType[]>(state => state.customers);
+  const customerList = useSelector<RootState, CustomerType[]>(({ customerList }) => customerList);
   const [ filter, setFilter ] = useState('')
+
+  useEffect(() => {
+    dispatch(getCustomerListAction(navigate));
+  }, [])
 
   const handleChange = (event) => {
     setFilter(event.target.value);
@@ -18,13 +22,9 @@ const CustomerPage: FC = () => {
 
   const filteredCustomerList = () => {
     const re = new RegExp(filter, 'i')
-    return filter === '' ? customers :
-      customers.filter(customer => `${customer.firstName} ${customer.lastName}`.match(re) || customer.phoneNumber.match(re));
+    return filter === '' ? customerList :
+      customerList.filter(customer => `${customer.firstName} ${customer.lastName}`.match(re) || customer.phoneNumber?.match(re));
   }
-
-  useEffect(() => {
-    dispatch(getCustomerListAction(navigate));
-  }, [])
 
   return (
     <div>
@@ -40,4 +40,4 @@ const CustomerPage: FC = () => {
   )
 }
 
-export default CustomerPage
+export default CustomerListPage
