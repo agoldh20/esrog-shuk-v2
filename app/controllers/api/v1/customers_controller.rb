@@ -15,12 +15,16 @@ class Api::V1::CustomersController < ApplicationController
 
   # POST /api/v1/customers
   def create
-    @api_v1_customer = Customer.new(api_v1_customer_params)
-    @api_v1_customer.active = true
-    @api_v1_customer.last_purchase_year = Date.today.year
+    @api_v1_customer = Customer.new({
+                                      first_name: params[:first_name],
+                                      last_name: params[:last_name],
+                                      phone_number: params[:phone_number],
+                                      active: true,
+                                      last_purchase_year: Date.today.year
+                                    })
 
     if @api_v1_customer.save
-      render json: @api_v1_customer, status: :created, location: @api_v1_customer
+      render json: @api_v1_customer, status: :created
     else
       render json: @api_v1_customer.errors, status: :unprocessable_entity
     end

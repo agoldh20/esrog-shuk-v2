@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Form } from 'react-bootstrap';
 import "./NewCustomer.scss";
 import { useNavigate } from 'react-router';
+import { saveNewCustomerAction } from '../../../actions/newCustomerAction';
 
 const NewCustomerPage: FC = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const NewCustomerPage: FC = () => {
   })
 
   const handleClick = () => {
-    navigate('/');
+    dispatch(saveNewCustomerAction(navigate, firstName, lastName, phoneNumber, email))
   }
 
   return (
@@ -32,7 +33,14 @@ const NewCustomerPage: FC = () => {
         <input className="form-input" type="text" placeholder="Last Name" onChange={ e => setLastName(e.target.value) }/>
       </div>
       <div>
-        <input className="form-input" id="phone" type="number" placeholder="Phone Number" pattern="[0-9]+" onChange={ e => setPhoneNumber(e.target.value) }/>
+        <input
+               className="form-input"
+               type="text"
+               placeholder="Phone Number"
+               value={ phoneNumber }
+               maxLength={10}
+               onChange={ e => setPhoneNumber(e.target.value.replace(/[^0-9]/, '')) }
+        />
         <div className="text-muted">* Required</div>
       </div>
       <div>
