@@ -3,8 +3,7 @@ import { useNavigate } from "react-router";
 import { CustomerListProps } from './CustomerListProps';
 import './CustomerList.scss';
 import { useDispatch } from 'react-redux';
-import { setCustomer } from '../../../slices/customerSlice/customerSlice';
-import { CustomerType } from '../../../slices/types';
+import { CustomerType, setCustomer } from '../../../slices/customerSlice/customerSlice';
 
 const CustomerList: FC<CustomerListProps> = ({customerList}) => {
   const dispatch = useDispatch();

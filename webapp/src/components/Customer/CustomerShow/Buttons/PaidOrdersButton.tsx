@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { PaidOrdersButtonProps } from './PaidOrdersButtonProps';
+import { ButtonProps } from './ButtonProps';
 
-const PaidOrdersButton: FC<PaidOrdersButtonProps> = ({ customerId }) => {
+const PaidOrdersButton: FC<ButtonProps> = ({ customerId }) => {
   const handleClick = () => {
     // TODO
     console.log('=============>', `paid orders for customer ${ customerId }`);

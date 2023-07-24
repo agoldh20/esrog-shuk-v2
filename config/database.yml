@@ -23,13 +23,13 @@ default: &default
 
 development:
   <<: *default
-  database: four_minim_sales_development
+  database: esrog_shuk_v2_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user running Rails.
-  #username: four_minim_sales
+  #username: esrog_shuk_v2
 
   # The password associated with the postgres role (username).
   #password:
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: four_minim_sales_test
+  database: esrog_shuk_v2_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: four_minim_sales_production
-  username: four_minim_sales
-  password: <%= ENV['FOUR_MINIM_SALES_DATABASE_PASSWORD'] %>
+  database: esrog_shuk_v2_production
+  username: esrog_shuk_v2
+  password: <%= ENV['ESROG_SHUK_V2_DATABASE_PASSWORD'] %>

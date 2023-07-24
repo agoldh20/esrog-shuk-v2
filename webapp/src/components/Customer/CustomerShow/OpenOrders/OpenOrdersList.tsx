@@ -1,27 +1,30 @@
-import { FC } from 'react';
-import { findAllByDisplayValue } from '@testing-library/react';
+import { FC, useEffect, useState } from 'react';
 import { OpenOrdersListProps } from './OpenOrdersListProps';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
 
 const OpenOrdersList: FC<OpenOrdersListProps> = ({ customerId }) => {
+  const dispatch = useDispatch();
+  const [openOrders, setOpenOrders] = useState<OrderType[]>([]);
+
+  interface OrderType {
+    id: number;
+  }
+
+  useEffect(() => {
+    const openOrderIds = axios.get(`api/v1/orders/?customer_id=${customerId}`)
+      .then(({ data }) => {
+        setOpenOrders(data)
+      })
+  },[])
+
   const handleClick = (orderId) => {
     // TODO
     console.log('=============>', `open order: ${ orderId }`);
   }
 
-  const mockOrders = [
-    {
-      id: 1,
-    },
-    {
-      id: 2,
-    },
-    {
-      id: 3,
-    },
-  ]
-
   const orderList = () => {
-    return mockOrders.map(order => (
+    return openOrders.map(order => (
       <div style={{ textDecoration: 'underline',cursor:'pointer', color: 'blue'}} onClick={ () => handleClick(order.id) }>
         Order { order.id }
       </div>

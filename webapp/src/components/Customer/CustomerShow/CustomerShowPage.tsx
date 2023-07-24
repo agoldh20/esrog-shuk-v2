@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../app/store';
-import { CustomerType } from '../../../slices/types';
+import { CustomerType } from '../../../slices/customerSlice/customerSlice';
 import CustomerInfo from './CustomerInfo/CustomerInfo';
 import StartOrderButton from './Buttons/StartOrderButton';
 import EditCustomerButton from './Buttons/EditCustomerButton';
@@ -17,7 +17,7 @@ const CustomerShowPage: FC = () => {
       <CustomerInfo customer={ customer }/>
 
       <div className="main-buttons-container">
-        <StartOrderButton />
+        <StartOrderButton customerId={customer.id!} />
         <EditCustomerButton />
       </div>
 

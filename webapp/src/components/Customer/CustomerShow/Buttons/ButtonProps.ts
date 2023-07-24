@@ -1,5 +1,5 @@
 import { DefaultProps } from '../../../../global';
 
-export interface PaidOrdersButtonProps extends DefaultProps {
+export interface ButtonProps extends DefaultProps {
   customerId: number;
 }

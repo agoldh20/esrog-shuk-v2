@@ -3,7 +3,7 @@ import { GET_CUSTOMER_LIST } from '../actions/actionsTypes';
 import { setCustomerList } from '../slices/customerListSlice/customerListSlice';
 import { getData } from '../httpClient';
 import camelcaseKeys from 'camelcase-keys';
-import { CustomerType } from '../slices/types';
+import { CustomerType } from '../slices/customerSlice/customerSlice';
 
 export function* getCustomerList() {
   try {

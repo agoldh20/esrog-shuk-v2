@@ -18,7 +18,6 @@ export function* saveNewCustomer(action: SaveNewCustomerActionType): any {
 
     action.navigate(`/customer?id=${request.id}`)
 
-    console.log('=============>', request);
   } catch (e) {}
 }
 

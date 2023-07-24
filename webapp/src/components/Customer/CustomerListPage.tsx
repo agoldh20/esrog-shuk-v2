@@ -4,7 +4,7 @@ import { getCustomerListAction } from '../../actions/customerListAction';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
-import { CustomerType } from '../../slices/types';
+import { CustomerType } from '../../slices/customerSlice/customerSlice';
 
 const CustomerListPage: FC = () => {
   const navigate = useNavigate();

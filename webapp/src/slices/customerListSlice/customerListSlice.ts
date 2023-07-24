@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { CustomerType } from "../types";
+import { CustomerType } from '../customerSlice/customerSlice';
 
 export const initialState: CustomerType[] = [];
 

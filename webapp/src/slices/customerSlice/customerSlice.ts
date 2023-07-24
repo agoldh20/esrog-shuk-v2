@@ -1,5 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { CustomerType } from "../types";
+
+export interface CustomerType {
+  id?: number;
+  firstName?: string;
+  lastName?: string;
+  phoneNumber?: string;
+  email?: string;
+}
 
 export const initialState: CustomerType = {};
 

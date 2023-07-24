@@ -15,18 +15,11 @@ ActiveRecord::Schema.define(version: 2022_08_10_192957) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "api_v1_somethings", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "aravots", force: :cascade do |t|
     t.string "kind"
     t.string "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "default"
     t.string "year"
     t.boolean "active"
   end
@@ -49,20 +42,6 @@ ActiveRecord::Schema.define(version: 2022_08_10_192957) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "esrog_sets", force: :cascade do |t|
-    t.integer "order_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "lulav_id"
-    t.integer "hadasim_id"
-    t.integer "aravot_id"
-    t.integer "esrog_id"
-    t.integer "extra_id"
-    t.integer "line_total"
-    t.integer "esrog_price"
-    t.integer "grade_id"
-  end
-
   create_table "esrogs", force: :cascade do |t|
     t.string "kind"
     t.boolean "pitum"
@@ -81,19 +60,6 @@ ActiveRecord::Schema.define(version: 2022_08_10_192957) do
     t.boolean "active"
   end
 
-  create_table "feature_flags", force: :cascade do |t|
-    t.string "name"
-    t.boolean "active"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "features", force: :cascade do |t|
-    t.boolean "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "grades", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -106,9 +72,22 @@ ActiveRecord::Schema.define(version: 2022_08_10_192957) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "price"
-    t.boolean "default"
     t.string "year"
     t.boolean "active"
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer "order_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "lulav_id"
+    t.integer "hadasim_id"
+    t.integer "aravot_id"
+    t.integer "esrog_id"
+    t.integer "extra_id"
+    t.integer "line_total"
+    t.integer "esrog_price"
+    t.integer "grade_id"
   end
 
   create_table "lulavs", force: :cascade do |t|
@@ -116,7 +95,6 @@ ActiveRecord::Schema.define(version: 2022_08_10_192957) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "price"
-    t.boolean "default"
     t.string "year"
     t.boolean "active"
   end
@@ -138,18 +116,6 @@ ActiveRecord::Schema.define(version: 2022_08_10_192957) do
     t.string "year"
     t.integer "voucher_id"
     t.string "payment_type"
-  end
-
-  create_table "sales", force: :cascade do |t|
-    t.string "lulav"
-    t.string "esrog"
-    t.string "hadasim"
-    t.string "aravos"
-    t.integer "total"
-    t.string "customer_name"
-    t.string "phone_number"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

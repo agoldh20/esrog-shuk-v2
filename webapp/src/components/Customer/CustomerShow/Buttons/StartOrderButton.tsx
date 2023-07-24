@@ -1,9 +1,15 @@
 import { FC } from 'react';
+import { ButtonProps } from './ButtonProps';
+import { useDispatch } from 'react-redux';
+import { startNewOrderAction } from '../../../../actions/newOrderAction';
+import { useNavigate } from 'react-router';
 
-const StartOrderButton: FC = () => {
+const StartOrderButton: FC<ButtonProps> = ({ customerId }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleClick = () => {
-    // TODO
-    console.log('=============>', 'start order click');
+    dispatch(startNewOrderAction(navigate, customerId, 1))
   }
 
   return (
