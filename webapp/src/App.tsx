@@ -9,6 +9,7 @@ import { resetCustomer } from './slices/customerSlice/customerSlice';
 import CustomerShowPage from './components/Customer/CustomerShow/CustomerShowPage';
 import OrderPage from './components/Order/OrderPage';
 import { resetOrder } from './slices/orderSlice/orderSlice';
+import { resetItems } from './slices/itemsSlice/itemsSlice';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const App = () => {
     dispatch(resetCustomerList());
     dispatch(resetCustomer())
     dispatch(resetOrder())
+    dispatch(resetItems())
   }
 
   return (

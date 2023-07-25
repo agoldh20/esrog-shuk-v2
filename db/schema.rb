@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_10_192957) do
+ActiveRecord::Schema.define(version: 2023_07_25_215426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2022_08_10_192957) do
   end
 
   create_table "extras", force: :cascade do |t|
-    t.string "item"
+    t.string "kind"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "price"
