@@ -21,7 +21,7 @@ const ItemTile: FC<ItemTileProps> = ({ items, type }) => {
         items.map((i, index) => (
           <tr key={ index } onClick={ () => handleClick(i) }>
             <td>{ i.kind }</td>
-            <td>${ i.price }</td>
+            <td className="prices">${ i.price }</td>
           </tr>
         ))
       }
