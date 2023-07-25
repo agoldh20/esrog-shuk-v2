@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { customerSlice } from '../customerSlice/customerSlice';
 
 export interface OrderType {
-  orderId?: number;
+  id?: number;
   customerId?: number;
   userId?: number;
   status?: string;
@@ -26,4 +25,4 @@ export const orderSlice = createSlice({
 
 export const { setOrder, resetOrder } = orderSlice.actions
 
-export default customerSlice.reducer;
+export default orderSlice.reducer;

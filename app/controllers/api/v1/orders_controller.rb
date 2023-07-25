@@ -23,7 +23,7 @@ class Api::V1::OrdersController < ApplicationController
                               })
 
     if @api_v1_order.save
-      render json: @api_v1_order, status: :created, location: @api_v1_order
+      render json: @api_v1_order, status: :created
     else
       render json: @api_v1_order.errors, status: :unprocessable_entity
     end

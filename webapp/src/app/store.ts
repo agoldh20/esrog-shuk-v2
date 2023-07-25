@@ -5,12 +5,14 @@ import createSagaMiddleware from '@redux-saga/core';
 import customerListReducer from '../slices/customerListSlice/customerListSlice';
 import customerReducer from '../slices/customerSlice/customerSlice';
 import orderReducer from '../slices/orderSlice/orderSlice';
+import itemsReducer from '../slices/itemsSlice/itemsSlice';
 import rootSaga from '../sagas/rootSaga';
 
 export const reducers = combineReducers({
     customerList: customerListReducer,
     customer: customerReducer,
     order: orderReducer,
+    items: itemsReducer,
 });
 
 const persistConfig = {

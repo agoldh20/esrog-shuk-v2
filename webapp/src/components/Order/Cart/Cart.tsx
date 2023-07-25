@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
-const OrderPage: FC = () => {
+const Cart: FC = () => {
   const dispatch = useDispatch();
 
   return (
-    <div>New Order Page</div>
+    <b>Cart</b>
   )
 }
 
-export default OrderPage;
+export default Cart

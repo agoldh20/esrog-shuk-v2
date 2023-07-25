@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { resetCustomerList } from './slices/customerListSlice/customerListSlice';
 import { resetCustomer } from './slices/customerSlice/customerSlice';
 import CustomerShowPage from './components/Customer/CustomerShow/CustomerShowPage';
-import OrderPage from './components/Customer/Order/OrderPage';
+import OrderPage from './components/Order/OrderPage';
 import { resetOrder } from './slices/orderSlice/orderSlice';
 
 const App = () => {
