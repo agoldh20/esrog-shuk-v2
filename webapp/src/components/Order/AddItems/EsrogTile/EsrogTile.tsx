@@ -2,16 +2,20 @@ import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { EsrogTileProps } from './EsrogTileProps';
 import { addLineItem } from '../../../../slices/lineItemsSlice/lineItemsSlice';
+import lineItemBuilder from '../../../../helpers/lineItemBuilder';
+import { Item } from '../../../../slices/itemsSlice/itemsSlice';
+import { ItemTileProps } from '../ItemTile/ItemTileProps';
 
-const EsrogTile: FC<EsrogTileProps> = ({ esrogs, grades }) => {
+const EsrogTile: FC<ItemTileProps> = ({ items, grades, orderId }) => {
   const dispatch = useDispatch();
   const [price, setPrice] = useState('');
-  const [kind, setKind] = useState('');
-  const [grade, setGrade] = useState('');
+  const [kind, setKind] = useState({} as Item);
+  const [grade, setGrade] = useState({} as Item);
 
-  // TODO build esrog line tiem
+  // TODO figure out how to set without ts-ignore
+
   const handleCLick = () => {
-    dispatch(addLineItem({ itemType: 'esrog', name: kind, price, grade }));
+    dispatch(addLineItem(lineItemBuilder({price, id: kind.id}, orderId, 'esrog', grade)));
   };
 
   return (
@@ -27,21 +31,21 @@ const EsrogTile: FC<EsrogTileProps> = ({ esrogs, grades }) => {
       <tbody>
         <tr>
           <td>
-            <select>
-              {esrogs.map(e => (
+            <select onChange={handleKind}>
+              {items.map(esrog => (
                 // @ts-ignore
-                <option key={`esrog-${e.id}`} value={() => setKind(e.kind)}>
-                  {e.kind}
+                <option key={`esrog-${esrog.id}`} value={esrog}>
+                  {esrog.kind}
                 </option>
               ))}
             </select>
           </td>
           <td>
-            <select>
-              {grades.map(g => (
+            <select onChange={handleGrade}>
+              {grades!.map(grade => (
                 // @ts-ignore
-                <option key={`grade-${g.id}`} value={() => setGrade(g.grade)}>
-                  {g.grade}
+                <option key={`grade-${grade.id}`} value={grade}>
+                  {grade.grade}
                 </option>
               ))}
             </select>

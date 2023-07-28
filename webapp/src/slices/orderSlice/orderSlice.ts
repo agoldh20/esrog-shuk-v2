@@ -5,7 +5,7 @@ export interface OrderType {
   customerId?: number;
   userId?: number;
   status?: string;
-  vouvherId?: number;
+  voucherId?: number;
   total?: number;
 }
 

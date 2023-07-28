@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_25_215426) do
+ActiveRecord::Schema.define(version: 2023_07_28_211141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,7 +86,6 @@ ActiveRecord::Schema.define(version: 2023_07_25_215426) do
     t.integer "esrog_id"
     t.integer "extra_id"
     t.integer "line_total"
-    t.integer "esrog_price"
     t.integer "grade_id"
   end
 

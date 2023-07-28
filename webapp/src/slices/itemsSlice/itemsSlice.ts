@@ -6,6 +6,7 @@ export interface Item {
   pitum?: boolean;
   price?: string;
   grade?: string;
+  itemType?: string;
 }
 
 export interface ItemsType {

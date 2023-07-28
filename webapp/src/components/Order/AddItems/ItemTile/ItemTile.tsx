@@ -2,12 +2,13 @@ import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { ItemTileProps } from './ItemTileProps';
 import { addLineItem } from '../../../../slices/lineItemsSlice/lineItemsSlice';
+import lineItemBuilder from '../../../../helpers/lineItemBuilder';
 
-const ItemTile: FC<ItemTileProps> = ({ items, type }) => {
+const ItemTile: FC<ItemTileProps> = ({ items, type, orderId }) => {
   const dispatch = useDispatch();
 
   const handleClick = item => {
-    dispatch(addLineItem(item));
+    dispatch(addLineItem(lineItemBuilder(item, orderId, type)));
   };
 
   return (

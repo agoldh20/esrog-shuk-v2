@@ -18,18 +18,18 @@ const OrderPage: FC = () => {
 
   return (
     <div className="order-page">
-      <CustomerInfo customer={customer} />
-      <br />
-      <b>Order {orderId}</b>
-      <br />
-      <br />
+      <CustomerInfo customer={ customer }/>
+      <br/>
+      <b>Order { orderId }</b>
+      <br/>
+      <br/>
       <div className="container">
         <div className="row">
           <div className="col">
-            <AddItems orderId={orderId} />
+            <AddItems orderId={ orderId }/>
           </div>
           <div className="col">
-            <Cart />
+            <Cart/>
           </div>
         </div>
       </div>
