@@ -13,20 +13,20 @@ const OrderPage: FC = () => {
   const orderId = useSelector<RootState, number>(state => state.order.id!);
 
   useEffect(() => {
-    dispatch(getAvailableItemsAction())
-  }, [])
+    dispatch(getAvailableItemsAction());
+  }, []);
 
   return (
     <div className="order-page">
       <CustomerInfo customer={customer} />
-      <br/>
-      <b>Order { orderId }</b>
-      <br/>
-      <br/>
+      <br />
+      <b>Order {orderId}</b>
+      <br />
+      <br />
       <div className="container">
         <div className="row">
           <div className="col">
-            <AddItems orderId={ orderId }/>
+            <AddItems orderId={orderId} />
           </div>
           <div className="col">
             <Cart />
@@ -34,7 +34,7 @@ const OrderPage: FC = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default OrderPage;

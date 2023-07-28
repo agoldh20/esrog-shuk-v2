@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
-const Cart: FC = () => {
+const LineItems: FC = () => {
   const dispatch = useDispatch();
 
-  return <b>Cart</b>;
-};
+  return <div />
+}
 
-export default Cart;
+export default LineItems;

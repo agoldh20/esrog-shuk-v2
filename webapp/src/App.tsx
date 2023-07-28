@@ -15,23 +15,23 @@ const App = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
-  if ( pathname === '/' ) {
+  if (pathname === '/') {
     dispatch(resetCustomerList());
-    dispatch(resetCustomer())
-    dispatch(resetOrder())
-    dispatch(resetItems())
+    dispatch(resetCustomer());
+    dispatch(resetOrder());
+    dispatch(resetItems());
   }
 
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={ <CustomerListPage/> }/>
-        <Route path="/new-customer" element={ <NewCustomerPage/> }/>
-        <Route path="/customer" element={ <CustomerShowPage/> }/>
-        <Route path="/order" element={ <OrderPage/> }/>
+        <Route path="/" element={<CustomerListPage />} />
+        <Route path="/new-customer" element={<NewCustomerPage />} />
+        <Route path="/customer" element={<CustomerShowPage />} />
+        <Route path="/order" element={<OrderPage />} />
       </Routes>
     </div>
   );
-}
+};
 
 export default App;

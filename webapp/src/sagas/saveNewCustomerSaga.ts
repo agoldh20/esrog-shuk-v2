@@ -16,11 +16,10 @@ export function* saveNewCustomer(action: SaveNewCustomerActionType): any {
 
     yield put(setCustomer(camelcaseKeys(request)));
 
-    action.navigate(`/customer?id=${request.id}`)
-
+    action.navigate(`/customer?id=${request.id}`);
   } catch (e) {}
 }
 
 export function* watchSaveNewCustomer() {
-  yield takeEvery(SAVE_NEW_CUSTOMER, saveNewCustomer)
+  yield takeEvery(SAVE_NEW_CUSTOMER, saveNewCustomer);
 }

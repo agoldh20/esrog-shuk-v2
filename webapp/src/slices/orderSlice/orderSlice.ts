@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface OrderType {
   id?: number;
@@ -6,7 +6,7 @@ export interface OrderType {
   userId?: number;
   status?: string;
   vouvherId?: number;
-  total?: number
+  total?: number;
 }
 
 export const initialState: OrderType = {};
@@ -17,12 +17,12 @@ export const orderSlice = createSlice({
   reducers: {
     setOrder: (state: OrderType, action: PayloadAction<OrderType>) => ({
       ...state,
-      ...action.payload
+      ...action.payload,
     }),
     resetOrder: () => initialState,
   },
 });
 
-export const { setOrder, resetOrder } = orderSlice.actions
+export const { setOrder, resetOrder } = orderSlice.actions;
 
 export default orderSlice.reducer;

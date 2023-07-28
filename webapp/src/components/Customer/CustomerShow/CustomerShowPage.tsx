@@ -5,7 +5,7 @@ import { CustomerType } from '../../../slices/customerSlice/customerSlice';
 import CustomerInfo from './CustomerInfo/CustomerInfo';
 import StartOrderButton from './Buttons/StartOrderButton';
 import EditCustomerButton from './Buttons/EditCustomerButton';
-import './CustomerShowPage.scss'
+import './CustomerShowPage.scss';
 import OpenOrdersList from './OpenOrders/OpenOrdersList';
 import PaidOrdersButton from './Buttons/PaidOrdersButton';
 
@@ -14,7 +14,7 @@ const CustomerShowPage: FC = () => {
 
   return (
     <div className="customer-show-page">
-      <CustomerInfo customer={ customer }/>
+      <CustomerInfo customer={customer} />
 
       <div className="main-buttons-container">
         <StartOrderButton customerId={customer.id!} />
@@ -23,14 +23,14 @@ const CustomerShowPage: FC = () => {
 
       <div className="open-orders-container">
         <b>Open Orders:</b>
-        <OpenOrdersList customerId={ customer.id! }/>
+        <OpenOrdersList customerId={customer.id!} />
       </div>
 
       <div className="paid-orders-button-container">
         <PaidOrdersButton customerId={customer.id!} />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default CustomerShowPage;

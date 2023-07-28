@@ -8,18 +8,17 @@ export function* startNewOrder(action: StartNewOrderActionType): any {
   try {
     const request = yield call(postData, '/api/v1/orders/', {
       customer_id: action.customerId,
-      user_id: action.userId
+      user_id: action.userId,
     });
 
     yield put(setOrder(request));
 
     console.log('=============>', request);
 
-    action.navigate(`/order?id=${request.id}`)
-
+    action.navigate(`/order?id=${request.id}`);
   } catch (e) {}
 }
 
 export function* watchStartNewOrder() {
-  yield takeEvery(START_NEW_ORDER, startNewOrder)
+  yield takeEvery(START_NEW_ORDER, startNewOrder);
 }

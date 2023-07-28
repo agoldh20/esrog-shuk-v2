@@ -1,25 +1,23 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface Item {
-  id?: number,
-  kind?: string,
-  year?: string,
-  active?: boolean,
-  pitum?: boolean,
-  price?: string,
-  grade?: string,
+  id?: number;
+  kind?: string;
+  pitum?: boolean;
+  price?: string;
+  grade?: string;
 }
 
 export interface ItemsType {
-  esrogs: Item[],
-  lulavs: Item[],
-  aravots: Item[],
-  hadasims: Item[],
-  extras: Item[],
-  grades: Item[],
+  esrogs: Item[];
+  lulavs: Item[];
+  aravots: Item[];
+  hadasims: Item[];
+  extras: Item[];
+  grades: Item[];
 }
 
-export const initialState: ItemsType= {
+export const initialState: ItemsType = {
   esrogs: [],
   lulavs: [],
   aravots: [],
@@ -45,6 +43,6 @@ export const itemsSlice = createSlice({
   },
 });
 
-export const { setItems, resetItems } = itemsSlice.actions
+export const { setItems, resetItems } = itemsSlice.actions;
 
 export default itemsSlice.reducer;

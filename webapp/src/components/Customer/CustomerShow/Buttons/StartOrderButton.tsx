@@ -9,14 +9,16 @@ const StartOrderButton: FC<ButtonProps> = ({ customerId }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    dispatch(startNewOrderAction(navigate, customerId, 1))
-  }
+    dispatch(startNewOrderAction(navigate, customerId, 1));
+  };
 
   return (
     <span className="buttons">
-      <button type="button" className="btn btn-success" onClick={ handleClick }>Start New Order</button>
+      <button type="button" className="btn btn-success" onClick={handleClick}>
+        Start New Order
+      </button>
     </span>
-  )
-}
+  );
+};
 
-export default StartOrderButton
+export default StartOrderButton;

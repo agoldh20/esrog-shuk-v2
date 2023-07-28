@@ -5,7 +5,7 @@ export const getData = (url: string): Promise<AxiosResponse> =>
     .get(url)
     .then(response => response.data)
     .catch(err => {
-      throw err.response
+      throw err.response;
     });
 
 export const getDataWithHeaders = (url: string, headers): Promise<AxiosResponse> =>
@@ -13,7 +13,7 @@ export const getDataWithHeaders = (url: string, headers): Promise<AxiosResponse>
     .get(url, headers)
     .then(response => response.data)
     .catch(err => {
-      throw err.response
+      throw err.response;
     });
 
 export const postData = (url: string, data): Promise<AxiosResponse> =>
@@ -21,7 +21,7 @@ export const postData = (url: string, data): Promise<AxiosResponse> =>
     .post(url, data)
     .then(response => response.data)
     .catch(err => {
-      throw err.response
+      throw err.response;
     });
 
 export const postDataWithHeaders = (url: string, headers): Promise<AxiosResponse> =>
@@ -29,7 +29,7 @@ export const postDataWithHeaders = (url: string, headers): Promise<AxiosResponse
     .post(url, headers)
     .then(response => response.data)
     .catch(err => {
-      throw err.response
+      throw err.response;
     });
 
 export const patchData = (url: string, data): Promise<AxiosResponse> =>
@@ -37,5 +37,5 @@ export const patchData = (url: string, data): Promise<AxiosResponse> =>
     .patch(url, data)
     .then(response => response.data)
     .catch(err => {
-      throw err.response
+      throw err.response;
     });

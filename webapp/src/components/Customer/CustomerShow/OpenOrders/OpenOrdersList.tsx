@@ -14,29 +14,27 @@ const OpenOrdersList: FC<OpenOrdersListProps> = ({ customerId }) => {
   }
 
   useEffect(() => {
-    const openOrderIds = axios.get(`api/v1/orders/?customer_id=${customerId}`)
-      .then(({ data }) => {
-        setOpenOrders(data)
-      })
-  },[])
+    const openOrderIds = axios.get(`api/v1/orders/?customer_id=${customerId}`).then(({ data }) => {
+      setOpenOrders(data);
+    });
+  }, []);
 
-  const handleClick = (orderId) => {
-    naviate(`/order?id=${orderId}`)
-  }
+  const handleClick = orderId => {
+    naviate(`/order?id=${orderId}`);
+  };
 
   const orderList = () => {
     return openOrders.map(order => (
-      <div key={`order-${order.id}`} style={{ textDecoration: 'underline',cursor:'pointer', color: 'blue'}} onClick={ () => handleClick(order.id) }>
-        Order { order.id }
+      <div
+        key={`order-${order.id}`}
+        style={{ textDecoration: 'underline', cursor: 'pointer', color: 'blue' }}
+        onClick={() => handleClick(order.id)}>
+        Order {order.id}
       </div>
-    ))
-  }
+    ));
+  };
 
-  return (
-    <>
-      { orderList() }
-    </>
-  )
-}
+  return <>{orderList()}</>;
+};
 
-export default OpenOrdersList
+export default OpenOrdersList;

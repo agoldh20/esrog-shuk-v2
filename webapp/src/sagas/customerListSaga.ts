@@ -15,5 +15,5 @@ export function* getCustomerList() {
 }
 
 export function* watchGetCustomerList() {
-  yield takeEvery(GET_CUSTOMER_LIST, getCustomerList)
+  yield takeEvery(GET_CUSTOMER_LIST, getCustomerList);
 }

@@ -58,6 +58,7 @@
     "@types/history": "^4.7.9",
     "postcss": "^8.4.5",
     "postcss-loader": "^6.2.1",
-    "webpack": "^5.65.0"
+    "webpack": "^5.65.0",
+    "prettier": "^3.0.0"
   }
 }

@@ -8,19 +8,17 @@ import { Provider } from 'react-redux';
 import { persister, store } from './app/store';
 import { PersistGate } from 'redux-persist/integration/react';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement,
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <BrowserRouter>
     {/*<React.StrictMode>*/}
-      <Provider store={ store }>
-        <PersistGate persistor={ persister } loading={null}>
-          <App/>
-        </PersistGate>
-      </Provider>
+    <Provider store={store}>
+      <PersistGate persistor={persister} loading={null}>
+        <App />
+      </PersistGate>
+    </Provider>
     {/*</React.StrictMode>*/}
-  </BrowserRouter>,
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

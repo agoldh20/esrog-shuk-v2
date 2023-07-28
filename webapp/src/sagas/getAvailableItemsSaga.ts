@@ -12,5 +12,5 @@ export function* getAvailableItems() {
 }
 
 export function* watchGetAvailableItems() {
-  yield takeEvery(GET_AVAILABLE_ITEMS, getAvailableItems)
+  yield takeEvery(GET_AVAILABLE_ITEMS, getAvailableItems);
 }

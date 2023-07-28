@@ -9,21 +9,23 @@ import ItemTile from './ItemTile/ItemTile';
 
 const AddItems: FC<AddItemsProps> = ({ orderId }) => {
   const dispatch = useDispatch();
-  const { esrogs, extras, grades, lulavs, hadasims, aravots } = useSelector<RootState, ItemsType>(state => state.items);
+  const { esrogs, extras, grades, lulavs, hadasims, aravots } = useSelector<RootState, ItemsType>(
+    state => state.items
+  );
 
-  const handleClick = (item) => {
+  const handleClick = item => {
     console.log('=============>', item);
-  }
+  };
 
   return (
     <div className="add-items">
-      <EsrogTile esrogs={ esrogs } grades={ grades }/>
-      <ItemTile items={ lulavs } type="lulav" />
-      <ItemTile items={ hadasims } type="hadasim" />
-      <ItemTile items={ aravots } type="aravot" />
-      <ItemTile items={ extras } type="extra" />
+      <EsrogTile esrogs={esrogs} grades={grades} />
+      <ItemTile items={lulavs} type="lulav" />
+      <ItemTile items={hadasims} type="hadasim" />
+      <ItemTile items={aravots} type="aravot" />
+      <ItemTile items={extras} type="extra" />
     </div>
-  )
-}
+  );
+};
 
-export default AddItems
+export default AddItems;
