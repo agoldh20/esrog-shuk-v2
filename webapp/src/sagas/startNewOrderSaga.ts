@@ -13,8 +13,6 @@ export function* startNewOrder(action: StartNewOrderActionType): any {
 
     yield put(setOrder(request));
 
-    console.log('=============>', request);
-
     action.navigate(`/order?id=${request.id}`);
   } catch (e) {}
 }

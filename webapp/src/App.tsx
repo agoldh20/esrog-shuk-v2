@@ -10,6 +10,7 @@ import CustomerShowPage from './components/Customer/CustomerShow/CustomerShowPag
 import OrderPage from './components/Order/OrderPage';
 import { resetOrder } from './slices/orderSlice/orderSlice';
 import { resetItems } from './slices/itemsSlice/itemsSlice';
+import { resetLineItems } from './slices/lineItemsSlice/lineItemsSlice';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const App = () => {
     dispatch(resetCustomer());
     dispatch(resetOrder());
     dispatch(resetItems());
+    dispatch(resetLineItems());
   }
 
   return (
