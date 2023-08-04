@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAvailableItemsAction } from '../../actions/getAvailableItemsAction';
 import { RootState } from '../../app/store';
@@ -30,7 +30,7 @@ const OrderPage: FC = () => {
             <AddItems orderId={orderId} items={items} />
           </div>
           <div className="col">
-            <Cart items={items}/>
+            <Cart orderId={orderId} items={items}/>
           </div>
         </div>
       </div>

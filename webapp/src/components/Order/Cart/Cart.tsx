@@ -1,19 +1,21 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../app/store';
 import { LineItemType } from '../../../slices/lineItemsSlice/lineItemsSlice';
 import { CartProps } from './CartProps';
 import LineItemTile from './LineItem/LineItemTile';
 import './Cart.scss';
+import { sendLineItemsAction } from '../../../actions/sendLineItemsAction';
+import { useNavigate } from 'react-router';
 
-const Cart: FC<CartProps> = ({ items }) => {
+const Cart: FC<CartProps> = ({ orderId, items }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const lineItems = useSelector<RootState, LineItemType[]>(state => state.lineItems);
   const { esrogs, extras, grades, lulavs, hadasims, aravots } = items;
 
   const handleClick = () => {
-    // TODO save lineItems to backend
-    console.log('=============>', 'save');
+    dispatch(sendLineItemsAction(navigate, orderId, lineItems))
   }
 
   const cartedEsrogs = lineItems.filter(esrog => esrog.esrogId);

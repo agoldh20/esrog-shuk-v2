@@ -6,6 +6,7 @@ export interface OrderType {
   userId?: number;
   status?: string;
   voucherId?: number;
+  paymentType?: string;
   total?: number;
 }
 
@@ -19,10 +20,18 @@ export const orderSlice = createSlice({
       ...state,
       ...action.payload,
     }),
+    setPaymentType: (state: OrderType, action: PayloadAction<string>) => ({
+      ...state,
+      paymentType: action.payload,
+    }),
+    updateOrderStatus: (state: OrderType, action: PayloadAction<string>) => ({
+      ...state,
+      status: action.payload,
+    }),
     resetOrder: () => initialState,
   },
 });
 
-export const { setOrder, resetOrder } = orderSlice.actions;
+export const { setOrder, setPaymentType, updateOrderStatus, resetOrder } = orderSlice.actions;
 
 export default orderSlice.reducer;

@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { LineItemTileProps } from './LineItemTileProps';
 import { useDispatch } from 'react-redux';
 import { removeLineItem } from '../../../../slices/lineItemsSlice/lineItemsSlice';
+import { CheckoutLineItemsProps } from './CheckoutLineItemsProps';
 
-const LineItemTile: FC<LineItemTileProps> = ({ items, type, cartedItems }) => {
+const CheckoutLineItemTile: FC<CheckoutLineItemsProps> = ({ items, type, cartedItems }) => {
   const dispatch = useDispatch();
   const itemTitle = type.charAt(0).toUpperCase() + type.slice(1);
 
@@ -33,13 +33,7 @@ const LineItemTile: FC<LineItemTileProps> = ({ items, type, cartedItems }) => {
               <tr key={`${cartItem}-${index}`}>
                 <td>{cartItem?.kind}</td>
                 <td className="prices">
-                  ${cartItem?.lineTotal}&nbsp;
-                  <i
-                    style={{ fontSize: '18px', cursor: 'pointer' }}
-                    className="fa"
-                    onClick={() => hanldeDelete(cartItem.lineId!)}>
-                    &#xf014;
-                  </i>
+                  ${cartItem?.lineTotal}
                 </td>
               </tr>
             ))}
@@ -52,4 +46,4 @@ const LineItemTile: FC<LineItemTileProps> = ({ items, type, cartedItems }) => {
   );
 };
 
-export default LineItemTile;
+export default CheckoutLineItemTile;

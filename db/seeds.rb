@@ -121,19 +121,19 @@ Grade.create!([
 
 Extra.create!([
   {
-    item: "Hard Plastic Lulav bag",
+    kind: "Hard Plastic Lulav bag",
     price: "10",
     year: "2023",
     active: true
  },
   {
-    item: "5 finger Kosheklach",
+    kind: "5 finger Kosheklach",
     price: "12",
     year: "2023",
     active: true
  },
   {
-    item: "Crown Kosheklach",
+    kind: "Crown Kosheklach",
     price: "18",
     year: "2023",
     active: true

@@ -18,21 +18,21 @@ ActiveRecord::Schema.define(version: 2023_07_28_211141) do
   create_table "aravots", force: :cascade do |t|
     t.string "kind"
     t.string "price"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "year"
     t.boolean "active"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "customers", force: :cascade do |t|
     t.string "phone_number"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "email"
     t.boolean "active"
     t.string "first_name"
     t.string "last_name"
     t.integer "last_purchase_year"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "discounts", force: :cascade do |t|
@@ -45,41 +45,39 @@ ActiveRecord::Schema.define(version: 2023_07_28_211141) do
   create_table "esrogs", force: :cascade do |t|
     t.string "kind"
     t.boolean "pitum"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "year"
     t.boolean "active"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "extras", force: :cascade do |t|
     t.string "kind"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.integer "price"
     t.string "year"
     t.boolean "active"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "grades", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "year"
     t.string "grade"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "hadasims", force: :cascade do |t|
     t.string "kind"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.integer "price"
     t.string "year"
     t.boolean "active"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "line_items", force: :cascade do |t|
     t.integer "order_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.integer "lulav_id"
     t.integer "hadasim_id"
     t.integer "aravot_id"
@@ -87,15 +85,17 @@ ActiveRecord::Schema.define(version: 2023_07_28_211141) do
     t.integer "extra_id"
     t.integer "line_total"
     t.integer "grade_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "lulavs", force: :cascade do |t|
     t.string "kind"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.integer "price"
     t.string "year"
     t.boolean "active"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "notes", force: :cascade do |t|
@@ -109,20 +109,20 @@ ActiveRecord::Schema.define(version: 2023_07_28_211141) do
     t.integer "customer_id"
     t.string "status"
     t.integer "total"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.string "year"
     t.integer "voucher_id"
     t.string "payment_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "username"
     t.string "password_digest"
     t.boolean "admin"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "vouchers", force: :cascade do |t|
@@ -131,5 +131,4 @@ ActiveRecord::Schema.define(version: 2023_07_28_211141) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
-
 end

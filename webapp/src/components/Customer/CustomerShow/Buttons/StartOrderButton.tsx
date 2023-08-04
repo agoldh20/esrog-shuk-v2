@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { ButtonProps } from './ButtonProps';
 import { useDispatch } from 'react-redux';
 import { startNewOrderAction } from '../../../../actions/newOrderAction';

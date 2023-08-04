@@ -2,7 +2,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface LineItemType {
   lineId?: number;
-  orderId?: number;
   lulavId?: number;
   hadasimId?: number;
   aravotId?: number;

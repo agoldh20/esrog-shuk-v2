@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddItemsProps } from './AddItemsProps';
 import { RootState } from '../../../app/store';
