@@ -45,13 +45,14 @@ class Api::V1::CustomersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_api_v1_customer
-      @api_v1_customer = Customer.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def api_v1_customer_params
-      params.fetch(:api_v1_customer, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_api_v1_customer
+    @api_v1_customer = Customer.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def api_v1_customer_params
+    params.fetch(:api_v1_customer, {})
+  end
 end

@@ -16,7 +16,7 @@ const CheckoutLineItemTile: FC<CheckoutLineItemsProps> = ({ items, type, cartedI
   });
 
   const hanldeDelete = (id: number) => {
-    dispatch(removeLineItem(id))
+    dispatch(removeLineItem(id));
   };
 
   return (
@@ -32,9 +32,7 @@ const CheckoutLineItemTile: FC<CheckoutLineItemsProps> = ({ items, type, cartedI
             {cartItems.map((cartItem, index) => (
               <tr key={`${cartItem}-${index}`}>
                 <td>{cartItem?.kind}</td>
-                <td className="prices">
-                  ${cartItem?.lineTotal}
-                </td>
+                <td className="prices">${cartItem?.lineTotal}</td>
               </tr>
             ))}
           </tbody>

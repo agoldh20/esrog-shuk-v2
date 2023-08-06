@@ -8,7 +8,7 @@ const ItemTile: FC<ItemTileProps> = ({ items, type, orderId }) => {
   const dispatch = useDispatch();
 
   const handleClick = item => {
-    dispatch(addLineItem(lineItemBuilder(item, type)));
+    dispatch(addLineItem(lineItemBuilder(item, orderId, type)));
   };
 
   return (

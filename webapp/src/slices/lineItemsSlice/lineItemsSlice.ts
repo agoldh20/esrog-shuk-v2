@@ -9,6 +9,7 @@ export interface LineItemType {
   extraId?: number;
   lineTotal?: number;
   gradeId?: number;
+  orderId?: number;
 }
 
 export const initialState: LineItemType[] = [];

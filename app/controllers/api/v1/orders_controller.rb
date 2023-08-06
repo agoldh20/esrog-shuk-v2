@@ -22,7 +22,7 @@ class Api::V1::OrdersController < ApplicationController
                                 year: Date.today.year
                               })
 
-    if @api_v1_order.save
+    if @api_v1_order.save!
       render json: @api_v1_order, status: :created
     else
       render json: @api_v1_order.errors, status: :unprocessable_entity
@@ -31,7 +31,13 @@ class Api::V1::OrdersController < ApplicationController
 
   # PATCH/PUT /api/v1/orders/1
   def update
-    if @api_v1_order.update(api_v1_order_params)
+    @api_v1_order.status = params[:order][:status] || @api_v1_order.status
+    @api_v1_order.total = params[:order][:total] || @api_v1_order.total
+    @api_v1_order.user_id = params[:order][:user_id] || @api_v1_order.user_id
+    @api_v1_order.voucher_id = params[:order][:voucher_id] || @api_v1_order.voucher_id
+    @api_v1_order.payment_type = params[:order][:payment_type] || @api_v1_order.payment_type
+
+    if @api_v1_order.save!
       render json: @api_v1_order
     else
       render json: @api_v1_order.errors, status: :unprocessable_entity
@@ -50,13 +56,14 @@ class Api::V1::OrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_api_v1_order
-      @api_v1_order = Api::V1::Order.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def api_v1_order_params
-      params.fetch(:api_v1_order, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_api_v1_order
+    @api_v1_order = Order.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def api_v1_order_params
+    params.fetch(:api_v1_order, {})
+  end
 end

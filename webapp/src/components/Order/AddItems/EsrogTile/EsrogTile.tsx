@@ -19,7 +19,7 @@ const EsrogTile: FC<ItemTileProps> = ({ items, grades, orderId }) => {
   };
 
   const handleCLick = () => {
-    dispatch(addLineItem(lineItemBuilder({ price, id: +kindId }, 'esrog', +gradeId)));
+    dispatch(addLineItem(lineItemBuilder({ price, id: +kindId }, orderId, 'esrog', +gradeId)));
   };
 
   return (

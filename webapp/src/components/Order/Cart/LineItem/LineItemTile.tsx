@@ -16,7 +16,7 @@ const LineItemTile: FC<LineItemTileProps> = ({ items, type, cartedItems }) => {
   });
 
   const hanldeDelete = (id: number) => {
-    dispatch(removeLineItem(id))
+    dispatch(removeLineItem(id));
   };
 
   return (

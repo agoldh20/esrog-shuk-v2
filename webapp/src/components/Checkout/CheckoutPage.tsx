@@ -11,34 +11,33 @@ import VoucherTile from './Voucher/VoucherTile';
 
 const CheckoutPage: FC = () => {
   const dispatch = useDispatch();
-  const customer = useSelector<RootState, CustomerType>(({ customer }) => customer)
-  const order = useSelector<RootState, OrderType>(({order}) => order)
-
+  const customer = useSelector<RootState, CustomerType>(({ customer }) => customer);
+  const order = useSelector<RootState, OrderType>(({ order }) => order);
 
   return (
     <div className="checkout-page">
-      <CustomerInfo customer={ customer }/>
-      <br/>
-      <b>Order { order.id }</b>
-      <br/>
-      <br/>
+      <CustomerInfo customer={customer} />
+      <br />
+      <b>Order {order.id}</b>
+      <br />
+      <br />
       <div className="container">
         <div className="row">
           <div className="col">
-            <CheckoutCart order={ order }/>
+            <CheckoutCart order={order} />
           </div>
           <div className="col">
             <NoteTile />
-            <br/>
-            <VoucherTile/>
-            <br/>
-            <br/>
-            <PaymentTypeTile order={ order }/>
+            <br />
+            <VoucherTile />
+            <br />
+            <br />
+            <PaymentTypeTile order={order} />
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CheckoutPage
+export default CheckoutPage;

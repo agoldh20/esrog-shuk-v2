@@ -20,28 +20,21 @@ class Api::V1::LineItemsController < ApplicationController
     begin
       params[:line_items].each do |line|
         @api_v1_line_item = LineItem.create!({
-                                           order_id: params[:order_id],
-                                           esrog_id: line[:esrog_id],
-                                           grade_id: line[:grade_id],
-                                           lulav_id: line[:lulav_id],
-                                           hadasim_id: line[:hadasim_id],
-                                           aravot_id: line[:aravot_id],
-                                           extra_id: line[:extra_id],
-                                           line_total: line[:line_total]
-                                         })
+                                               order_id: params[:order_id],
+                                               esrog_id: line[:esrog_id],
+                                               grade_id: line[:grade_id],
+                                               lulav_id: line[:lulav_id],
+                                               hadasim_id: line[:hadasim_id],
+                                               aravot_id: line[:aravot_id],
+                                               extra_id: line[:extra_id],
+                                               line_total: line[:line_total]
+                                             })
       end
-      # @api_v1_line_item = LineItem.new(params[:_json][0])
-      # @api_v1_line_item.save
     rescue
       render json: @api_v1_line_item.errors, status: :unprocessable_entity
     end
-    # @api_v1_line_item = LineItem.new(api_v1_line_item_params)
-    #
-    # if @api_v1_line_item.save
+
     render status: :created
-    # else
-    #   render json: @api_v1_line_item.errors, status: :unprocessable_entity
-    # end
   end
 
   # PATCH/PUT /api/v1/line_items/1

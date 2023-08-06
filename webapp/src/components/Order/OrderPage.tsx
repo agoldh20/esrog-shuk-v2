@@ -30,7 +30,7 @@ const OrderPage: FC = () => {
             <AddItems orderId={orderId} items={items} />
           </div>
           <div className="col">
-            <Cart orderId={orderId} items={items}/>
+            <Cart orderId={orderId} items={items} />
           </div>
         </div>
       </div>

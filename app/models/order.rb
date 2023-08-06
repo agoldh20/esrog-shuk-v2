@@ -1,10 +1,9 @@
 class Order < ApplicationRecord
   has_many :line_items
-  has_many :notes
+  belongs_to :note, optional: true
   belongs_to :voucher, optional: true
   belongs_to :customer
   belongs_to :user, optional: true
-
 
   def total_price
     total = line_items.pluck(:line_total).map { |total| total.to_i }.reduce(:+)
@@ -15,27 +14,27 @@ class Order < ApplicationRecord
   def build_invoice_pdf
     pdf = Prawn::Document.new
     pdf.move_down 20
-    pdf.formatted_text [{text: "Customer: ", styles: [:bold]}]
+    pdf.formatted_text [{ text: "Customer: ", styles: [:bold] }]
     pdf.text "#{customer.full_name}"
     pdf.text "#{customer.email}"
     pdf.text "#{customer.phone_number}"
     pdf.move_down 20
-    pdf.formatted_text [{text: "Order: ", styles: [:bold]}, {text: "#{id}"}]
+    pdf.formatted_text [{ text: "Order: ", styles: [:bold] }, { text: "#{id}" }]
     line_items.each do |esrog_set|
       pdf.text build_string(esrog_set)
     end
     pdf.move_down 20
-    pdf.formatted_text [{text: "Total: ", styles: [:bold]}, {text: "$#{total_price}"}]
-    pdf.formatted_text [{text: "Order Status: ", styles: [:bold]}, {text: "#{status.capitalize}"}]
+    pdf.formatted_text [{ text: "Total: ", styles: [:bold] }, { text: "$#{total_price}" }]
+    pdf.formatted_text [{ text: "Order Status: ", styles: [:bold] }, { text: "#{status.capitalize}" }]
 
     pdf
   end
 
   def build_string(esrog_set)
-    lulav =  esrog_set.lulav ? "#{esrog_set.lulav.kind} $#{esrog_set.lulav.price}; " : ""
-    esrog =  esrog_set.esrog ? "#{esrog_set.esrog.kind} $#{esrog_set.esrog_price}; " : ""
-    hadasim =  esrog_set.hadasim ? "#{esrog_set.hadasim.kind} $#{esrog_set.hadasim.price}; " : ""
-    aravos =  esrog_set.aravot ? "#{esrog_set.aravot.kind} $#{esrog_set.aravot.price}; " : ""
+    lulav = esrog_set.lulav ? "#{esrog_set.lulav.kind} $#{esrog_set.lulav.price}; " : ""
+    esrog = esrog_set.esrog ? "#{esrog_set.esrog.kind} $#{esrog_set.esrog_price}; " : ""
+    hadasim = esrog_set.hadasim ? "#{esrog_set.hadasim.kind} $#{esrog_set.hadasim.price}; " : ""
+    aravos = esrog_set.aravot ? "#{esrog_set.aravot.kind} $#{esrog_set.aravot.price}; " : ""
     total = " - Line Total: #{esrog_set.line_total}"
 
     "#{lulav}#{esrog}#{hadasim}#{aravos}#{total}"

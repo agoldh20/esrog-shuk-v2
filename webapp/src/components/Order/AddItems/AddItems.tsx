@@ -1,8 +1,5 @@
 import React, { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { AddItemsProps } from './AddItemsProps';
-import { RootState } from '../../../app/store';
-import { ItemsType } from '../../../slices/itemsSlice/itemsSlice';
 import './AddItems.scss';
 import EsrogTile from './EsrogTile/EsrogTile';
 import ItemTile from './ItemTile/ItemTile';

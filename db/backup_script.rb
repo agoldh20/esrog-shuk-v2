@@ -1,10 +1,9 @@
 # system(`echo heroku pg:backups:capture`)
 # system(`echo heroku pg:backups:download`)
 
-dump_version=31
+dump_version = 31
 
 system(`echo pg_restore --verbose --clean --no-acl --no-owner -h localhost -U adam -d four_minim_sales_development latest.dump.#{dump_version}`)
-
 
 # heroku pg:backups:capture
 # heroku pg:backups:download

@@ -17,7 +17,7 @@ const OpenOrdersList: FC<OpenOrdersListProps> = ({ customerId }) => {
     const openOrderIds = axios.get(`api/v1/orders/?customer_id=${customerId}`).then(({ data }) => {
       setOpenOrders(data);
     });
-  }, []);
+  }, [customerId]);
 
   const handleClick = orderId => {
     naviate(`/order?id=${orderId}`);

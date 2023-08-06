@@ -16,8 +16,8 @@ const NewCustomerPage: FC = () => {
   const [disable, setDisable] = useState(true);
 
   useEffect(() => {
-    setDisable(phoneNumber.length < 10);
-  },[]);
+    setDisable(phoneNumber.length !== 10);
+  }, [phoneNumber]);
 
   const handleClick = () => {
     dispatch(saveNewCustomerAction(navigate, firstName, lastName, phoneNumber, email));

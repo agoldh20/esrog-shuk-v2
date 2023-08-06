@@ -15,8 +15,8 @@ const Cart: FC<CartProps> = ({ orderId, items }) => {
   const { esrogs, extras, grades, lulavs, hadasims, aravots } = items;
 
   const handleClick = () => {
-    dispatch(sendLineItemsAction(navigate, orderId, lineItems))
-  }
+    dispatch(sendLineItemsAction(navigate, orderId, lineItems));
+  };
 
   const cartedEsrogs = lineItems.filter(esrog => esrog.esrogId);
   const cartedLulavs = lineItems.filter(lulav => lulav.lulavId);
