@@ -1,7 +1,8 @@
 import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { VoucherProps } from './VoucherProps';
 
-const VoucherTile: FC = () => {
+const VoucherTile: FC<VoucherProps> = ({ status }) => {
   const dispatch = useDispatch();
   const [hideVoucher, setHideVoucher] = useState<boolean>(false);
   const [provider, setProvider] = useState();
@@ -25,10 +26,16 @@ const VoucherTile: FC = () => {
 
   return (
     <div className="voucher-tile pull-left">
-      <input type="checkbox" checked={hideVoucher} onChange={handleVoucher} /> Voucher &nbsp;
+      <input
+        type="checkbox"
+        checked={hideVoucher}
+        onChange={handleVoucher}
+        disabled={status === 'paid'}
+      />{' '}
+      Voucher &nbsp;
       {hideVoucher ? (
         <>
-          <select onChange={handleProivder}>
+          <select onChange={handleProivder} disabled={status === 'paid'}>
             <option disabled selected>
               Provider
             </option>
@@ -52,6 +59,7 @@ const VoucherTile: FC = () => {
             style={{ width: '64px', height: '23px', marginLeft: '8px' }}
             maxLength={3}
             value={amount}
+            disabled={status === 'paid'}
           />
         </>
       ) : (

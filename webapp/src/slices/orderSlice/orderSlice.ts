@@ -1,12 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+export interface NoteType {
+  id?: number;
+  note?: string;
+}
+
+export interface VoucherType {
+  id?: number;
+  provider: string;
+  amount: number;
+}
+
 export interface OrderType {
   id?: number;
   customerId?: number;
   userId?: number;
   status?: string;
-  voucherId?: number;
   paymentType?: string;
+  note?: NoteType;
+  voucher?: VoucherType;
   total?: number;
 }
 
@@ -28,10 +40,35 @@ export const orderSlice = createSlice({
       ...state,
       status: action.payload,
     }),
+    updateOrderNote: (state: OrderType, action: PayloadAction<NoteType>) => ({
+      ...state,
+      note: action.payload,
+    }),
+    updateOrderVoucher: (state: OrderType, action: PayloadAction<VoucherType>) => ({
+      ...state,
+      voucher: action.payload,
+    }),
+    resetNote: (state: OrderType) => ({
+      ...state,
+      note: {},
+    }),
+    resetVoucher: (state: OrderType) => ({
+      ...state,
+      voucher: {} as VoucherType
+    }),
     resetOrder: () => initialState,
   },
 });
 
-export const { setOrder, setPaymentType, updateOrderStatus, resetOrder } = orderSlice.actions;
+export const {
+  setOrder,
+  setPaymentType,
+  updateOrderStatus,
+  updateOrderVoucher,
+  updateOrderNote,
+  resetOrder,
+  resetNote,
+  resetVoucher,
+} = orderSlice.actions;
 
 export default orderSlice.reducer;

@@ -27,9 +27,9 @@ const CheckoutPage: FC = () => {
             <CheckoutCart order={order} />
           </div>
           <div className="col">
-            <NoteTile />
+            <NoteTile status={order.status!} />
             <br />
-            <VoucherTile />
+            <VoucherTile status={order.status!}/>
             <br />
             <br />
             <PaymentTypeTile order={order} />

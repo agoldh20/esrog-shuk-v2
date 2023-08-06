@@ -6,7 +6,7 @@ import { PaymentTypeTileProps } from './PaymentTypeTileProps';
 
 const PaymentTypeTile: FC<PaymentTypeTileProps> = ({ order }) => {
   const dispatch = useDispatch();
-  const { paymentType } = order;
+  const { paymentType, status } = order;
 
   const handlePaymentType = event => {
     dispatch(setPaymentType(event.target.value));
@@ -23,29 +23,33 @@ const PaymentTypeTile: FC<PaymentTypeTileProps> = ({ order }) => {
         type="radio"
         value="cash"
         checked={paymentType === 'cash'}
-      />{' '}
-      Cash
+        disabled={status === 'paid'}
+      />
+      Cash{' '}
       <input
         className="payment-radio-button"
         type="radio"
         value="check"
         checked={paymentType === 'check'}
-      />{' '}
-      Check
+        disabled={status === 'paid'}
+      />
+      Check{' '}
       <input
         className="payment-radio-button"
         type="radio"
         value="quick pay"
         checked={paymentType === 'quick pay'}
-      />{' '}
-      Quick Pay
+        disabled={status === 'paid'}
+      />
+      Quick Pay{' '}
       <input
         className="payment-radio-button"
         type="radio"
         value="other"
         checked={paymentType === 'other'}
-      />{' '}
-      Other
+        disabled={status === 'paid'}
+      />
+      Other{' '}
     </div>
   );
 };

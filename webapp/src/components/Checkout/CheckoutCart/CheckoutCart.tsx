@@ -56,13 +56,21 @@ const CheckoutCart: FC<CheckoutCartProps> = ({ order }) => {
         <button type="button" className="btn btn-success pull-left" onClick={handleEditClick}>
           Edit Order
         </button>
-        <button
-          type="button"
-          className="btn btn-primary pull-right"
-          disabled={!order.paymentType}
-          onClick={handleCompleteClick}>
-          {!order.paymentType ? 'Select Payment Method' : 'Complete Order'}
-        </button>
+        {order.status === 'open' ? (
+          <button
+            type="button"
+            className="btn btn-primary pull-right"
+            disabled={!order.paymentType}
+            onClick={handleCompleteClick}>
+            {!order.paymentType ? 'Select Payment Method' : 'Complete Order'}
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="btn btn-danger pull-right">
+            Order Marked Paid
+          </button>
+        )}
       </div>
     </div>
   );
