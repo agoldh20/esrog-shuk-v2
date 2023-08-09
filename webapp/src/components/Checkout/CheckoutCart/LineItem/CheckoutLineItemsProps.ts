@@ -5,4 +5,5 @@ export interface CheckoutLineItemsProps {
   type: string;
   items: Item[];
   cartedItems: LineItemType[];
+  grades?: Item[]
 }

@@ -1,3 +1,5 @@
+import { OrderType } from '../../../slices/orderSlice/orderSlice';
+
 export interface NoteProps {
-  status: string;
+  order: OrderType;
 }

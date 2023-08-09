@@ -1,15 +1,23 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { VoucherProps } from './VoucherProps';
+import axios from 'axios';
+import { resetVoucher, updateOrderVoucher } from '../../../slices/orderSlice/orderSlice';
 
-const VoucherTile: FC<VoucherProps> = ({ status }) => {
+const VoucherTile: FC<VoucherProps> = ({ order }) => {
   const dispatch = useDispatch();
-  const [hideVoucher, setHideVoucher] = useState<boolean>(false);
-  const [provider, setProvider] = useState();
-  const [amount, setAmount] = useState();
+  const [voucherChecked, setVoucherChecked] = useState<boolean>(!!order.voucher?.id);
+  const [provider, setProvider] = useState(order.voucher?.provider);
+  const [amount, setAmount] = useState(order.voucher?.amount);
+
+  useEffect(() => {
+    if (order.voucher?.id && !voucherChecked) {
+      axios.delete(`api/v1/vouchers/${order.voucher.id}`).then(() => dispatch(resetVoucher()));
+    }
+  }, [voucherChecked, order.voucher]);
 
   const handleVoucher = event => {
-    setHideVoucher(event.target.checked);
+    setVoucherChecked(event.target.checked);
     if (event.target.checked) {
       setProvider(undefined);
       setAmount(undefined);
@@ -24,18 +32,28 @@ const VoucherTile: FC<VoucherProps> = ({ status }) => {
     setAmount(event.target.value.replace(/[^0-9]/, ''));
   };
 
+  const addVoucher = () => {
+    axios
+      .post(`api/v1/vouchers`, {
+        order_id: order.id,
+        provider,
+        amount,
+      })
+      .then(response => dispatch(updateOrderVoucher(response.data)));
+  };
+
   return (
     <div className="voucher-tile pull-left">
       <input
         type="checkbox"
-        checked={hideVoucher}
+        checked={voucherChecked}
         onChange={handleVoucher}
-        disabled={status === 'paid'}
+        disabled={order.status === 'paid'}
       />{' '}
       Voucher &nbsp;
-      {hideVoucher ? (
+      {voucherChecked && (
         <>
-          <select onChange={handleProivder} disabled={status === 'paid'}>
+          <select onChange={handleProivder} disabled={order.status === 'paid'} defaultValue={order.voucher?.provider}>
             <option disabled selected>
               Provider
             </option>
@@ -59,11 +77,16 @@ const VoucherTile: FC<VoucherProps> = ({ status }) => {
             style={{ width: '64px', height: '23px', marginLeft: '8px' }}
             maxLength={3}
             value={amount}
-            disabled={status === 'paid'}
+            disabled={order.status === 'paid'}
           />
+          <button
+            className="btn btn-warning"
+            style={{ marginLeft: '8px' }}
+            onClick={addVoucher}
+            disabled={!provider || !amount || order.status === 'paid'}>
+            Add
+          </button>
         </>
-      ) : (
-        <></>
       )}
     </div>
   );

@@ -1,3 +1,5 @@
+import { OrderType } from '../../../slices/orderSlice/orderSlice';
+
 export interface VoucherProps {
-  status: string;
+  order: OrderType;
 }

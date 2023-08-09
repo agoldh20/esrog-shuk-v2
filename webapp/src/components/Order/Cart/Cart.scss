@@ -1,5 +1,7 @@
 .card.cart {
-  text-align: left;
+  .card-body {
+    text-align: left;
+  }
 
   .prices {
     text-align: right;

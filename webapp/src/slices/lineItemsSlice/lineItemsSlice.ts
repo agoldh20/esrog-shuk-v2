@@ -22,10 +22,14 @@ export const lineItemsSlice = createSlice({
       state.concat(action.payload),
     removeLineItem: (state: LineItemType[], action: PayloadAction<number>) =>
       state.filter(item => item.lineId !== action.payload),
+    setOpenOrderLineItems: (state: LineItemType[], action: PayloadAction<LineItemType[]>) => ([
+      ...state,
+      ...action.payload
+    ]),
     resetLineItems: () => initialState,
   },
 });
 
-export const { addLineItem, removeLineItem, resetLineItems } = lineItemsSlice.actions;
+export const { addLineItem, setOpenOrderLineItems, removeLineItem, resetLineItems } = lineItemsSlice.actions;
 
 export default lineItemsSlice.reducer;

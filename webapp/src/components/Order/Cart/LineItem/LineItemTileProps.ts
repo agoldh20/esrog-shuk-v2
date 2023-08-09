@@ -6,4 +6,5 @@ export interface LineItemTileProps extends DefaultProps {
   type: string;
   items: Item[];
   cartedItems: LineItemType[];
+  grades?: Item[];
 }

@@ -16,11 +16,16 @@ const CheckoutCart: FC<CheckoutCartProps> = ({ order }) => {
     state => state.items
   );
 
-  const total = lineItems
+  const linesTotal = lineItems
     .map(lineItem => lineItem.lineTotal)
     .reduce((accumulator, currentValue) => {
       return accumulator! + currentValue!;
     }, 0);
+
+  const orderTotal = () => {
+    const voucherTotal = order.voucher?.amount || 0;
+    return linesTotal! - voucherTotal;
+  };
 
   const handleEditClick = () => {
     dispatch(updateOrderAction(order.id!, 'open'));
@@ -28,7 +33,7 @@ const CheckoutCart: FC<CheckoutCartProps> = ({ order }) => {
   };
 
   const handleCompleteClick = () => {
-    dispatch(updateOrderAction(order.id!, 'paid', order.paymentType!, total));
+    dispatch(updateOrderAction(order.id!, 'paid', order.paymentType!, orderTotal()));
   };
 
   const cartedEsrogs = lineItems.filter(esrog => esrog.esrogId);
@@ -43,14 +48,16 @@ const CheckoutCart: FC<CheckoutCartProps> = ({ order }) => {
         <b>Cart</b>
       </div>
       <div className="card-body">
-        <CheckoutLineItemTile type="esrog" items={esrogs} cartedItems={cartedEsrogs} />
+        <CheckoutLineItemTile type="esrog" items={esrogs} grades={grades} cartedItems={cartedEsrogs} />
         <CheckoutLineItemTile type="lulav" items={lulavs} cartedItems={cartedLulavs} />
         <CheckoutLineItemTile type="hadasim" items={hadasims} cartedItems={cartedHadasim} />
         <CheckoutLineItemTile type="aravot" items={aravots} cartedItems={cartedAravos} />
         <CheckoutLineItemTile type="extra" items={extras} cartedItems={cartedExtras} />
       </div>
       <div className="card-header prices">
-        <b>Subtotal: ${total}</b>
+        <b>
+          Subtotal {order.voucher?.id ? 'after voucher' : ''}: ${orderTotal()}
+        </b>
       </div>
       <div className="button-container">
         <button type="button" className="btn btn-success pull-left" onClick={handleEditClick}>
@@ -65,9 +72,7 @@ const CheckoutCart: FC<CheckoutCartProps> = ({ order }) => {
             {!order.paymentType ? 'Select Payment Method' : 'Complete Order'}
           </button>
         ) : (
-          <button
-            type="button"
-            className="btn btn-danger pull-right">
+          <button type="button" className="btn btn-danger pull-right">
             Order Marked Paid
           </button>
         )}

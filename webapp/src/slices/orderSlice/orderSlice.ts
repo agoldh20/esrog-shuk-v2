@@ -7,8 +7,8 @@ export interface NoteType {
 
 export interface VoucherType {
   id?: number;
-  provider: string;
-  amount: number;
+  provider?: string;
+  amount?: number;
 }
 
 export interface OrderType {
@@ -20,6 +20,8 @@ export interface OrderType {
   note?: NoteType;
   voucher?: VoucherType;
   total?: number;
+  note_id?: number;
+  voucher_id?: number;
 }
 
 export const initialState: OrderType = {};
@@ -54,7 +56,7 @@ export const orderSlice = createSlice({
     }),
     resetVoucher: (state: OrderType) => ({
       ...state,
-      voucher: {} as VoucherType
+      voucher: {},
     }),
     resetOrder: () => initialState,
   },

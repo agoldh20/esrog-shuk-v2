@@ -5,6 +5,7 @@ import { watchStartNewOrder } from './startNewOrderSaga';
 import { watchGetAvailableItems } from './getAvailableItemsSaga';
 import { watchSendLineItems } from './sendLineItemsSaga';
 import { watchUpdateOrder } from './updateOrderSaga';
+import { watchGetOpenOrder } from './getOpenOrderOrderSaga';
 
 export default function* rootSaga(): any {
   yield all([
@@ -14,5 +15,6 @@ export default function* rootSaga(): any {
     fork(watchGetAvailableItems),
     fork(watchSendLineItems),
     fork(watchUpdateOrder),
+    fork(watchGetOpenOrder),
   ]);
 }

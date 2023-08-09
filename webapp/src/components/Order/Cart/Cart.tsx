@@ -38,7 +38,7 @@ const Cart: FC<CartProps> = ({ orderId, items }) => {
             <b>Cart</b>
           </div>
           <div className="card-body">
-            <LineItemTile type="esrog" items={esrogs} cartedItems={cartedEsrogs} />
+            <LineItemTile type="esrog" items={esrogs} grades={grades} cartedItems={cartedEsrogs} />
             <LineItemTile type="lulav" items={lulavs} cartedItems={cartedLulavs} />
             <LineItemTile type="hadasim" items={hadasims} cartedItems={cartedHadasim} />
             <LineItemTile type="aravot" items={aravots} cartedItems={cartedAravos} />

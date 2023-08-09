@@ -1,31 +1,52 @@
 import { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NoteProps } from './NoteProps';
-import { NoteType, resetNote, updateOrderNote } from '../../../slices/orderSlice/orderSlice';
+import { resetNote, setOrder, updateOrderNote } from '../../../slices/orderSlice/orderSlice';
+import axios from 'axios';
 
-const NoteTile: FC<NoteProps> = ({ status }) => {
+const NoteTile: FC<NoteProps> = ({ order }) => {
   const dispatch = useDispatch();
-  const [note, setNote] = useState<string | null>();
+  const [ note, setNote ] = useState<string | null>(order.note?.note || null);
 
   useEffect(() => {
-    if (!note?.length) {
-      dispatch(resetNote());
+    if (order.note && !note?.length) {
+      axios.delete(`api/v1/notes/${ order.note!.id }`).then(() => {
+        dispatch(resetNote());
+      }).then(() => setNote(''));
     }
-  }, [note]);
+  }, [ note ]);
 
   const handleOnChange = event => {
     setNote(event.target.value);
   };
 
   const handleClick = () => {
-    dispatch(updateOrderNote({ note } as NoteType));
+    axios
+      .post(`api/v1/notes`, { note, order_id: order.id })
+      .then(response => {
+        // @ts-ignore
+        dispatch(updateOrderNote(response.data));
+      })
+      .then(() => {
+        // @ts-ignore
+        dispatch(setOrder({ note_id: order.note!.id }));
+      });
   };
 
   return (
     <div className="note-tile">
       <label className="pull-left">Notes</label>
-      <textarea rows={4} cols={50} onChange={handleOnChange} disabled={status === 'paid'} />
-      <button className="btn btn-secondary pull-right" disabled={status === 'paid'} onClick={handleClick}>
+      <textarea
+        rows={ 4 }
+        cols={ 50 }
+        onChange={ handleOnChange }
+        disabled={ order.status === 'paid' }
+        value={ note! }
+      />
+      <button
+        className="btn btn-secondary pull-right"
+        disabled={ order.status === 'paid' || !note?.length }
+        onClick={ handleClick }>
         Save Note
       </button>
     </div>

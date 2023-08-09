@@ -15,10 +15,12 @@ class Api::V1::VouchersController < ApplicationController
 
   # POST /api/v1/vouchers
   def create
-    @api_v1_voucher = Voucher.new(api_v1_voucher_params)
+    Voucher.where(order_id: params[:order_id]).destroy_all
+
+    @api_v1_voucher = Voucher.new({order_id: params[:order_id], provider: params[:provider], amount: params[:amount]})
 
     if @api_v1_voucher.save
-      render json: @api_v1_voucher, status: :created, location: @api_v1_voucher
+      render json: @api_v1_voucher, status: :created
     else
       render json: @api_v1_voucher.errors, status: :unprocessable_entity
     end
@@ -36,6 +38,12 @@ class Api::V1::VouchersController < ApplicationController
   # DELETE /api/v1/vouchers/1
   def destroy
     @api_v1_voucher.destroy
+  end
+
+  def get_by_order_id
+    voucher = Voucher.find_by(order_id: params[:order_id])
+
+    render json: voucher
   end
 
   private

@@ -51,6 +51,12 @@ class Api::V1::LineItemsController < ApplicationController
     @api_v1_line_item.destroy
   end
 
+  def get_by_order_id
+    line_items = LineItem.where(order_id: params[:order_id])
+
+    render json: line_items
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
