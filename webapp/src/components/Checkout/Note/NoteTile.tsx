@@ -24,12 +24,7 @@ const NoteTile: FC<NoteProps> = ({ order }) => {
     axios
       .post(`api/v1/notes`, { note, order_id: order.id })
       .then(response => {
-        // @ts-ignore
         dispatch(updateOrderNote(response.data));
-      })
-      .then(() => {
-        // @ts-ignore
-        dispatch(setOrder({ note_id: order.note!.id }));
       });
   };
 

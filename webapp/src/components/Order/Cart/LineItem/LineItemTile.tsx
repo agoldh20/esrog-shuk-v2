@@ -36,7 +36,7 @@ const LineItemTile: FC<LineItemTileProps> = ({ items, type, grades, cartedItems 
         <table className="table table-sm">
           <thead>
             <tr key={itemTitle}>
-              <th scope="col">{itemTitle}</th>
+              <th scope="col">{itemTitle} ({cartedItems.length})</th>
             </tr>
           </thead>
           <tbody>

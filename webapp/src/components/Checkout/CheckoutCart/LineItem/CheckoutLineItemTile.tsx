@@ -36,7 +36,7 @@ const CheckoutLineItemTile: FC<CheckoutLineItemsProps> = ({ items, type, grades,
         <table className="table table-sm">
           <thead>
             <tr key={itemTitle}>
-              <th scope="col">{itemTitle}</th>
+              <th scope="col">{itemTitle} ({cartedItems.length})</th>
             </tr>
           </thead>
           <tbody>

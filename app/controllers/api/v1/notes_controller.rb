@@ -1,5 +1,6 @@
 class Api::V1::NotesController < ApplicationController
   before_action :set_api_v1_note, only: [:show, :update, :destroy]
+  before_action :set_order, only: [:create, :destroy]
 
   # GET /api/v1/notes
   def index
@@ -16,10 +17,12 @@ class Api::V1::NotesController < ApplicationController
   # POST /api/v1/notes
   def create
     Note.where(order_id: params[:order_id]).destroy_all;
+    @order.update(note_id: nil)
 
     @api_v1_note = Note.new({ note: params[:note], order_id: params[:order_id] })
 
     if @api_v1_note.save
+      @order.update(note_id: @api_v1_note.id)
       render json: @api_v1_note, status: :created
     else
       render json: @api_v1_note.errors, status: :unprocessable_entity
@@ -38,6 +41,7 @@ class Api::V1::NotesController < ApplicationController
   # DELETE /api/v1/notes/1
   def destroy
     @api_v1_note.destroy
+    @order.update(note_id: nil)
   end
 
   def get_by_order_id
@@ -51,6 +55,10 @@ class Api::V1::NotesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_api_v1_note
     @api_v1_note = Note.find(params[:id])
+  end
+
+  def set_order
+    @order = Order.find(params[:order_id])
   end
 
   # Only allow a list of trusted parameters through.

@@ -13,7 +13,7 @@ const PaymentTypeTile: FC<PaymentTypeTileProps> = ({ order }) => {
   };
 
   return (
-    <div className="payment-type pull-left" onChange={handlePaymentType}>
+    <div className="payment-type pull-left">
       <label className="pull-left">
         <b>Payment Type</b>
       </label>
@@ -22,6 +22,7 @@ const PaymentTypeTile: FC<PaymentTypeTileProps> = ({ order }) => {
         className="payment-radio-button"
         type="radio"
         value="cash"
+        onChange={handlePaymentType}
         checked={paymentType === 'cash'}
         disabled={status === 'paid'}
       />
@@ -30,6 +31,7 @@ const PaymentTypeTile: FC<PaymentTypeTileProps> = ({ order }) => {
         className="payment-radio-button"
         type="radio"
         value="check"
+        onChange={handlePaymentType}
         checked={paymentType === 'check'}
         disabled={status === 'paid'}
       />
@@ -38,6 +40,7 @@ const PaymentTypeTile: FC<PaymentTypeTileProps> = ({ order }) => {
         className="payment-radio-button"
         type="radio"
         value="quick pay"
+        onChange={handlePaymentType}
         checked={paymentType === 'quick pay'}
         disabled={status === 'paid'}
       />
@@ -46,6 +49,7 @@ const PaymentTypeTile: FC<PaymentTypeTileProps> = ({ order }) => {
         className="payment-radio-button"
         type="radio"
         value="other"
+        onChange={handlePaymentType}
         checked={paymentType === 'other'}
         disabled={status === 'paid'}
       />

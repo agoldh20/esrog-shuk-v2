@@ -20,8 +20,6 @@ export interface OrderType {
   note?: NoteType;
   voucher?: VoucherType;
   total?: number;
-  note_id?: number;
-  voucher_id?: number;
 }
 
 export const initialState: OrderType = {};

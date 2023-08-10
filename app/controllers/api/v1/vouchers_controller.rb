@@ -1,5 +1,6 @@
 class Api::V1::VouchersController < ApplicationController
   before_action :set_api_v1_voucher, only: [:show, :update, :destroy]
+  before_action :set_order, only: [:create, :destroy]
 
   # GET /api/v1/vouchers
   def index
@@ -16,10 +17,12 @@ class Api::V1::VouchersController < ApplicationController
   # POST /api/v1/vouchers
   def create
     Voucher.where(order_id: params[:order_id]).destroy_all
+    @order.update(voucher_id: nil)
 
     @api_v1_voucher = Voucher.new({order_id: params[:order_id], provider: params[:provider], amount: params[:amount]})
 
     if @api_v1_voucher.save
+      @order.update(voucher_id: @api_v1_voucher.id)
       render json: @api_v1_voucher, status: :created
     else
       render json: @api_v1_voucher.errors, status: :unprocessable_entity
@@ -38,6 +41,7 @@ class Api::V1::VouchersController < ApplicationController
   # DELETE /api/v1/vouchers/1
   def destroy
     @api_v1_voucher.destroy
+    @order.update(voucher_id: nil)
   end
 
   def get_by_order_id
@@ -51,6 +55,10 @@ class Api::V1::VouchersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_api_v1_voucher
     @api_v1_voucher = Voucher.find(params[:id])
+  end
+
+  def set_order
+    @order = Order.find(params[:order_id])
   end
 
   # Only allow a list of trusted parameters through.

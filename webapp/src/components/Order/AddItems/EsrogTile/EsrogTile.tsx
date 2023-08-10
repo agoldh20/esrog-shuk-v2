@@ -35,8 +35,8 @@ const EsrogTile: FC<ItemTileProps> = ({ items, grades, orderId }) => {
       <tbody>
         <tr>
           <td>
-            <select onChange={handleKindId}>
-              <option disabled selected>
+            <select onChange={handleKindId} defaultValue="--">
+              <option value="--" hidden>
                 --
               </option>
               {items.map(esrog => (
@@ -47,8 +47,8 @@ const EsrogTile: FC<ItemTileProps> = ({ items, grades, orderId }) => {
             </select>
           </td>
           <td>
-            <select onChange={handleGradeId}>
-              <option disabled selected>
+            <select onChange={handleGradeId} defaultValue="--">
+              <option value="--" hidden>
                 --
               </option>
               {grades!.map(grade => (
