@@ -25,7 +25,7 @@ const OpenOrdersList: FC<OpenOrdersListProps> = ({ customerId }) => {
   };
 
   const handleDelete = orderId => {
-    axios.delete(`api/v1/orders/${ orderId }`).then(() => {
+    axios.delete(`/api/v1/orders/${ orderId }`).then(() => {
       setOpenOrders(openOrders.filter(order => order.id !== orderId));
     });
   };

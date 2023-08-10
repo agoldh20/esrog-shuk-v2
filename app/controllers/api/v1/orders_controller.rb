@@ -55,9 +55,9 @@ class Api::V1::OrdersController < ApplicationController
   end
 
   def get_all_by_customer_id
-    @api_v1_orders = Order.where(customer_id: params[:customer_id], status: "open")
+    open_orders = Order.where(customer_id: params[:customer_id], status: "open")
 
-    render json: @api_v1_orders
+    render json: open_orders
   end
 
   private

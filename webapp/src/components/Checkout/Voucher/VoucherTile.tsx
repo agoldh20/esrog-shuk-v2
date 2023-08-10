@@ -12,7 +12,7 @@ const VoucherTile: FC<VoucherProps> = ({ order }) => {
 
   useEffect(() => {
     if (order.voucher?.id && !voucherChecked) {
-      axios.delete(`api/v1/vouchers/${order.voucher.id}`).then(() => dispatch(resetVoucher()));
+      axios.delete(`/api/v1/vouchers/${order.voucher.id}`).then(() => dispatch(resetVoucher()));
     }
   }, [voucherChecked, order.voucher]);
 
@@ -34,7 +34,7 @@ const VoucherTile: FC<VoucherProps> = ({ order }) => {
 
   const addVoucher = () => {
     axios
-      .post(`api/v1/vouchers`, {
+      .post(`/api/v1/vouchers`, {
         order_id: order.id,
         provider,
         amount,

@@ -6,11 +6,11 @@ import axios from 'axios';
 
 const NoteTile: FC<NoteProps> = ({ order }) => {
   const dispatch = useDispatch();
-  const [ note, setNote ] = useState<string | null>(order.note?.note || null);
+  const [ note, setNote ] = useState<string | null>(order.note?.note || '');
 
   useEffect(() => {
     if (order.note && !note?.length) {
-      axios.delete(`api/v1/notes/${ order.note!.id }`).then(() => {
+      axios.delete(`/api/v1/notes/${ order.note!.id }`).then(() => {
         dispatch(resetNote());
       }).then(() => setNote(''));
     }
@@ -22,7 +22,7 @@ const NoteTile: FC<NoteProps> = ({ order }) => {
 
   const handleClick = () => {
     axios
-      .post(`api/v1/notes`, { note, order_id: order.id })
+      .post(`/api/v1/notes`, { note, order_id: order.id })
       .then(response => {
         dispatch(updateOrderNote(response.data));
       });
