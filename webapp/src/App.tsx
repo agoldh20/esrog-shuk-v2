@@ -12,6 +12,7 @@ import { resetOrder } from './slices/orderSlice/orderSlice';
 import { resetItems } from './slices/itemsSlice/itemsSlice';
 import { resetLineItems } from './slices/lineItemsSlice/lineItemsSlice';
 import CheckoutPage from './components/Checkout/CheckoutPage';
+import Header from './components/Header/Header';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -27,12 +28,13 @@ const App = () => {
 
   return (
     <div className="App">
+      <Header />
       <Routes>
-        <Route path="/" element={<CustomerListPage />} />
-        <Route path="/new-customer" element={<NewCustomerPage />} />
-        <Route path="/customer" element={<CustomerShowPage />} />
-        <Route path="/order" element={<OrderPage />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/" element={ <CustomerListPage/> }/>
+        <Route path="/new-customer" element={ <NewCustomerPage/> }/>
+        <Route path="/customer" element={ <CustomerShowPage/> }/>
+        <Route path="/order" element={ <OrderPage/> }/>
+        <Route path="/checkout" element={ <CheckoutPage/> }/>
       </Routes>
     </div>
   );

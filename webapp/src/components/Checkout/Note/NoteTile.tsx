@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NoteProps } from './NoteProps';
-import { resetNote, setOrder, updateOrderNote } from '../../../slices/orderSlice/orderSlice';
+import { resetNote, updateOrderNote } from '../../../slices/orderSlice/orderSlice';
 import axios from 'axios';
 
 const NoteTile: FC<NoteProps> = ({ order }) => {

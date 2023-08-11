@@ -3,7 +3,10 @@ class Api::V1::OrdersController < ApplicationController
 
   # GET /api/v1/orders
   def index
-    @api_v1_orders = Order.all
+    status = params[:status]
+    customer_id = params[:customer_id]
+
+    @api_v1_orders = status && customer_id ? Order.where(status: status, customer_id: customer_id) : Order.all
 
     render json: @api_v1_orders
   end
@@ -52,12 +55,6 @@ class Api::V1::OrdersController < ApplicationController
     Note.where(order_id: params[:id]).destroy_all
     Voucher.where(order_id: params[:id]).destroy_all
     @api_v1_order.destroy
-  end
-
-  def get_all_by_customer_id
-    open_orders = Order.where(customer_id: params[:customer_id], status: "open")
-
-    render json: open_orders
   end
 
   private

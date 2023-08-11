@@ -1,3 +1,27 @@
+Customer.create!([
+                   {
+                     first_name: 'Adam',
+                     last_name: 'Goldwater',
+                     phone_number: '1234567890',
+                     last_purchase_year: 2022,
+                     active: true
+                   },
+                   {
+                     first_name: 'Kovi',
+                     last_name: 'Galster',
+                     phone_number: '0987654321',
+                     last_purchase_year: 2022,
+                     active: true
+                   },
+                   {
+                     first_name: 'Geoff',
+                     last_name: 'Winner',
+                     phone_number: '1111111111',
+                     last_purchase_year: 2022,
+                     active: true
+                   },
+                 ])
+
 Hadasim.create!([
                   {
                     kind: "Standard",

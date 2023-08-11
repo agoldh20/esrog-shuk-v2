@@ -40,8 +40,8 @@ class Api::V1::NotesController < ApplicationController
 
   # DELETE /api/v1/notes/1
   def destroy
-    @api_v1_note.destroy
     @order.update(note_id: nil)
+    @api_v1_note.destroy
   end
 
   def get_by_order_id
@@ -58,7 +58,7 @@ class Api::V1::NotesController < ApplicationController
   end
 
   def set_order
-    @order = Order.find(params[:order_id])
+    @order = Order.find_by(params[:note_id])
   end
 
   # Only allow a list of trusted parameters through.

@@ -3,7 +3,6 @@ import { START_NEW_ORDER } from '../actions/actionsTypes';
 import { postData } from '../httpClient';
 import { StartNewOrderActionType } from '../actions/newOrderAction';
 import { setOrder } from '../slices/orderSlice/orderSlice';
-import camelToSnakeCase from '../helpers/camelToSnakeCase';
 import camelcaseKeys from 'camelcase-keys';
 
 export function* startNewOrder(action: StartNewOrderActionType): any {

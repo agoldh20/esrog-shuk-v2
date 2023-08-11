@@ -6,15 +6,19 @@ import { resetVoucher, updateOrderVoucher } from '../../../slices/orderSlice/ord
 
 const VoucherTile: FC<VoucherProps> = ({ order }) => {
   const dispatch = useDispatch();
-  const [voucherChecked, setVoucherChecked] = useState<boolean>(!!order.voucher?.id);
-  const [provider, setProvider] = useState(order.voucher?.provider);
-  const [amount, setAmount] = useState(order.voucher?.amount);
+  const [ voucherChecked, setVoucherChecked ] = useState<boolean>(!!order.voucher?.id);
+  const [ provider, setProvider ] = useState(order.voucher?.provider);
+  const [ amount, setAmount ] = useState(order.voucher?.amount);
 
   useEffect(() => {
     if (order.voucher?.id && !voucherChecked) {
-      axios.delete(`/api/v1/vouchers/${order.voucher.id}`).then(() => dispatch(resetVoucher()));
+      axios.delete(`/api/v1/vouchers/${ order.voucher.id }`).then(() => {
+        dispatch(resetVoucher());
+        setProvider(undefined);
+        setAmount(undefined);
+      });
     }
-  }, [voucherChecked, order.voucher]);
+  }, [ voucherChecked, order.voucher ]);
 
   const handleVoucher = event => {
     setVoucherChecked(event.target.checked);
@@ -46,15 +50,16 @@ const VoucherTile: FC<VoucherProps> = ({ order }) => {
     <div className="voucher-tile pull-left">
       <input
         type="checkbox"
-        checked={voucherChecked}
-        onChange={handleVoucher}
-        disabled={order.status === 'paid'}
-      />{' '}
+        checked={ voucherChecked }
+        onChange={ handleVoucher }
+        disabled={ order.status === 'paid' }
+      />{ ' ' }
       Voucher &nbsp;
-      {voucherChecked && (
+      { voucherChecked && (
         <>
-          <select onChange={handleProivder} disabled={order.status === 'paid'} defaultValue={order.voucher?.provider}>
-            <option disabled selected>
+          <select onChange={ handleProivder } disabled={ order.status === 'paid' }
+                  defaultValue={ order.voucher?.provider || 'none' }>
+            <option value="none" hidden>
               Provider
             </option>
             <option key="YTT" value="YTT">
@@ -72,22 +77,22 @@ const VoucherTile: FC<VoucherProps> = ({ order }) => {
           </select>
           <input
             type="text"
-            onChange={handleAmount}
+            onChange={ handleAmount }
             placeholder="$$"
-            style={{ width: '64px', height: '23px', marginLeft: '8px' }}
-            maxLength={3}
-            value={amount}
-            disabled={order.status === 'paid'}
+            style={ { width: '64px', height: '23px', marginLeft: '8px' } }
+            maxLength={ 3 }
+            value={ amount }
+            disabled={ order.status === 'paid' }
           />
           <button
             className="btn btn-warning"
-            style={{ marginLeft: '8px' }}
-            onClick={addVoucher}
-            disabled={!provider || !amount || order.status === 'paid'}>
+            style={ { marginLeft: '8px' } }
+            onClick={ addVoucher }
+            disabled={ !provider || !amount || order.status === 'paid' }>
             Add
           </button>
         </>
-      )}
+      ) }
     </div>
   );
 };
