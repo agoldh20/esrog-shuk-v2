@@ -30,6 +30,12 @@ const LineItemTile: FC<LineItemTileProps> = ({ items, type, grades, cartedItems 
     dispatch(removeLineItem(id));
   };
 
+  const kindTotal = cartedItems
+    .map(cartedItem => cartedItem.lineTotal)
+    .reduce((accumulator, currentValue) => {
+      return accumulator! + currentValue!;
+    }, 0);
+
   return (
     <>
       {cartedItems.length ? (
@@ -37,6 +43,7 @@ const LineItemTile: FC<LineItemTileProps> = ({ items, type, grades, cartedItems 
           <thead>
             <tr key={itemTitle}>
               <th scope="col">{itemTitle} ({cartedItems.length})</th>
+              <th scope="col" className="pull-right">sub: ${kindTotal}</th>
             </tr>
           </thead>
           <tbody>

@@ -3,7 +3,9 @@ class Api::V1::LineItemsController < ApplicationController
 
   # GET /api/v1/line_items
   def index
-    @api_v1_line_items = LineItem.all
+    order_id = params[:order_id]
+
+    @api_v1_line_items = order_id ? LineItem.where(order_id: order_id) : LineItem.all
 
     render json: @api_v1_line_items
   end
@@ -49,12 +51,6 @@ class Api::V1::LineItemsController < ApplicationController
   # DELETE /api/v1/line_items/1
   def destroy
     @api_v1_line_item.destroy
-  end
-
-  def get_by_order_id
-    line_items = LineItem.where(order_id: params[:order_id])
-
-    render json: line_items
   end
 
   private

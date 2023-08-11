@@ -1,12 +1,13 @@
 import { call, put, takeEvery } from '@redux-saga/core/effects';
 import { getData } from '../httpClient';
-import { GET_OPEN_ORDER } from '../actions/actionsTypes';
+import { GET_ORDER } from '../actions/actionsTypes';
 import { setOrder, updateOrderNote, updateOrderVoucher } from '../slices/orderSlice/orderSlice';
-import { GetOpenOrderAction } from '../actions/getOpenOrderAction';
+import { GetOrderAction } from '../actions/getOrderAction';
 import { LineItemType, setOpenOrderLineItems } from '../slices/lineItemsSlice/lineItemsSlice';
 import camelcaseKeys from 'camelcase-keys';
+import { getAvailableItems } from './getAvailableItemsSaga';
 
-export function* getOpenOrder(action: GetOpenOrderAction) {
+export function* getOrder(action: GetOrderAction) {
   try {
     const orderResponse = yield call(getData, `/api/v1/orders/${action.orderId}`);
     yield put(setOrder(orderResponse));
@@ -26,13 +27,17 @@ export function* getOpenOrder(action: GetOpenOrderAction) {
 
     const voucherResponse = yield call(getData, `/api/v1/vouchers/?order_id=${action.orderId}`);
     if (voucherResponse) {
-      yield put(updateOrderVoucher(voucherResponse[0]))
+      yield put(updateOrderVoucher(voucherResponse[0]));
     }
 
-    action.navigate(`/order?id=${action.orderId}`);
+    if (orderResponse.status === 'paid') {
+      action.navigate(`/checkout?id=${action.orderId}`);
+    } else {
+      action.navigate(`/order?id=${action.orderId}`);
+    }
   } catch (e) {}
 }
 
-export function* watchGetOpenOrder() {
-  yield takeEvery(GET_OPEN_ORDER, getOpenOrder);
+export function* watchGetOrder() {
+  yield takeEvery(GET_ORDER, getOrder);
 }

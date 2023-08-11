@@ -5,4 +5,4 @@ export const GET_AVAILABLE_ITEMS = 'GET_AVAILABLE_ITEMS';
 export const SEND_LINE_ITEMS = 'SEND_LINE_ITEMS';
 export const GET_LINE_ITEMS = 'GET_LINE_ITEMS';
 export const UPDATE_ORDER = 'UPDATE_ORDER';
-export const GET_OPEN_ORDER = 'GET_OPEN_ORDER';
+export const GET_ORDER = 'GET_ORDER';

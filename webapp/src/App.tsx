@@ -13,6 +13,7 @@ import { resetItems } from './slices/itemsSlice/itemsSlice';
 import { resetLineItems } from './slices/lineItemsSlice/lineItemsSlice';
 import CheckoutPage from './components/Checkout/CheckoutPage';
 import Header from './components/Header/Header';
+import PaidOrdersPage from './components/Order/Paid/PaidOrdersPage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/customer" element={ <CustomerShowPage/> }/>
         <Route path="/order" element={ <OrderPage/> }/>
         <Route path="/checkout" element={ <CheckoutPage/> }/>
+        <Route path="/paid-orders" element={ <PaidOrdersPage/> }/>
       </Routes>
     </div>
   );

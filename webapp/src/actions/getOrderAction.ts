@@ -1,17 +1,17 @@
 import * as types from './actionsTypes';
 import { NavigateFunction } from 'react-router';
 
-export type GetOpenOrderAction = {
+export type GetOrderAction = {
   type: string;
   navigate: NavigateFunction;
   orderId: number;
 };
 
-export const getOpenOrderAction = (
+export const getOrderAction = (
   orderId: number,
   navigate,
 ) => ({
-  type: types.GET_OPEN_ORDER,
+  type: types.GET_ORDER,
   orderId,
   navigate,
 });
