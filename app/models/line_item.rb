@@ -6,4 +6,5 @@ class LineItem < ApplicationRecord
   belongs_to :esrog, optional: true
   belongs_to :extra, optional: true
   belongs_to :grade, optional: true
+  belongs_to :discount, optional: true
 end
