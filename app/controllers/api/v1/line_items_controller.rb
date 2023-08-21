@@ -1,5 +1,6 @@
 class Api::V1::LineItemsController < ApplicationController
   before_action :set_api_v1_line_item, only: [:show, :update, :destroy]
+  before_action :set_order, only: [:create, :destroy]
 
   # GET /api/v1/line_items
   def index
@@ -32,6 +33,8 @@ class Api::V1::LineItemsController < ApplicationController
                                                line_total: line[:line_total]
                                              })
       end
+
+      @order.update(total: params[:line_items].pluck(:line_total).reduce(:+))
     rescue
       render json: @api_v1_line_item.errors, status: :unprocessable_entity
     end
@@ -58,6 +61,10 @@ class Api::V1::LineItemsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_api_v1_line_item
     @api_v1_line_item = LineItem.find(params[:id])
+  end
+
+  def set_order
+    @order = Order.find(params[:order_id])
   end
 
   # Only allow a list of trusted parameters through.

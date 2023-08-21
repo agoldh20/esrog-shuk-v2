@@ -6,6 +6,7 @@ import { GetOrderAction } from '../actions/getOrderAction';
 import { LineItemType, setOpenOrderLineItems } from '../slices/lineItemsSlice/lineItemsSlice';
 import camelcaseKeys from 'camelcase-keys';
 import { getAvailableItems } from './getAvailableItemsSaga';
+import { getAvailableItemsAction } from '../actions/getAvailableItemsAction';
 
 export function* getOrder(action: GetOrderAction) {
   try {
@@ -31,6 +32,7 @@ export function* getOrder(action: GetOrderAction) {
     }
 
     if (orderResponse.status === 'paid') {
+      yield put(getAvailableItemsAction())
       action.navigate(`/checkout?id=${action.orderId}`);
     } else {
       action.navigate(`/order?id=${action.orderId}`);

@@ -11,6 +11,11 @@ export interface VoucherType {
   amount?: number;
 }
 
+export interface DiscountType {
+  id?: number;
+  amount?: number;
+}
+
 export interface OrderType {
   id?: number;
   customerId?: number;
@@ -19,6 +24,7 @@ export interface OrderType {
   paymentType?: string;
   note?: NoteType;
   voucher?: VoucherType;
+  discount?: DiscountType;
   total?: number;
 }
 
@@ -48,6 +54,10 @@ export const orderSlice = createSlice({
       ...state,
       voucher: action.payload,
     }),
+    updateOrderDiscount: (state: OrderType, action: PayloadAction<DiscountType>) => ({
+      ...state,
+      discount: action.payload,
+    }),
     resetNote: (state: OrderType) => ({
       ...state,
       note: {},
@@ -55,6 +65,10 @@ export const orderSlice = createSlice({
     resetVoucher: (state: OrderType) => ({
       ...state,
       voucher: {},
+    }),
+    resetDiscount: (state: OrderType) => ({
+      ...state,
+      discount: {},
     }),
     resetOrder: () => initialState,
   },
@@ -66,9 +80,11 @@ export const {
   updateOrderStatus,
   updateOrderVoucher,
   updateOrderNote,
+  updateOrderDiscount,
   resetOrder,
   resetNote,
   resetVoucher,
+  resetDiscount,
 } = orderSlice.actions;
 
 export default orderSlice.reducer;

@@ -54,6 +54,7 @@ class Api::V1::OrdersController < ApplicationController
     LineItem.where(order_id: params[:id]).destroy_all
     Note.where(order_id: params[:id]).destroy_all
     Voucher.where(order_id: params[:id]).destroy_all
+    Discount.where(order_id: params[:id]).destroy_all
     @api_v1_order.destroy
   end
 

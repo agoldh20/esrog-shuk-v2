@@ -61,7 +61,7 @@ const EsrogTile: FC<ItemTileProps> = ({ items, grades, orderId }) => {
           <td>
             <input
               type="text"
-              placeholder="Price"
+              placeholder="$"
               style={{ width: '64px', height: '23px' }}
               maxLength={3}
               value={price}

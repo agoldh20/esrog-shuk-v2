@@ -78,7 +78,7 @@ const VoucherTile: FC<VoucherProps> = ({ order }) => {
           <input
             type="text"
             onChange={ handleAmount }
-            placeholder="$$"
+            placeholder="$"
             style={ { width: '64px', height: '23px', marginLeft: '8px' } }
             maxLength={ 3 }
             value={ amount }
@@ -89,7 +89,7 @@ const VoucherTile: FC<VoucherProps> = ({ order }) => {
             style={ { marginLeft: '8px' } }
             onClick={ addVoucher }
             disabled={ !provider || !amount || order.status === 'paid' }>
-            Add
+            Apply Voucher
           </button>
         </>
       ) }

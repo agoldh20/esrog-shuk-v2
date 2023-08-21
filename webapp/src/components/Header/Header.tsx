@@ -5,7 +5,7 @@ const Header: FC = () => {
 
   const routes = [
     {
-      title: 'New Order',
+      title: 'Home',
       route: '/',
     },
   ]

@@ -43,7 +43,7 @@ const LineItemTile: FC<LineItemTileProps> = ({ items, type, grades, cartedItems 
           <thead>
             <tr key={itemTitle}>
               <th scope="col">{itemTitle} ({cartedItems.length})</th>
-              <th scope="col" className="pull-right">sub: ${kindTotal}</th>
+              <th scope="col" className="pull-right text-muted">${kindTotal}</th>
             </tr>
           </thead>
           <tbody>

@@ -24,7 +24,8 @@ const CheckoutCart: FC<CheckoutCartProps> = ({ order }) => {
 
   const orderTotal = () => {
     const voucherTotal = order.voucher?.amount || 0;
-    return linesTotal! - voucherTotal;
+    const discountTotal = order.discount?.amount || 0;
+    return linesTotal! - voucherTotal - discountTotal;
   };
 
   const handleEditClick = () => {
@@ -56,7 +57,7 @@ const CheckoutCart: FC<CheckoutCartProps> = ({ order }) => {
       </div>
       <div className="card-header prices">
         <b>
-          Subtotal {order.voucher?.id ? 'after voucher' : ''}: ${orderTotal()}
+          Total {order.voucher?.id ? 'after voucher' : ''}: ${orderTotal()}
         </b>
       </div>
       <div className="button-container">
