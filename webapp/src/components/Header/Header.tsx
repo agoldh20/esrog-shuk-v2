@@ -7,6 +7,22 @@ const Header: FC = () => {
     {
       title: 'Home',
       route: '/',
+      adminOnly: false,
+    },
+    {
+      title: 'Open Orders',
+      route: '/open-orders',
+      adminOnly: true,
+    },
+    {
+      title: 'Closed Orders',
+      route: '/orders-closed',
+      adminOnly: true,
+    },
+    {
+      title: 'Master Customer List',
+      route: '/master-customer-list',
+      adminOnly: true,
     },
   ]
 
