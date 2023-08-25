@@ -34,7 +34,7 @@ const store = configureStore({
 
 sagaMiddleware.run(rootSaga);
 
-const persister = persistStore(store);
+const persistor = persistStore(store);
 
-export { persister, store };
+export { persistor, store };
 export type RootState = ReturnType<typeof store.getState>;

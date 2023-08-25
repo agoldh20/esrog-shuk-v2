@@ -37,6 +37,10 @@ const App = () => {
         <Route path="/order" element={ <OrderPage/> }/>
         <Route path="/checkout" element={ <CheckoutPage/> }/>
         <Route path="/paid-orders" element={ <PaidOrdersPage/> }/>
+        <Route path="/admin">
+          <Route path="customer-list" element={ <CustomerListPage/> }/>
+          {/*<Route path="/daily-totals" element={ <DailySalesPage/> }/>*/}
+        </Route>
       </Routes>
     </div>
   );

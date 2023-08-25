@@ -6,6 +6,7 @@ export interface CustomerType {
   lastName?: string;
   phoneNumber?: string;
   email?: string;
+  lastPurchaseYear?: number
 }
 
 export const initialState: CustomerType = {};

@@ -5,16 +5,25 @@ import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import { CustomerType } from '../../slices/customerSlice/customerSlice';
+import { useLocation } from 'react-router-dom';
 
 const CustomerListPage: FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const customerList = useSelector<RootState, CustomerType[]>(({ customerList }) => customerList);
+  const { pathname } = useLocation();
   const [filter, setFilter] = useState('');
+  const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
-    dispatch(getCustomerListAction(navigate));
-  }, []);
+    if (!customerList.length) {
+      dispatch(getCustomerListAction(navigate));
+    }
+  }, [dispatch, customerList]);
+
+  useEffect(() => {
+    setAdmin(pathname === '/admin/customer-list');
+  }, [pathname]);
 
   const handleChange = event => {
     setFilter(event.target.value);
@@ -40,7 +49,7 @@ const CustomerListPage: FC = () => {
           Add New Customer
         </button>
       ) : (
-        <CustomerList customerList={filteredCustomerList()} />
+        <CustomerList customerList={filteredCustomerList()} admin={admin} />
       )}
     </div>
   );
