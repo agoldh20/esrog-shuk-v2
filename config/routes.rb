@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  resources :sessions, only: [:create]
+  resources :users
+
+  get :logged_in, to: "sessions#logged_in"
+  delete :logout, to: "sessions#logout"
+
   namespace :api do
     namespace :v1 do
       resources :customers

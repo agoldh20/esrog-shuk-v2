@@ -14,6 +14,7 @@ import { resetLineItems } from './slices/lineItemsSlice/lineItemsSlice';
 import CheckoutPage from './components/Checkout/CheckoutPage';
 import Header from './components/Header/Header';
 import PaidOrdersPage from './components/Order/Paid/PaidOrdersPage';
+import LoginPage from './components/Login/LoginPage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/order" element={ <OrderPage/> }/>
         <Route path="/checkout" element={ <CheckoutPage/> }/>
         <Route path="/paid-orders" element={ <PaidOrdersPage/> }/>
+        <Route path="/login" element={ <LoginPage/> }/>
         <Route path="/admin">
           <Route path="customer-list" element={ <CustomerListPage/> }/>
           {/*<Route path="/daily-totals" element={ <DailySalesPage/> }/>*/}
