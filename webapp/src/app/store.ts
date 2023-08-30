@@ -7,6 +7,7 @@ import customerReducer from '../slices/customerSlice/customerSlice';
 import orderReducer from '../slices/orderSlice/orderSlice';
 import itemsReducer from '../slices/itemsSlice/itemsSlice';
 import lineItemsReducer from '../slices/lineItemsSlice/lineItemsSlice';
+import userReducer from '../slices/userSlice/userSlice';
 import rootSaga from '../sagas/rootSaga';
 
 export const reducers = combineReducers({
@@ -15,6 +16,7 @@ export const reducers = combineReducers({
   order: orderReducer,
   items: itemsReducer,
   lineItems: lineItemsReducer,
+  user: userReducer,
 });
 
 const persistConfig = {

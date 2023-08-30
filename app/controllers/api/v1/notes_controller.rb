@@ -1,4 +1,5 @@
 class Api::V1::NotesController < ApplicationController
+  before_action :authenticate_user
   before_action :set_api_v1_note, only: [:show, :update, :destroy]
   before_action :set_order, only: [:create, :destroy]
 

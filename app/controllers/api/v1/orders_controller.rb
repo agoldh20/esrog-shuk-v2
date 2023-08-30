@@ -1,4 +1,5 @@
 class Api::V1::OrdersController < ApplicationController
+  before_action :authenticate_user
   before_action :set_api_v1_order, only: [:show, :update, :destroy]
 
   # GET /api/v1/orders

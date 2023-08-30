@@ -2,13 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface UserType {
   id?: number;
-  userName?: string;
+  username?: string;
   admin?: boolean;
+  jwt?: any;
 }
 
 export const initialState: UserType = {};
 
-export const orderSlice = createSlice({
+export const userSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {
@@ -20,6 +21,6 @@ export const orderSlice = createSlice({
   },
 });
 
-export const { setUser, resetUser } = orderSlice.actions;
+export const { setUser, resetUser } = userSlice.actions;
 
-export default orderSlice.reducer;
+export default userSlice.reducer;

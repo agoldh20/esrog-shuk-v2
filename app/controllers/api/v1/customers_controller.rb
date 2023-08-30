@@ -1,4 +1,5 @@
 class Api::V1::CustomersController < ApplicationController
+  before_action :authenticate_user
   before_action :set_api_v1_customer, only: [:show, :update, :destroy]
 
   # GET /api/v1/customers

@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def create
+    puts "#{params[:username]}:#{params[:password]}"
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       jwt = JWT.encode(
@@ -14,11 +15,16 @@ class SessionsController < ApplicationController
       render json: {
         status: :created,
         logged_in: true,
-        user: user,
-        message: "login in successful, welcome #{user.username}"
+        user: {
+          id: user.id,
+          username: user.username,
+          admin: user.admin,
+        },
+        jwt: jwt,
+        message: "login in successful"
       }
     else
-      render json: { status: 401 }
+      render json: { status: :unauthorized }
     end
   end
 
