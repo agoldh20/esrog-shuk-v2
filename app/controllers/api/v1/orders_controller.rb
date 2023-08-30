@@ -4,13 +4,17 @@ class Api::V1::OrdersController < ApplicationController
 
   # GET /api/v1/orders
   def index
+    status = params[:status]
+    customer_id = params[:customer_id]
+    date = params[:date]
+
     custom_params = {
       year: Date.today.year
     }
 
-    custom_params.status = params[:status] if status
-    custom_params.customer_id = params[:customer_id] if customer_id
-    custom_params.updated_at = params[:date] if date
+    custom_params[:status] = status if status
+    custom_params[:customer_id] = customer_id if customer_id
+    custom_params[:updated_at] = date if date
 
     @api_v1_orders = Order.where(custom_params).order(updated_at: :desc)
 

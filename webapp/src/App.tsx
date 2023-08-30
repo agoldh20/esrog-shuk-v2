@@ -15,12 +15,13 @@ import CheckoutPage from './components/Checkout/CheckoutPage';
 import Header from './components/Header/Header';
 import PaidOrdersPage from './components/Order/Paid/PaidOrdersPage';
 import LoginPage from './components/Login/LoginPage';
+import InitPage from './components/InitPage';
 
 const App = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
-  if (pathname === '/') {
+  if (pathname === '/home') {
     dispatch(resetCustomerList());
     dispatch(resetCustomer());
     dispatch(resetOrder());
@@ -32,7 +33,8 @@ const App = () => {
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={ <CustomerListPage/> }/>
+        <Route path="/" element={<InitPage />} />
+        <Route path="/home" element={ <CustomerListPage/> }/>
         <Route path="/new-customer" element={ <NewCustomerPage/> }/>
         <Route path="/customer" element={ <CustomerShowPage/> }/>
         <Route path="/order" element={ <OrderPage/> }/>

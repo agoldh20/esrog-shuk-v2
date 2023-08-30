@@ -7,3 +7,4 @@ export const GET_LINE_ITEMS = 'GET_LINE_ITEMS';
 export const UPDATE_ORDER = 'UPDATE_ORDER';
 export const GET_ORDER = 'GET_ORDER';
 export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';

@@ -2,7 +2,6 @@ import { LoginActionType } from '../actions/loginAction';
 import { call, put, takeEvery } from '@redux-saga/core/effects';
 import { LOGIN } from '../actions/actionsTypes';
 import { postData } from '../httpClient';
-import axios from 'axios';
 import { setUser } from '../slices/userSlice/userSlice';
 
 export function* login(action: LoginActionType) {
@@ -14,7 +13,9 @@ export function* login(action: LoginActionType) {
 
     if (response.status === 'created') {
       yield put(setUser({ ...response.user, jwt: response.jwt }));
-      axios.defaults.headers.common['Authorization'] = `Bearer ${response.jwt}`;
+      action.navigate('/home')
+    } else {
+      alert("Invalid request, please try again")
     }
 
   } catch (e) {}

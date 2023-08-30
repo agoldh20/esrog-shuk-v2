@@ -10,7 +10,7 @@ export interface UserType {
 export const initialState: UserType = {};
 
 export const userSlice = createSlice({
-  name: 'order',
+  name: 'user',
   initialState,
   reducers: {
     setUser: (state: UserType, action: PayloadAction<UserType>) => ({
