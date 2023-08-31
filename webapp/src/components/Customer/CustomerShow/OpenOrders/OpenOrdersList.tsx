@@ -1,41 +1,32 @@
 import React, { FC, useEffect, useState } from 'react';
 import { OpenOrdersListProps } from './OpenOrdersListProps';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { getOrderAction } from '../../../../actions/getOrderAction';
 import { OrderType } from '../../../../slices/orderSlice/orderSlice';
-import { headers } from '../../../../helpers/headerInfo';
-import { RootState } from '../../../../app/store';
-import { getDataWithHeaders } from '../../../../httpClient';
+import { useJwtHeaders } from '../../../../hooks/useJwtHeaders';
 
 const OpenOrdersList: FC<OpenOrdersListProps> = ({ customerId }) => {
   const dispatch = useDispatch();
-  const naviate = useNavigate();
-  const jwt = useSelector<RootState, string>(({ user }) => user.jwt);
+  const navigate = useNavigate();
+  const headers = useJwtHeaders();
   const [openOrders, setOpenOrders] = useState<OrderType[]>([]);
-
-  const config = headers(jwt)
 
   useEffect(() => {
     const openOrderIds = axios
-      // @ts-ignore
-      .get(
-        `/api/v1/orders/?customer_id=${customerId}&status=open`,
-         // @ts-ignore
-         headers(jwt)
-        )
+      .get(`/api/v1/orders/?customer_id=${customerId}&status=open`, headers)
       .then(({ data }) => {
         setOpenOrders(data);
       });
   }, [customerId]);
 
   const handleClick = orderId => {
-    dispatch(getOrderAction(orderId, naviate));
+    dispatch(getOrderAction(orderId, navigate, headers));
   };
 
   const handleDelete = orderId => {
-    axios.delete(`/api/v1/orders/${orderId}`).then(() => {
+    axios.delete(`/api/v1/orders/${orderId}`, headers).then(() => {
       setOpenOrders(openOrders.filter(order => order.id !== orderId));
     });
   };

@@ -10,9 +10,11 @@ import PaymentTypeTile from '././PaymentType/PaymentTypeTile';
 import VoucherTile from './Voucher/VoucherTile';
 import DiscountTile from './Discount/DiscountTile';
 import { updateOrderAction } from '../../actions/updateOrderAction';
+import { useJwtHeaders } from '../../hooks/useJwtHeaders';
 
 const CheckoutPage: FC = () => {
   const dispatch = useDispatch();
+  const headers = useJwtHeaders();
   const customer = useSelector<RootState, CustomerType>(({ customer }) => customer);
   const order = useSelector<RootState, OrderType>(({ order }) => order);
 
@@ -29,7 +31,7 @@ const CheckoutPage: FC = () => {
             <CheckoutCart order={order} />
           </div>
           <div className="col">
-            <NoteTile order={order} />
+            <NoteTile order={order} headers={headers}/>
             <br />
             <br />
             <PaymentTypeTile order={order} />
@@ -37,10 +39,10 @@ const CheckoutPage: FC = () => {
             <br />
             <br />
             <br />
-            <VoucherTile order={order}/>
+            <VoucherTile order={order} headers={headers}/>
             <br />
             <br />
-            <DiscountTile order={order}/>
+            <DiscountTile order={order} headers={headers}/>
           </div>
         </div>
       </div>

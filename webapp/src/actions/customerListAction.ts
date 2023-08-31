@@ -1,12 +1,11 @@
 import * as types from './actionsTypes';
-import { NavigateFunction } from 'react-router';
 
 export type GetCustomerListActionType = {
   type: string;
-  navigate: NavigateFunction;
+  headers: any;
 };
 
-export const getCustomerListAction = (navigate: NavigateFunction) => ({
+export const getCustomerListAction = (headers: any) => ({
   type: types.GET_CUSTOMER_LIST,
-  navigate,
+  headers,
 });

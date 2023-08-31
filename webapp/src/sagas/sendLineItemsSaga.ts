@@ -1,12 +1,10 @@
-import { call, select, takeEvery } from '@redux-saga/core/effects';
+import { call, takeEvery } from '@redux-saga/core/effects';
 import { SEND_LINE_ITEMS } from '../actions/actionsTypes';
 import { postDataWithHeaders } from '../httpClient';
 import { SendLineItemsActionType } from '../actions/sendLineItemsAction';
 import camelToSnakeCase from '../helpers/camelToSnakeCase';
-import { getJwt, headers } from '../helpers/headerInfo';
 
 export function* sendLineItems(action: SendLineItemsActionType): any {
-  const jwt = yield select(getJwt);
 
   try {
     const newPayload: any = [];
@@ -19,7 +17,7 @@ export function* sendLineItems(action: SendLineItemsActionType): any {
       newPayload.push(newItem);
     });
 
-    yield call(postDataWithHeaders, '/api/v1/line_items/', headers(jwt), {
+    yield call(postDataWithHeaders, '/api/v1/line_items/', action.headers, {
       order_id: action.orderId,
       line_items: newPayload,
     });

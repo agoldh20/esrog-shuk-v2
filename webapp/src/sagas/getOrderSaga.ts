@@ -6,16 +6,14 @@ import { GetOrderAction } from '../actions/getOrderAction';
 import { LineItemType, setOpenOrderLineItems } from '../slices/lineItemsSlice/lineItemsSlice';
 import camelcaseKeys from 'camelcase-keys';
 import { getAvailableItemsAction } from '../actions/getAvailableItemsAction';
-import { getJwt, headers } from '../helpers/headerInfo';
 
 export function* getOrder(action: GetOrderAction) {
-  const jwt = yield select(getJwt);
 
   try {
-    const orderResponse = yield call(getDataWithHeaders, `/api/v1/orders/${ action.orderId }`, headers(jwt));
+    const orderResponse = yield call(getDataWithHeaders, `/api/v1/orders/${ action.orderId }`, action.headers);
     yield put(setOrder(orderResponse));
 
-    const lineItemResponse = yield call(getDataWithHeaders, `/api/v1/line_items/?order_id=${ action.orderId }`, headers(jwt));
+    const lineItemResponse = yield call(getDataWithHeaders, `/api/v1/line_items/?order_id=${ action.orderId }`, action.headers);
     const lineItems = [] as LineItemType[];
     lineItemResponse.forEach(lineItem => {
       lineItem.lineId = Math.floor(Math.random() * 10000);
@@ -23,12 +21,12 @@ export function* getOrder(action: GetOrderAction) {
     });
     yield put(setOpenOrderLineItems(lineItems));
 
-    const noteResponse = yield call(getDataWithHeaders, `/api/v1/notes/?order_id=${ action.orderId }`, headers(jwt));
+    const noteResponse = yield call(getDataWithHeaders, `/api/v1/notes/?order_id=${ action.orderId }`, action.headers);
     if (noteResponse) {
       yield put(updateOrderNote(noteResponse[0]));
     }
 
-    const voucherResponse = yield call(getDataWithHeaders, `/api/v1/vouchers/?order_id=${ action.orderId }`, headers(jwt));
+    const voucherResponse = yield call(getDataWithHeaders, `/api/v1/vouchers/?order_id=${ action.orderId }`, action.headers);
     if (voucherResponse) {
       yield put(updateOrderVoucher(voucherResponse[0]));
     }

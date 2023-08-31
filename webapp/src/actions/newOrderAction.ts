@@ -6,11 +6,13 @@ export type StartNewOrderActionType = {
   navigate: NavigateFunction;
   customerId: number;
   userId: number;
+  headers: any;
 };
 
-export const startNewOrderAction = (navigate: NavigateFunction, customerId: number, userId: number) => ({
+export const startNewOrderAction = (navigate: NavigateFunction, customerId: number, userId: number, headers: any) => ({
   type: types.START_NEW_ORDER,
   navigate,
   customerId,
   userId,
+  headers
 });

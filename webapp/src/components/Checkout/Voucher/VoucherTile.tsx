@@ -4,7 +4,7 @@ import { VoucherProps } from './VoucherProps';
 import axios from 'axios';
 import { resetVoucher, updateOrderVoucher } from '../../../slices/orderSlice/orderSlice';
 
-const VoucherTile: FC<VoucherProps> = ({ order }) => {
+const VoucherTile: FC<VoucherProps> = ({ order, headers }) => {
   const dispatch = useDispatch();
   const [ voucherChecked, setVoucherChecked ] = useState<boolean>(!!order.voucher?.id);
   const [ provider, setProvider ] = useState(order.voucher?.provider || '');
@@ -12,7 +12,7 @@ const VoucherTile: FC<VoucherProps> = ({ order }) => {
 
   useEffect(() => {
     if (order.voucher?.id && !voucherChecked) {
-      axios.delete(`/api/v1/vouchers/${ order.voucher.id }`).then(() => {
+      axios.delete(`/api/v1/vouchers/${ order.voucher.id }`, headers).then(() => {
         dispatch(resetVoucher());
         setProvider('');
         setAmount('');
@@ -42,7 +42,7 @@ const VoucherTile: FC<VoucherProps> = ({ order }) => {
         order_id: order.id,
         provider,
         amount,
-      })
+      }, headers)
       .then(response => dispatch(updateOrderVoucher(response.data)));
   };
 

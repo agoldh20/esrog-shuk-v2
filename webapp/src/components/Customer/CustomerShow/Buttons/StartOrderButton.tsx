@@ -3,13 +3,15 @@ import { ButtonProps } from './ButtonProps';
 import { useDispatch } from 'react-redux';
 import { startNewOrderAction } from '../../../../actions/newOrderAction';
 import { useNavigate } from 'react-router';
+import { useJwtHeaders } from '../../../../hooks/useJwtHeaders';
 
 const StartOrderButton: FC<ButtonProps> = ({ customerId }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const headers = useJwtHeaders();
 
   const handleClick = () => {
-    dispatch(startNewOrderAction(navigate, customerId, 1));
+    dispatch(startNewOrderAction(navigate, customerId, 1, headers));
   };
 
   return (

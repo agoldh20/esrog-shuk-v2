@@ -8,6 +8,7 @@ export type SaveNewCustomerActionType = {
   lastName: string;
   phoneNumber: string;
   email: string;
+  headers: any
 };
 
 export const saveNewCustomerAction = (
@@ -15,7 +16,8 @@ export const saveNewCustomerAction = (
   firstName: string,
   lastName: string,
   phoneNumber: string,
-  email: string
+  email: string,
+  headers: any,
 ) => ({
   type: types.SAVE_NEW_CUSTOMER,
   navigate,
@@ -23,4 +25,5 @@ export const saveNewCustomerAction = (
   lastName,
   phoneNumber,
   email,
+  headers
 });

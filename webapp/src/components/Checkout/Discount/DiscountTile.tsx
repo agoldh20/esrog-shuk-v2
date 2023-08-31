@@ -4,14 +4,14 @@ import { DiscountProps } from './DiscountProps';
 import axios from 'axios';
 import { resetDiscount, resetVoucher, updateOrderDiscount } from '../../../slices/orderSlice/orderSlice';
 
-const DiscountTile: FC<DiscountProps> = ({ order }) => {
+const DiscountTile: FC<DiscountProps> = ({ order, headers }) => {
   const dispatch = useDispatch();
   const [discountChecked, setDiscountChecked] = useState<boolean>(!!order.discount?.id);
   const [amount, setAmount] = useState(order.discount?.amount || '');
 
   useEffect(() => {
     if (order.discount?.id && !discountChecked) {
-      axios.delete(`/api/v1/discounts/${order.discount.id}`).then(() => {
+      axios.delete(`/api/v1/discounts/${order.discount.id}`, headers).then(() => {
         dispatch(resetDiscount());
         setAmount('');
       });
@@ -34,7 +34,7 @@ const DiscountTile: FC<DiscountProps> = ({ order }) => {
       .post(`/api/v1/discounts`, {
         order_id: order.id,
         amount,
-      })
+      }, headers)
       .then(response => dispatch(updateOrderDiscount(response.data)));
   };
 

@@ -1,5 +1,4 @@
 class Api::V1::ItemsController < ApplicationController
-  before_action :authenticate_user
   before_action :set_api_v1_items, only: [:show, :update, :destroy]
 
   def get_available_items

@@ -7,15 +7,17 @@ import LineItemTile from './LineItem/LineItemTile';
 import './Cart.scss';
 import { sendLineItemsAction } from '../../../actions/sendLineItemsAction';
 import { useNavigate } from 'react-router';
+import { useJwtHeaders } from '../../../hooks/useJwtHeaders';
 
 const Cart: FC<CartProps> = ({ orderId, items }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const headers = useJwtHeaders();
   const lineItems = useSelector<RootState, LineItemType[]>(state => state.lineItems);
   const { esrogs, extras, grades, lulavs, hadasims, aravots } = items;
 
   const handleClick = () => {
-    dispatch(sendLineItemsAction(navigate, orderId, lineItems));
+    dispatch(sendLineItemsAction(navigate, orderId, lineItems, headers));
   };
 
   const cartedEsrogs = lineItems.filter(esrog => esrog.esrogId);

@@ -4,13 +4,12 @@ import { postDataWithHeaders } from '../httpClient';
 import { StartNewOrderActionType } from '../actions/newOrderAction';
 import { setOrder } from '../slices/orderSlice/orderSlice';
 import camelcaseKeys from 'camelcase-keys';
-import { getJwt, headers } from '../helpers/headerInfo';
 
 export function* startNewOrder(action: StartNewOrderActionType): any {
-  const jwt = yield select(getJwt);
 
   try {
-    const request = yield call(postDataWithHeaders, '/api/v1/orders/', headers(jwt), {
+    // @ts-ignore
+    const request = yield call(postDataWithHeaders, '/api/v1/orders/', action.headers, {
       customer_id: action.customerId,
       user_id: action.userId,
     });

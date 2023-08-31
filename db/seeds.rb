@@ -1,3 +1,9 @@
+User.create!({
+               username: "Adam",
+               password: "password",
+               admin: true
+             })
+
 Customer.create!([
                    {
                      first_name: 'Adam',

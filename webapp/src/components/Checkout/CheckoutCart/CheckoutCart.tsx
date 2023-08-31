@@ -7,10 +7,12 @@ import { ItemsType } from '../../../slices/itemsSlice/itemsSlice';
 import { CheckoutCartProps } from './CheckoutCartProps';
 import CheckoutLineItemTile from './LineItem/CheckoutLineItemTile';
 import { updateOrderAction } from '../../../actions/updateOrderAction';
+import { useJwtHeaders } from '../../../hooks/useJwtHeaders';
 
 const CheckoutCart: FC<CheckoutCartProps> = ({ order }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const headers = useJwtHeaders();
   const lineItems = useSelector<RootState, LineItemType[]>(state => state.lineItems);
   const { esrogs, extras, grades, lulavs, hadasims, aravots } = useSelector<RootState, ItemsType>(
     state => state.items
@@ -29,12 +31,12 @@ const CheckoutCart: FC<CheckoutCartProps> = ({ order }) => {
   };
 
   const handleEditClick = () => {
-    dispatch(updateOrderAction(order.id!, 'open'));
+    dispatch(updateOrderAction(order.id!, 'open', headers));
     navigate(`/order?id=${order.id}`);
   };
 
   const handleCompleteClick = () => {
-    dispatch(updateOrderAction(order.id!, 'paid', order.paymentType!, orderTotal()));
+    dispatch(updateOrderAction(order.id!, 'paid', headers, order.paymentType!, orderTotal()));
   };
 
   const cartedEsrogs = lineItems.filter(esrog => esrog.esrogId);

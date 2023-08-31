@@ -6,10 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import { CustomerType } from '../../slices/customerSlice/customerSlice';
 import { useLocation } from 'react-router-dom';
+import { useJwtHeaders } from '../../hooks/useJwtHeaders';
 
 const CustomerListPage: FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const headers = useJwtHeaders();
   const customerList = useSelector<RootState, CustomerType[]>(({ customerList }) => customerList);
   const { pathname } = useLocation();
   const [filter, setFilter] = useState('');
@@ -17,7 +19,7 @@ const CustomerListPage: FC = () => {
 
   useEffect(() => {
     if (!customerList.length) {
-      dispatch(getCustomerListAction(navigate));
+      dispatch(getCustomerListAction(headers));
     }
   }, [dispatch, customerList]);
 

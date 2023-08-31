@@ -6,21 +6,23 @@ import { RootState } from '../../../app/store';
 import axios from 'axios';
 import { CustomerType } from '../../../slices/customerSlice/customerSlice';
 import { OrderType } from '../../../slices/orderSlice/orderSlice';
+import { useJwtHeaders } from '../../../hooks/useJwtHeaders';
 
 const PaidOrdersPage: FC = () => {
   const dispatch = useDispatch();
   const naviate = useNavigate();
+  const headers = useJwtHeaders();
   const { id, firstName, lastName } = useSelector<RootState, CustomerType>(({ customer }) => customer);
   const [paidOrders, setPaidOrders] = useState<OrderType[]>([]);
 
   useEffect(() => {
-    const openOrderIds = axios.get(`/api/v1/orders/?customer_id=${id}&status=paid`).then(({ data }) => {
+    const openOrderIds = axios.get(`/api/v1/orders/?customer_id=${id}&status=paid`, headers).then(({ data }) => {
       setPaidOrders(data);
     });
   }, [id]);
 
   const handleClick = orderId => {
-    dispatch(getOrderAction(orderId, naviate));
+    dispatch(getOrderAction(orderId, naviate, headers));
   };
 
   return (

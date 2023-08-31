@@ -7,15 +7,18 @@ export type SendLineItemsActionType = {
   navigate: NavigateFunction;
   orderId: number;
   items: LineItemType[];
+  headers: any;
 };
 
 export const sendLineItemsAction = (
   navigate: NavigateFunction,
   orderId: number,
-  items: LineItemType[]
+  items: LineItemType[],
+  headers: any
 ) => ({
   type: types.SEND_LINE_ITEMS,
   navigate,
   orderId,
   items,
+  headers
 });

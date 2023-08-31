@@ -6,17 +6,20 @@ export type UpdateOrderActionType = {
   status: string;
   paymentType?: string;
   total?: number;
+  headers: any
 };
 
 export const updateOrderAction = (
   orderId: number,
   status: string,
+  headers: any,
   paymentType?: string,
-  total?: number
+  total?: number,
 ) => ({
   type: types.UPDATE_ORDER,
   orderId,
   status,
+  headers,
   paymentType,
   total,
 });

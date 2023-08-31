@@ -3,10 +3,12 @@ import { useDispatch } from 'react-redux';
 import './NewCustomer.scss';
 import { useNavigate } from 'react-router';
 import { saveNewCustomerAction } from '../../../actions/newCustomerAction';
+import { useJwtHeaders } from '../../../hooks/useJwtHeaders';
 
 const NewCustomerPage: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const headers = useJwtHeaders();
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -20,7 +22,7 @@ const NewCustomerPage: FC = () => {
   }, [phoneNumber]);
 
   const handleClick = () => {
-    dispatch(saveNewCustomerAction(navigate, firstName, lastName, phoneNumber, email));
+    dispatch(saveNewCustomerAction(navigate, firstName, lastName, phoneNumber, email, headers));
   };
 
   return (
