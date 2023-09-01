@@ -17,7 +17,6 @@ export const userSlice = createSlice({
     setUser: (state: UserType, action: PayloadAction<UserType>) => ({
       ...state,
       ...action.payload,
-      tokenExp: Date.now() + (24*60*60)
     }),
     resetUser: () => initialState,
   },

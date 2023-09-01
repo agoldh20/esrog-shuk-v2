@@ -10,11 +10,6 @@ const InitPage: FC = () => {
   const { id, tokenExp } = useSelector<RootState, UserType>(({ user }) => user);
 
   useEffect(() => {
-    if (tokenExp! < Date.now()) {
-      dispatch(resetUser())
-      return navigate('/login')
-    }
-
     navigate(id ? '/home' : '/login')
   } , [tokenExp, id])
 

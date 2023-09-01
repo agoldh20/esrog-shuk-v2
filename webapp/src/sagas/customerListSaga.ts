@@ -5,9 +5,9 @@ import { getDataWithHeaders } from '../httpClient';
 import camelcaseKeys from 'camelcase-keys';
 import { CustomerType } from '../slices/customerSlice/customerSlice';
 import { GetCustomerListActionType } from '../actions/customerListAction';
+import { resetUser } from '../slices/userSlice/userSlice';
 
 export function* getCustomerList(action: GetCustomerListActionType) {
-  console.log('=============>', action.headers);
   try {
     const request = yield call(getDataWithHeaders, '/api/v1/customers', action.headers);
 
@@ -15,7 +15,11 @@ export function* getCustomerList(action: GetCustomerListActionType) {
     request.forEach(c => customerList.push(camelcaseKeys(c)));
 
     yield put(setCustomerList(customerList));
-  } catch (e) {}
+  } catch (e) {
+    yield put(resetUser())
+    alert("Sorry, Login Expired! Please Login again")
+    action.navigate('/login')
+  }
 }
 
 export function* watchGetCustomerList() {

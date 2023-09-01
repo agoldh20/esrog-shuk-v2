@@ -1,8 +1,9 @@
-import { call, takeEvery } from '@redux-saga/core/effects';
+import { call, put, takeEvery } from '@redux-saga/core/effects';
 import { SEND_LINE_ITEMS } from '../actions/actionsTypes';
 import { postDataWithHeaders } from '../httpClient';
 import { SendLineItemsActionType } from '../actions/sendLineItemsAction';
 import camelToSnakeCase from '../helpers/camelToSnakeCase';
+import { resetUser } from '../slices/userSlice/userSlice';
 
 export function* sendLineItems(action: SendLineItemsActionType): any {
 
@@ -23,7 +24,11 @@ export function* sendLineItems(action: SendLineItemsActionType): any {
     });
 
     action.navigate(`/checkout?id=${ action.orderId }`);
-  } catch (e) {}
+  } catch (e) {
+    yield put(resetUser())
+    alert("Sorry, Login Expired! Please Login again")
+    action.navigate('/login')
+  }
 }
 
 export function* watchSendLineItems() {

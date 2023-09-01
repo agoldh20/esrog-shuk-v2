@@ -31,12 +31,12 @@ const CheckoutCart: FC<CheckoutCartProps> = ({ order }) => {
   };
 
   const handleEditClick = () => {
-    dispatch(updateOrderAction(order.id!, 'open', headers));
+    dispatch(updateOrderAction(order.id!, 'open', headers, navigate));
     navigate(`/order?id=${order.id}`);
   };
 
   const handleCompleteClick = () => {
-    dispatch(updateOrderAction(order.id!, 'paid', headers, order.paymentType!, orderTotal()));
+    dispatch(updateOrderAction(order.id!, 'paid', headers, navigate, order.paymentType!, orderTotal()));
   };
 
   const cartedEsrogs = lineItems.filter(esrog => esrog.esrogId);

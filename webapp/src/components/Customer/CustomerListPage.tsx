@@ -20,7 +20,7 @@ const CustomerListPage: FC = () => {
 
   useEffect(() => {
     if (!customerList.length) {
-      dispatch(getCustomerListAction(headers));
+      dispatch(getCustomerListAction(headers, navigate));
     }
   }, [ dispatch, customerList ]);
 

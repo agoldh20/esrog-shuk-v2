@@ -3,7 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.scss';
 import CustomerListPage from './components/Customer/CustomerListPage';
 import NewCustomerPage from './components/Customer/NewCustomer/NewCustomerPage';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { resetCustomerList } from './slices/customerListSlice/customerListSlice';
 import { resetCustomer } from './slices/customerSlice/customerSlice';
 import CustomerShowPage from './components/Customer/CustomerShow/CustomerShowPage';
@@ -18,6 +18,8 @@ import LoginPage from './components/Login/LoginPage';
 import InitPage from './components/InitPage';
 import AdminOpenOrdersPage from './components/Admin/OpenOrders/AdminOpenOrdersPage';
 import DailyTotalsPage from './components/Admin/DailyTotals/DailyTotalsPage';
+import { RootState } from './app/store';
+import { UserType } from './slices/userSlice/userSlice';
 
 const App = () => {
   const dispatch = useDispatch();

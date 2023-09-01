@@ -4,6 +4,7 @@ import { postDataWithHeaders } from '../httpClient';
 import camelcaseKeys from 'camelcase-keys';
 import { SaveNewCustomerActionType } from '../actions/newCustomerAction';
 import { setCustomer } from '../slices/customerSlice/customerSlice';
+import { resetUser } from '../slices/userSlice/userSlice';
 
 export function* saveNewCustomer(action: SaveNewCustomerActionType): any {
   try {
@@ -17,7 +18,11 @@ export function* saveNewCustomer(action: SaveNewCustomerActionType): any {
     yield put(setCustomer(camelcaseKeys(request)));
 
     action.navigate(`/customer?id=${request.id}`);
-  } catch (e) {}
+  } catch (e) {
+    yield put(resetUser())
+    alert("Sorry, Login Expired! Please Login again")
+    action.navigate('/login')
+  }
 }
 
 export function* watchSaveNewCustomer() {

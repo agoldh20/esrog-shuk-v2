@@ -6,6 +6,7 @@ import { GetOrderAction } from '../actions/getOrderAction';
 import { LineItemType, setOpenOrderLineItems } from '../slices/lineItemsSlice/lineItemsSlice';
 import camelcaseKeys from 'camelcase-keys';
 import { getAvailableItemsAction } from '../actions/getAvailableItemsAction';
+import { resetUser } from '../slices/userSlice/userSlice';
 
 export function* getOrder(action: GetOrderAction) {
 
@@ -37,7 +38,11 @@ export function* getOrder(action: GetOrderAction) {
     } else {
       action.navigate(`/order?id=${ action.orderId }`);
     }
-  } catch (e) {}
+  } catch (e) {
+    yield put(resetUser())
+    alert("Sorry, Login Expired! Please Login again")
+    action.navigate('/login')
+  }
 }
 
 export function* watchGetOrder() {

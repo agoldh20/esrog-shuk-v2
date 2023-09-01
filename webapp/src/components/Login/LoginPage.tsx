@@ -27,7 +27,7 @@ const LoginPage: FC = () => {
         <input type="text" placeholder="username" value={username} onChange={handleUsername} />
       </div>
       <div>
-        <input type="text" placeholder="password" value={password} onChange={handlePassword}/>
+        <input type="password" placeholder="password" value={password} onChange={handlePassword}/>
       </div>
       <div>
         <button type="button" className="btn btn-primary" disabled={!username || !password} onClick={handleClick}>

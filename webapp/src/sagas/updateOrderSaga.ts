@@ -3,6 +3,7 @@ import { patchDataWithHeaders } from '../httpClient';
 import { UPDATE_ORDER } from '../actions/actionsTypes';
 import { UpdateOrderActionType } from '../actions/updateOrderAction';
 import { updateOrderStatus } from '../slices/orderSlice/orderSlice';
+import { resetUser } from '../slices/userSlice/userSlice';
 
 export function* updateOrder(action: UpdateOrderActionType) {
 
@@ -16,7 +17,11 @@ export function* updateOrder(action: UpdateOrderActionType) {
     });
 
     yield put(updateOrderStatus(response.status));
-  } catch (e) {}
+  } catch (e) {
+    yield put(resetUser())
+    alert("Sorry, Login Expired! Please Login again")
+    action.navigate('/login')
+  }
 }
 
 export function* watchUpdateOrder() {

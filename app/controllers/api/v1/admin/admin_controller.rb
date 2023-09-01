@@ -11,14 +11,16 @@ class Api::V1::Admin::AdminController < ApplicationController
     date = params[:date] || Time.current.all_day
 
     orders = Order. where(status: "paid", updated_at: date)
-    returnJson = {}
+    totals = []
+
     ["cash", "check", "quick pay", "other"].each do |type|
-      returnJson["#{type.gsub(" ", "_")}"] = {
+      totals << {
+        type: type,
         count: orders.where(payment_type: "#{type}").size,
         total: orders.where(payment_type: "#{type}").pluck(:total).reduce(:+)
       }
     end
 
-    render json: returnJson
+    render json: totals
   end
 end
