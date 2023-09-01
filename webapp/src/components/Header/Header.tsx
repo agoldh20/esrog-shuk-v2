@@ -20,7 +20,7 @@ const Header: FC = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <img src={EsrogImage} width="35" height="35" className="d-inline-block align-top" alt="" />
       <span className="navbar-brand mb-0 h1">
-        Esrog Shuk, hello {username || `Please Login to Continue`}!
+        Esrog Shuk, hello {username || '... please login to continue'}!
       </span>
       <Optional renderIf={username}>
         (
@@ -49,7 +49,7 @@ const Header: FC = () => {
             </a>
           </Optional>
           <Optional renderIf={admin}>
-            <a className="nav-link" href="/admin/all-open">
+            <a className="nav-link" href="/admin/open-orders">
               Open Orders
             </a>
             <a className="nav-link" href="/admin/daily-totals">

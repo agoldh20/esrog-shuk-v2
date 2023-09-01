@@ -1,17 +1,19 @@
 import React, { FC } from 'react';
 import { ButtonProps } from './ButtonProps';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { startNewOrderAction } from '../../../../actions/newOrderAction';
 import { useNavigate } from 'react-router';
 import { useJwtHeaders } from '../../../../hooks/useJwtHeaders';
+import { RootState } from '../../../../app/store';
 
 const StartOrderButton: FC<ButtonProps> = ({ customerId }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const headers = useJwtHeaders();
+  const userId = useSelector<RootState, number>(({user}) => user.id!)
 
   const handleClick = () => {
-    dispatch(startNewOrderAction(navigate, customerId, 1, headers));
+    dispatch(startNewOrderAction(navigate, customerId, userId, headers));
   };
 
   return (

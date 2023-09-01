@@ -25,6 +25,11 @@ Rails.application.routes.draw do
       resources :orders
 
       get '/available-items' => 'items#get_available_items'
+
+      namespace :admin do
+        get '/open-orders' => 'admin#get_open_orders'
+        get '/daily-totals' => 'admin#get_daily_totals'
+      end
     end
   end
 end

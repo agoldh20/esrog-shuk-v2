@@ -5,6 +5,7 @@ export interface UserType {
   username?: string;
   admin?: boolean;
   jwt?: any;
+  tokenExp?: number;
 }
 
 export const initialState: UserType = {};
@@ -16,6 +17,7 @@ export const userSlice = createSlice({
     setUser: (state: UserType, action: PayloadAction<UserType>) => ({
       ...state,
       ...action.payload,
+      tokenExp: Date.now() + (24*60*60)
     }),
     resetUser: () => initialState,
   },

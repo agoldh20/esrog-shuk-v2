@@ -14,7 +14,7 @@ const OpenOrdersList: FC<OpenOrdersListProps> = ({ customerId }) => {
   const [openOrders, setOpenOrders] = useState<OrderType[]>([]);
 
   useEffect(() => {
-    const openOrderIds = axios
+    axios
       .get(`/api/v1/orders/?customer_id=${customerId}&status=open`, headers)
       .then(({ data }) => {
         setOpenOrders(data);

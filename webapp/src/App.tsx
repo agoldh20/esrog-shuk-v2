@@ -16,6 +16,8 @@ import Header from './components/Header/Header';
 import PaidOrdersPage from './components/Order/Paid/PaidOrdersPage';
 import LoginPage from './components/Login/LoginPage';
 import InitPage from './components/InitPage';
+import AdminOpenOrdersPage from './components/Admin/OpenOrders/AdminOpenOrdersPage';
+import DailyTotalsPage from './components/Admin/DailyTotals/DailyTotalsPage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -43,7 +45,8 @@ const App = () => {
         <Route path="/login" element={ <LoginPage/> }/>
         <Route path="/admin">
           <Route path="customer-list" element={ <CustomerListPage/> }/>
-          {/*<Route path="/daily-totals" element={ <DailySalesPage/> }/>*/}
+          <Route path="open-orders" element={ <AdminOpenOrdersPage /> }/>
+          <Route path="daily-totals" element={ <DailyTotalsPage /> }/>
         </Route>
       </Routes>
     </div>

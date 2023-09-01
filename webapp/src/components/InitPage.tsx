@@ -1,16 +1,22 @@
 import { FC, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../app/store';
-import { UserType } from '../slices/userSlice/userSlice';
+import { resetUser, UserType } from '../slices/userSlice/userSlice';
 import { useNavigate } from 'react-router';
 
 const InitPage: FC = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userId = useSelector<RootState, number | undefined>(({ user }) => user.id);
+  const { id, tokenExp } = useSelector<RootState, UserType>(({ user }) => user);
 
   useEffect(() => {
-    navigate(userId ? '/home' : '/login')
-  } , [userId])
+    if (tokenExp! < Date.now()) {
+      dispatch(resetUser())
+      return navigate('/login')
+    }
+
+    navigate(id ? '/home' : '/login')
+  } , [tokenExp, id])
 
   return <div />
 }
