@@ -14,10 +14,15 @@ const DailyTotalsPage: FC = () => {
   const dispatch = useDispatch();
   const headers = useJwtHeaders();
   const [totals, setTotals] = useState<TotalType[]>([])
+  const [date, setDate] = useState(new Date().toJSON().slice(0,10))
 
   useEffect(() => {
-    axios.get('/api/v1/admin/daily-totals', headers).then(({ data }) => setTotals(data));
-  }, []);
+    axios.get(`/api/v1/admin/daily-totals?date=${date}`, headers).then(({ data }) => setTotals(data));
+  }, [date]);
+  
+  const handleChange = (event) => {
+    setDate(event.target.value);
+  }
 
   const totalsCount = totals.map(total => total.count).reduce((accumulator, currentValue) => {
     return accumulator! + currentValue!;
@@ -29,6 +34,7 @@ const DailyTotalsPage: FC = () => {
 
   return (
     <div className="container daily-totals">
+      <input type="date" value={date} onChange={handleChange}/>
       <table className="table">
         <tbody>
         { totals.map((total, index) => (

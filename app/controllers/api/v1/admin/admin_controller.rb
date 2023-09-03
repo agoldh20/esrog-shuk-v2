@@ -8,16 +8,17 @@ class Api::V1::Admin::AdminController < ApplicationController
   end
 
   def get_daily_totals
-    date = params[:date] || Time.current.all_day
+    date = Date.parse(params[:date]).all_day || Time.current.all_day
 
     orders = Order. where(status: "paid", updated_at: date)
     totals = []
 
     ["cash", "check", "quick pay", "other"].each do |type|
+      typeOrders = orders.filter {|order| order.payment_type == type}
       totals << {
         type: type,
-        count: orders.where(payment_type: "#{type}").size,
-        total: orders.where(payment_type: "#{type}").pluck(:total).reduce(:+)
+        count: typeOrders.size,
+        total: typeOrders.pluck(:total).reduce(:+)
       }
     end
 
