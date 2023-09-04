@@ -16,7 +16,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   end
 
   allow do
-    origins "https://link-to-production-app.com/"
+    origins "esrog-shuk.onrender.com"
 
     resource "*",
              headers: :any,
