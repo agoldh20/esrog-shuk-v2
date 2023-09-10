@@ -53,6 +53,7 @@ class Api::V1::OrdersController < ApplicationController
     @api_v1_order.voucher_id = params[:order][:voucher][:id] || @api_v1_order.voucher_id if params[:order][:voucher]
 
     if @api_v1_order.save!
+      Customer.find(@api_v1_order.customer_id).update(last_purchase_year: Date.today.year) if @api_v1_order.status == "paid"
       render json: @api_v1_order
     else
       render json: @api_v1_order.errors, status: :unprocessable_entity
