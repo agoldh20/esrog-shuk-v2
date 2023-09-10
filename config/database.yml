@@ -81,7 +81,7 @@ test:
 #
 production:
   <<: *default
-  database: esrog_shuk_v2_production
+  database: esrog_shuk_db
   url: <%= ENV['DATABASE_URL'] %>
-  username: esrog_shuk_v2
+  username: esrog_shuk_db_user
   password: <%= ENV['ESROG_SHUK_V2_DATABASE_PASSWORD'] %>
