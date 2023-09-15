@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
         logged_in: true,
         user: {
           id: user.id,
-          username: user.username,
+          username: user.display_name,
           admin: user.admin,
         },
         jwt: jwt,
