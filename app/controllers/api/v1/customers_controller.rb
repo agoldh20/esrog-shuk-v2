@@ -19,7 +19,7 @@ class Api::V1::CustomersController < ApplicationController
     existing_customer = Customer.find_by(phone_number: params[:phone_number])
 
     if existing_customer
-      return render json: existing_customer, status: 200
+      return render json: existing_customer, status: 226
     end
 
     @api_v1_customer = Customer.new({
