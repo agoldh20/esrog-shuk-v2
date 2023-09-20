@@ -59,7 +59,7 @@ class Api::V1::VouchersController < ApplicationController
   end
 
   def set_order
-    @order = Order.find_by(params[:voucher_id])
+    @order = Order.find(params[:order_id])
   end
 
   # Only allow a list of trusted parameters through.

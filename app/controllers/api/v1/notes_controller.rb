@@ -17,7 +17,7 @@ class Api::V1::NotesController < ApplicationController
 
   # POST /api/v1/notes
   def create
-    Note.where(order_id: params[:order_id]).destroy_all;
+    Note.where(order_id: params[:order_id]).destroy_all
     @order.update(note_id: nil)
 
     @api_v1_note = Note.new({ note: params[:note], order_id: params[:order_id] })
@@ -45,12 +45,6 @@ class Api::V1::NotesController < ApplicationController
     @api_v1_note.destroy
   end
 
-  def get_by_order_id
-    note = Note.find_by(order_id: params[:order_id])
-
-    render json: note
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -59,7 +53,7 @@ class Api::V1::NotesController < ApplicationController
   end
 
   def set_order
-    @order = Order.find_by(params[:note_id])
+    @order = Order.find(params[:order_id])
   end
 
   # Only allow a list of trusted parameters through.
