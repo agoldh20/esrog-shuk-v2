@@ -35,7 +35,8 @@ class Api::V1::LineItemsController < ApplicationController
                                              })
       end
 
-      @order.update(total: params[:line_items].pluck(:line_total).reduce(:+))
+      esrog_count = params[:line_items].select{|item| item[:esrog_id].present?}.size
+      @order.update(total: params[:line_items].pluck(:line_total).reduce(:+), esrog_count: esrog_count)
     rescue
       render json: @api_v1_line_item.errors, status: :unprocessable_entity
     end
