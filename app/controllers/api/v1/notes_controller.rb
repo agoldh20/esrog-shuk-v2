@@ -1,7 +1,7 @@
 class Api::V1::NotesController < ApplicationController
   before_action :authenticate_user
   before_action :set_api_v1_note, only: [:show, :update, :destroy]
-  before_action :set_order, only: [:create, :destroy]
+  before_action :set_order, only: [:destroy]
 
   # GET /api/v1/notes
   def index
@@ -17,13 +17,10 @@ class Api::V1::NotesController < ApplicationController
 
   # POST /api/v1/notes
   def create
-    Note.where(order_id: params[:order_id]).destroy_all
-    @order.update(note_id: nil)
-
     @api_v1_note = Note.new({ note: params[:note], order_id: params[:order_id] })
 
     if @api_v1_note.save
-      @order.update(note_id: @api_v1_note.id)
+      @api_v1_note.order.update(note_id: @api_v1_note.id)
       render json: @api_v1_note, status: :created
     else
       render json: @api_v1_note.errors, status: :unprocessable_entity
@@ -53,7 +50,7 @@ class Api::V1::NotesController < ApplicationController
   end
 
   def set_order
-    @order = Order.find(params[:order_id])
+    @order = Note.find(params[:id]).order
   end
 
   # Only allow a list of trusted parameters through.

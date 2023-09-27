@@ -1,7 +1,7 @@
 class Api::V1::DiscountsController < ApplicationController
   before_action :authenticate_user
   before_action :set_api_v1_discount, only: [:show, :update, :destroy]
-  before_action :set_order, only: [:create, :destroy]
+  before_action :set_order, only: [:destroy]
 
   # GET /api/v1/discounts
   def index
@@ -17,12 +17,10 @@ class Api::V1::DiscountsController < ApplicationController
 
   # POST /api/v1/discounts
   def create
-    Discount.where(order_id: params[:order_id]).destroy_all
-    @order.update(discount_id: nil)
-
     @api_v1_discount = Discount.new({order_id: params[:order_id], amount: params[:amount]})
 
     if @api_v1_discount.save
+      @api_v1_discount.order.update(discount_id: @api_v1_discount.id)
       render json: @api_v1_discount, status: :created
     else
       render json: @api_v1_discount.errors, status: :unprocessable_entity
@@ -52,7 +50,7 @@ class Api::V1::DiscountsController < ApplicationController
   end
 
   def set_order
-    @order = Order.find(params[:order_id])
+    @order = Discount.find(params[:id]).order
   end
 
   # Only allow a list of trusted parameters through.
