@@ -8,6 +8,7 @@ system(`echo pg_restore --verbose --clean --no-acl --no-owner -h localhost -U ad
 # heroku pg:backups:capture
 # heroku pg:backups:download
 # pg_restore --verbose --clean --no-acl --no-owner -h localhost -U adam -d four_minim_sales_development ./db/db_dumps/latest.dump.31
+# pg_restore --verbose --clean --no-acl --no-owner -h localhost -U adam -d esrog_shuk_v2_development ./db/db_dumps/dump8.dump
 
 # select first_name, last_name, kind from orders o 
 # join esrog_sets es on o.id = es.order_id 

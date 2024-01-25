@@ -69,7 +69,13 @@ GEM
     crass (1.0.6)
     date (3.3.3)
     erubi (1.12.0)
+    faraday (2.7.10)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.2)
     ffi (1.15.5)
+    figaro (1.2.0)
+      thor (>= 0.14.0, < 2)
     globalid (1.2.0)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -150,6 +156,7 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    ruby2_keywords (0.0.5)
     schema_to_scaffold (0.8.0)
       activesupport (>= 3.2.1)
     sprockets (4.2.0)
@@ -161,6 +168,11 @@ GEM
       sprockets (>= 3.0.0)
     thor (1.2.2)
     timeout (0.4.0)
+    twilio-ruby (6.4.0)
+      faraday (>= 0.9, < 3.0)
+      jwt (>= 1.5, < 3.0)
+      nokogiri (>= 1.6, < 2.0)
+    twilito (0.4.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     websocket-driver (0.7.6)
@@ -177,6 +189,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   byebug
+  figaro (~> 1.2)
   jwt
   listen (~> 3.3)
   pg (~> 1.1)
@@ -184,6 +197,8 @@ DEPENDENCIES
   rack-cors
   rails (~> 6.1.7)
   schema_to_scaffold
+  twilio-ruby
+  twilito
   tzinfo-data
 
 RUBY VERSION

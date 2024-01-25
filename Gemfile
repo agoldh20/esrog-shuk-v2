@@ -40,3 +40,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'schema_to_scaffold'
+
+gem 'figaro', '~> 1.2'
+gem 'twilito'
+gem 'twilio-ruby'
