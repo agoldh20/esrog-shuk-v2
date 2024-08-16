@@ -22,6 +22,9 @@ Rails.application.routes.draw do
       resources :discounts
       get '/discounts/?order_id=:id' => 'discounts#get_by_order_id'
 
+      resources :mordys
+      get '/mordys/?order_id=:id' => 'mordys#get_by_order_id'
+
       resources :orders
 
       get '/available-items' => 'items#get_available_items'

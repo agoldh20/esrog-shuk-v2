@@ -47,10 +47,10 @@ class Api::V1::OrdersController < ApplicationController
     @api_v1_order.status = params[:order][:status] || @api_v1_order.status
     @api_v1_order.total = params[:order][:total] || @api_v1_order.total
     @api_v1_order.user_id = params[:order][:user_id] || @api_v1_order.user_id
-    @api_v1_order.voucher_id = params[:order][:voucher_id] || @api_v1_order.voucher_id
     @api_v1_order.payment_type = params[:order][:payment_type] || @api_v1_order.payment_type
     @api_v1_order.note_id = params[:order][:note][:id] || @api_v1_order.note_id if params[:order][:note]
     @api_v1_order.voucher_id = params[:order][:voucher][:id] || @api_v1_order.voucher_id if params[:order][:voucher]
+    @api_v1_order.mordy_id = params[:order][:mordy][:id] || @api_v1_order.mordy_id if params[:order][:mordy]
 
     if @api_v1_order.save!
       Customer.find(@api_v1_order.customer_id).update(last_purchase_year: Date.today.year) if @api_v1_order.status == "paid"
@@ -65,6 +65,7 @@ class Api::V1::OrdersController < ApplicationController
     LineItem.where(order_id: params[:id]).destroy_all
     Note.where(order_id: params[:id]).destroy_all
     Voucher.where(order_id: params[:id]).destroy_all
+    Mordy.where(order_id: params[:id]).destroy_all
     Discount.where(order_id: params[:id]).destroy_all
     @api_v1_order.destroy
   end
