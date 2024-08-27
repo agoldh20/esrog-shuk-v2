@@ -1,33 +1,33 @@
-# User.create!({
-#                username: "adam",
-#                display_name: "Adam",
-#                password: "password",
-#                admin: true
-#              })
-#
-# Customer.create!([
-#                    {
-#                      first_name: 'Adam',
-#                      last_name: 'Goldwater',
-#                      phone_number: '2246563165',
-#                      last_purchase_year: Date.current.year-1,
-#                      active: true
-#                    },
-#                    {
-#                      first_name: 'Kovi',
-#                      last_name: 'Galster',
-#                      phone_number: '0987654321',
-#                      last_purchase_year: Date.current.year-1,
-#                      active: true
-#                    },
-#                    {
-#                      first_name: 'Geoff',
-#                      last_name: 'Winner',
-#                      phone_number: '1111111111',
-#                      last_purchase_year: Date.current.year-2,
-#                      active: true
-#                    },
-#                  ])
+User.create!({
+               username: "adam",
+               display_name: "Adam",
+               password: "password",
+               admin: true
+             })
+
+Customer.create!([
+                   {
+                     first_name: 'Adam',
+                     last_name: 'Goldwater',
+                     phone_number: '2246563165',
+                     last_purchase_year: Date.current.year-1,
+                     active: true
+                   },
+                   {
+                     first_name: 'Kovi',
+                     last_name: 'Galster',
+                     phone_number: '0987654321',
+                     last_purchase_year: Date.current.year-1,
+                     active: true
+                   },
+                   {
+                     first_name: 'Geoff',
+                     last_name: 'Winner',
+                     phone_number: '1111111111',
+                     last_purchase_year: Date.current.year-2,
+                     active: true
+                   },
+                 ])
 
 Hadasim.create!([
                   {
@@ -226,4 +226,3 @@ Esrog.create!([
                   active: true
                 },
               ])
-

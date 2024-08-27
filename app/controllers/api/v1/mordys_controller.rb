@@ -17,7 +17,7 @@ class Api::V1::MordysController < ApplicationController
 
   # POST /api/v1/mordys
   def create
-    @api_v1_mordy = Mordy.new({order_id: params[:order_id], provider: params[:provider], amount: params[:amount]})
+    @api_v1_mordy = Mordy.new({order_id: params[:order_id], amount: params[:amount]})
 
     if @api_v1_mordy.save
       @api_v1_mordy.order.update(mordy_id: @api_v1_mordy.id)
@@ -39,7 +39,7 @@ class Api::V1::MordysController < ApplicationController
   # DELETE /api/v1/mordys/1
   def destroy
     @api_v1_mordy.destroy
-    @order.updated(mordy_id: nil)
+    @order.update(mordy_id: nil)
   end
 
   def get_by_order_id
@@ -56,7 +56,7 @@ class Api::V1::MordysController < ApplicationController
     end
 
     def set_order
-      @mordy = Mordy.find(params[:id]).order
+      @order = Mordy.find(params[:id]).order
     end
 
     # Only allow a list of trusted parameters through.

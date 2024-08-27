@@ -124,10 +124,10 @@ ActiveRecord::Schema.define(version: 2024_08_12_201253) do
     t.string "payment_type"
     t.integer "note_id"
     t.integer "discount_id"
-    t.integer "mordy_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "esrog_count"
+    t.integer "mordy_id"
   end
 
   create_table "users", force: :cascade do |t|
