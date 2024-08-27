@@ -97,69 +97,64 @@ Lulav.create!([
 
 Grade.create!([
                 {
-                  grade: "Mk",
                   year: "#{Date.current.year}",
+                  grade: "RCIC",
                   esrog_id: 1
                 },
                 {
-                  grade: "MkBig",
                   year: "#{Date.current.year}",
-                  esrog_id: 1
-                },
-                {
-                  grade: "M3+",
-                  year: "#{Date.current.year}",
-                  esrog_id: 1
-                },
-                {
-                  grade: "M2",
-                  year: "#{Date.current.year}",
-                  esrog_id: 1
-                },
-                {
-                  grade: "Y1p",
-                  year: "#{Date.current.year}",
+                  grade: "2M",
                   esrog_id: 2
                 },
                 {
-                  grade: "Y2np",
                   year: "#{Date.current.year}",
-                  esrog_id: 3
+                  grade: "kM",
+                  esrog_id: 2
                 },
                 {
-                  grade: "cMKC1",
                   year: "#{Date.current.year}",
-                  esrog_id: 4
+                  grade: "DM",
+                  esrog_id: 2
                 },
                 {
-                  grade: "cMCK2",
                   year: "#{Date.current.year}",
-                  esrog_id: 4
+                  grade: "Y2",
+                  esrog_id: 7
                 },
                 {
-                  grade: "cM3P+",
                   year: "#{Date.current.year}",
-                  esrog_id: 4
+                  grade: "1M",
+                  esrog_id: 2
                 },
                 {
-                  grade: "cC1",
                   year: "#{Date.current.year}",
-                  esrog_id: 4
+                  grade: "MbCIC",
+                  esrog_id: 1
                 },
                 {
-                  grade: "cC2",
                   year: "#{Date.current.year}",
-                  esrog_id: 4
+                  grade: "ACIM",
+                  esrog_id: 1
                 },
                 {
-                  grade: "cC3",
                   year: "#{Date.current.year}",
-                  esrog_id: 4
+                  grade: "DCIM",
+                  esrog_id: 1
                 },
                 {
-                  grade: "Special",
                   year: "#{Date.current.year}",
-                  esrog_id: 5
+                  grade: "SM",
+                  esrog_id: 2
+                },
+                {
+                  year: "#{Date.current.year}",
+                  grade: "5CIC",
+                  esrog_id: 1
+                },
+                {
+                  year: "#{Date.current.year}",
+                  grade: "Y1",
+                  esrog_id: 6
                 }
               ])
 
