@@ -101,7 +101,6 @@ ActiveRecord::Schema.define(version: 2024_08_12_201253) do
   end
 
   create_table "mordys", force: :cascade do |t|
-    t.string "reason"
     t.integer "amount"
     t.integer "order_id"
     t.datetime "created_at", precision: 6, null: false
