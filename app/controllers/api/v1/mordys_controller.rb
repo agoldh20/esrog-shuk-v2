@@ -17,7 +17,12 @@ class Api::V1::MordysController < ApplicationController
 
   # POST /api/v1/mordys
   def create
-    @api_v1_mordy = Mordy.new({order_id: params[:order_id], amount: params[:amount]})
+    @api_v1_mordy = Mordy.new({
+                                order_id: params[:order_id],
+                                amount: params[:amount],
+                                hatzalah: params[:hatzalah],
+                                year: Date.today.year
+                              })
 
     if @api_v1_mordy.save
       @api_v1_mordy.order.update(mordy_id: @api_v1_mordy.id)

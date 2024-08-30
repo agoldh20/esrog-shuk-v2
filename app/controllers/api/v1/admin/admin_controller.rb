@@ -7,6 +7,13 @@ class Api::V1::Admin::AdminController < ApplicationController
     render json: orders, include: :customer
   end
 
+  def get_current_mordys
+    mordys =  Mordy.where(year: Date.today.year).joins(:customer)
+
+    # render json: mordys, include: {customer: {only: [:first_name, :last_name]}}
+    render json: mordys, include: :customer
+  end
+
   def get_daily_totals
     date = Date.parse(params[:date]).all_day || Time.current.all_day
 

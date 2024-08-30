@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       namespace :admin do
         get '/open-orders' => 'admin#get_open_orders'
         get '/daily-totals' => 'admin#get_daily_totals'
+        get '/mordys' => 'admin#get_current_mordys'
         post '/send-text-message' => 'admin#send_text_message'
       end
     end

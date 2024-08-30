@@ -103,6 +103,8 @@ ActiveRecord::Schema.define(version: 2024_08_12_201253) do
   create_table "mordys", force: :cascade do |t|
     t.integer "amount"
     t.integer "order_id"
+    t.string "year"
+    t.boolean "hatzalah"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

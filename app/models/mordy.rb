@@ -1,4 +1,5 @@
 class Mordy < ApplicationRecord
-  has_many :orders
+  has_one :order
   belongs_to :order
+  has_one :customer, through: :order
 end
