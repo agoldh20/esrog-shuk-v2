@@ -129,7 +129,6 @@ ActiveRecord::Schema.define(version: 2024_08_12_201253) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "esrog_count"
-    t.integer "mordy_id"
   end
 
   create_table "users", force: :cascade do |t|
