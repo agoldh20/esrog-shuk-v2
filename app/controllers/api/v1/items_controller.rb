@@ -2,12 +2,12 @@ class Api::V1::ItemsController < ApplicationController
   before_action :set_api_v1_items, only: [:show, :update, :destroy]
 
   def get_available_items
-    esrogs = Esrog.where(year: Date.today.year, active: true)
+    esrogs = Esrog.where(year: Date.today.year, active: true).order(:id)
     grades = Grade.where(year: Date.today.year)
-    aravots = Aravot.where(year: Date.today.year, active: true)
-    lulavs = Lulav.where(year: Date.today.year, active: true)
-    hadasims = Hadasim.where(year: Date.today.year, active: true)
-    extras = Extra.where(year: Date.today.year, active: true)
+    aravots = Aravot.where(year: Date.today.year, active: true).order(:id)
+    lulavs = Lulav.where(year: Date.today.year, active: true).order(:id)
+    hadasims = Hadasim.where(year: Date.today.year, active: true).order(:id)
+    extras = Extra.where(year: Date.today.year, active: true).order(:id)
 
     render json: {
       esrogs: esrogs,
