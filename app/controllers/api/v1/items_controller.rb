@@ -4,9 +4,9 @@ class Api::V1::ItemsController < ApplicationController
   def get_available_items
     esrogs = Esrog.where(year: Date.today.year, active: true).order(:id)
     grades = Grade.where(year: Date.today.year)
-    aravots = Aravot.where(year: Date.today.year, active: true).order(:id)
-    lulavs = Lulav.where(year: Date.today.year, active: true).order(:id)
-    hadasims = Hadasim.where(year: Date.today.year, active: true).order(:id)
+    aravots = Aravot.where(year: Date.today.year, active: true).order(:price)
+    lulavs = Lulav.where(year: Date.today.year, active: true).order(:price)
+    hadasims = Hadasim.where(year: Date.today.year, active: true).order(:price)
     extras = Extra.where(year: Date.today.year, active: true).order(:id)
 
     render json: {
