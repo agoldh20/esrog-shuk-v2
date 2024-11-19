@@ -20,4 +20,6 @@ system(`echo pg_restore --verbose --clean --no-acl --no-owner -h localhost -U ad
 # order by kind, esrog_price desc, last_name, first_name
 # PGPASSWORD=<YOUR_DB_PASS> pg_dump \ -h postgres.render.com \ -U <YOUR_DB_USER> \ --format=custom --no-acl --no-owner \ <YOUR_DB_NAME> > <YOUR_DUMP_NAME>.dump
 
-# PGPASSWORD=k30zNW8EfIF5lSysySYNgLhXozwngmIU pg_dump -h dpg-cr8stjg8fa8c73bnnrjg-a.oregon-postgres.render.com -U esrog_shuk_user esrog_shuk --format=custom --no-acl --no-owner > ./db/db_dumps/dump9.dump
+# PGPASSWORD=k30zNW8EfIF5lSysySYNgLhXozwngmIU pg_dump -h dpg-cr8stjg8fa8c73bnnrjg-a.oregon-postgres.render.com -U esrog_shuk_user esrog_shuk --format=custom --no-acl --no-owner > ./db/db_dumps/dump15.dump
+
+# pg_restore --verbose --clean --no-acl --no-owner -h localhost -U adam -d esrog_shuk_v2_development ./db/db_dumps/dump<DUMP NUMBER>.dump
