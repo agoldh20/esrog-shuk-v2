@@ -26,6 +26,7 @@ class Api::V1::CustomersController < ApplicationController
                                       first_name: params[:first_name],
                                       last_name: params[:last_name],
                                       phone_number: params[:phone_number],
+                                      email: params[:email],
                                       active: true,
                                       last_purchase_year: Date.today.year
                                     })
@@ -39,7 +40,11 @@ class Api::V1::CustomersController < ApplicationController
 
   # PATCH/PUT /api/v1/customers/1
   def update
-    if @api_v1_customer.update(api_v1_customer_params)
+    @api_v1_customer.first_name = params[:first_name] || @api_v1_customer.first_name
+    @api_v1_customer.last_name = params[:last_name] || @api_v1_customer.last_name
+    @api_v1_customer.phone_number = params[:phone_number] || @api_v1_customer.phone_number
+    @api_v1_customer.email = params[:email] || @api_v1_customer.email
+    if @api_v1_customer.save!
       render json: @api_v1_customer
     else
       render json: @api_v1_customer.errors, status: :unprocessable_entity

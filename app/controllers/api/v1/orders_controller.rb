@@ -51,6 +51,7 @@ class Api::V1::OrdersController < ApplicationController
     @api_v1_order.note_id = params[:order][:note][:id] || @api_v1_order.note_id if params[:order][:note]
     @api_v1_order.voucher_id = params[:order][:voucher][:id] || @api_v1_order.voucher_id if params[:order][:voucher]
     @api_v1_order.mordy_id = params[:order][:mordy][:id] || @api_v1_order.mordy_id if params[:order][:mordy]
+    @api_v1_order.tax = params[:order][:tax] || @api_v1_order.tax
 
     if @api_v1_order.save!
       Customer.find(@api_v1_order.customer_id).update(last_purchase_year: Date.today.year) if @api_v1_order.status == "paid"
