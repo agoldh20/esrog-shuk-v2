@@ -69,8 +69,11 @@ class Api::V1::Admin::AdminController < ApplicationController
       end
     end
 
-    puts "!!!!! #bad number list: #{bad_number_list}" if !bad_number_list.empty?
-
-    render json: { status: 500 }
+    if bad_number_list.empty?
+      render json: { status: 200 }
+    else
+      puts "!!!!! #bad number list: #{bad_number_list}"
+      render json: { status: 500 }
+    end
   end
 end
