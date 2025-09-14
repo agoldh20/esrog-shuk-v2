@@ -20,12 +20,13 @@ class Api::V1::Admin::AdminController < ApplicationController
     orders = Order. where(status: "paid", updated_at: date)
     totals = []
 
-    ["cash", "check", "quick pay", "other"].each do |type|
+    ["cash", "check", "quick pay", "other", "credit card"].each do |type|
       typeOrders = orders.filter {|order| order.payment_type == type}
       totals << {
         type: type,
         count: typeOrders.size,
-        total: typeOrders.pluck(:total).reduce(:+)
+        total: typeOrders.pluck(:total).reduce(:+),
+        tax: typeOrders.pluck(:tax).reduce(:+)
       }
     end
 
