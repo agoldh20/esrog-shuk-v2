@@ -3,7 +3,7 @@ class Api::V1::Admin::LulavsController < ApplicationController
 
   # GET /api/v1/admin/lulavs
   def index
-    @lulavs = Lulav.where(year: Date.today.year).order(:id)
+    @lulavs = Lulav.where(year: [Date.today.year, Date.today.year.to_s]).order(:id)
     render json: @lulavs
   end
 
@@ -32,9 +32,13 @@ class Api::V1::Admin::LulavsController < ApplicationController
 
   # DELETE /api/v1/admin/lulavs/1
   def destroy
-    @lulav = Lulav.find(params[:id])
-    @lulav.destroy
-    render json: { status: :ok }
+    @lulav = Lulav.find_by(id: params[:id])
+    if @lulav && @lulav.year.to_s == Date.today.year.to_s
+      @lulav.destroy
+      render json: { status: :ok }
+    else
+      render json: { error: "Cannot delete item from a previous year" }, status: :unprocessable_entity
+    end
   end
 
   private

@@ -3,7 +3,7 @@ class Api::V1::Admin::AravotsController < ApplicationController
 
   # GET /api/v1/admin/aravots
   def index
-    @aravots = Aravot.where(year: Date.today.year).order(:id)
+    @aravots = Aravot.where(year: [Date.today.year, Date.today.year.to_s]).order(:id)
     render json: @aravots
   end
 
@@ -32,9 +32,13 @@ class Api::V1::Admin::AravotsController < ApplicationController
 
   # DELETE /api/v1/admin/aravots/1
   def destroy
-    @aravot = Aravot.find(params[:id])
-    @aravot.destroy
-    render json: { status: :ok }
+    @aravot = Aravot.find_by(id: params[:id])
+    if @aravot && @aravot.year.to_s == Date.today.year.to_s
+      @aravot.destroy
+      render json: { status: :ok }
+    else
+      render json: { error: "Cannot delete item from a previous year" }, status: :unprocessable_entity
+    end
   end
 
   private

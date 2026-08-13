@@ -3,7 +3,7 @@ class Api::V1::Admin::EsrogsController < ApplicationController
 
   # GET /api/v1/admin/esrogs
   def index
-    @esrogs = Esrog.where(year: Date.today.year).order(:id)
+    @esrogs = Esrog.where(year: [Date.today.year, Date.today.year.to_s]).order(:id)
     render json: @esrogs
   end
 
@@ -33,9 +33,13 @@ class Api::V1::Admin::EsrogsController < ApplicationController
 
   # DELETE /api/v1/admin/esrogs/1
   def destroy
-    @esrog = Esrog.find(params[:id])
-    @esrog.destroy
-    render json: { status: :ok }
+    @esrog = Esrog.find_by(id: params[:id])
+    if @esrog && @esrog.year.to_s == Date.today.year.to_s
+      @esrog.destroy
+      render json: { status: :ok }
+    else
+      render json: { error: "Cannot delete item from a previous year" }, status: :unprocessable_entity
+    end
   end
 
   private

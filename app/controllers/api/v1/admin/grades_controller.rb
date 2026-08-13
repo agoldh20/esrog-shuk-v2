@@ -3,7 +3,7 @@ class Api::V1::Admin::GradesController < ApplicationController
 
   # GET /api/v1/admin/grades
   def index
-    @grades = Grade.where(year: Date.today.year.to_s).or(Grade.where(year: Date.today.year)).order(:id)
+    @grades = Grade.where(year: [Date.today.year, Date.today.year.to_s]).order(:id)
     render json: @grades
   end
 
@@ -24,23 +24,28 @@ class Api::V1::Admin::GradesController < ApplicationController
                   end
 
     current_year = Date.today.year.to_s
-    existing_grades = Grade.where(esrog_id: esrog_id, year: current_year)
+    existing_grades = Grade.where(esrog_id: esrog_id, year: [current_year, Date.today.year])
 
+    # Only delete grades matching this esrog for THIS year that are no longer in the list
     existing_grades.where.not(grade: grade_names).destroy_all
 
-    existing_names = Grade.where(esrog_id: esrog_id, year: current_year).pluck(:grade)
+    existing_names = Grade.where(esrog_id: esrog_id, year: [current_year, Date.today.year]).pluck(:grade)
     (grade_names - existing_names).each do |g_name|
       Grade.create(esrog_id: esrog_id, grade: g_name, year: current_year)
     end
 
-    updated_grades = Grade.where(esrog_id: esrog_id, year: current_year)
+    updated_grades = Grade.where(esrog_id: esrog_id, year: [current_year, Date.today.year])
     render json: updated_grades, status: :ok
   end
 
   # DELETE /api/v1/admin/grades/:id
   def destroy
-    @grade = Grade.find(params[:id])
-    @grade.destroy
-    render json: { status: :ok }
+    @grade = Grade.find_by(id: params[:id])
+    if @grade && @grade.year.to_s == Date.today.year.to_s
+      @grade.destroy
+      render json: { status: :ok }
+    else
+      render json: { error: "Cannot delete item from a previous year" }, status: :unprocessable_entity
+    end
   end
 end
