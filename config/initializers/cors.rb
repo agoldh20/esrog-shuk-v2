@@ -6,11 +6,16 @@
 # Read more: https://github.com/cyu/rack-cors
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
-
   allow do
-    origins "localhost:8080", "esrog-shuk.onrender.com"
+    origins_list = ["localhost:8080", "esrog-shuk.onrender.com"]
+    if ENV["ALLOWED_ORIGINS"].present?
+      origins_list += ENV["ALLOWED_ORIGINS"].split(",").map(&:strip)
+    end
+
+    origins(*origins_list)
     resource "*",
              headers: :any,
-             methods: [:get, :post, :patch, :put, :delete]
+             methods: [:get, :post, :patch, :put, :delete, :options],
+             credentials: true
   end
 end

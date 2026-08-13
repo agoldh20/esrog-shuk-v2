@@ -76,107 +76,123 @@
 #                   active: true
 #                 },
 #                 {
-#                   kind: "A Deri wo esg",
-#                   price: "55",
-#                   year: "#{Date.current.year}",
-#                   active: true
-#                 },
-#                 {
-#                   kind: "AA Deri w esg",
-#                   price: "45",
-#                   year: "#{Date.current.year}",
-#                   active: true
-#                 },
-#                 {
-#                   kind: "AA Deri wo esg",
+#                   kind: "Test Lulav 1",
 #                   price: "65",
+#                   year: "#{Date.current.year}",
+#                   active: true
+#                 },
+#                 {
+#                   kind: "Test Lulav 2",
+#                   price: "105",
 #                   year: "#{Date.current.year}",
 #                   active: true
 #                 }
 #               ])
 #
 # Grade.create!([
+# #                 {
+# #                   year: "#{Date.current.year}",
+# #                   grade: "RCIC",
+# #                   esrog_id: 1
+# #                 },
+# #                 {
+# #                   year: "#{Date.current.year}",
+# #                   grade: "2M",
+# #                   esrog_id: 2
+# #                 },
+# #                 {
+# #                   year: "#{Date.current.year}",
+# #                   grade: "kM",
+# #                   esrog_id: 2
+# #                 },
+# #                 {
+# #                   year: "#{Date.current.year}",
+# #                   grade: "DM",
+# #                   esrog_id: 2
+# #                 },
+# #                 {
+# #                   year: "#{Date.current.year}",
+# #                   grade: "Y2",
+# #                   esrog_id: 7
+# #                 },
+# #                 {
+# #                   year: "#{Date.current.year}",
+# #                   grade: "1M",
+# #                   esrog_id: 2
+# #                 },
+# #                 {
+# #                   year: "#{Date.current.year}",
+# #                   grade: "MbCIC",
+# #                   esrog_id: 1
+# #                 },
+# #                 {
+# #                   year: "#{Date.current.year}",
+# #                   grade: "ACIM",
+# #                   esrog_id: 1
+# #                 },
+# #                 {
+# #                   year: "#{Date.current.year}",
+# #                   grade: "DCIM",
+# #                   esrog_id: 1
+# #                 },
+# #                 {
+# #                   year: "#{Date.current.year}",
+# #                   grade: "SM",
+# #                   esrog_id: 2
+# #                 },
+# #                 {
+# #                   year: "#{Date.current.year}",
+# #                   grade: "5CIC",
+# #                   esrog_id: 1
+# #                 },
+# #                 {
+# #                   year: "#{Date.current.year}",
+# #                   grade: "Y1",
+# #                   esrog_id: 6
+# #                 },
 #                 {
 #                   year: "#{Date.current.year}",
-#                   grade: "RCIC",
-#                   esrog_id: 1
+#                   grade: "1",
+#                   esrog_id: 0
 #                 },
 #                 {
 #                   year: "#{Date.current.year}",
-#                   grade: "2M",
-#                   esrog_id: 2
-#                 },
-#                 {
-#                   year: "#{Date.current.year}",
-#                   grade: "kM",
-#                   esrog_id: 2
-#                 },
-#                 {
-#                   year: "#{Date.current.year}",
-#                   grade: "DM",
-#                   esrog_id: 2
-#                 },
-#                 {
-#                   year: "#{Date.current.year}",
-#                   grade: "Y2",
-#                   esrog_id: 7
-#                 },
-#                 {
-#                   year: "#{Date.current.year}",
-#                   grade: "1M",
-#                   esrog_id: 2
-#                 },
-#                 {
-#                   year: "#{Date.current.year}",
-#                   grade: "MbCIC",
-#                   esrog_id: 1
-#                 },
-#                 {
-#                   year: "#{Date.current.year}",
-#                   grade: "ACIM",
-#                   esrog_id: 1
-#                 },
-#                 {
-#                   year: "#{Date.current.year}",
-#                   grade: "DCIM",
-#                   esrog_id: 1
-#                 },
-#                 {
-#                   year: "#{Date.current.year}",
-#                   grade: "SM",
-#                   esrog_id: 2
-#                 },
-#                 {
-#                   year: "#{Date.current.year}",
-#                   grade: "5CIC",
-#                   esrog_id: 1
-#                 },
-#                 {
-#                   year: "#{Date.current.year}",
-#                   grade: "Y1",
-#                   esrog_id: 6
+#                   grade: "2",
+#                   esrog_id: 0
 #                 }
 #               ])
 #
 # Extra.create!([
 #                 {
-#                   kind: "Hard Plastic Lulav bag",
-#                   price: "10",
+#                   kind: "Chinuch Set",
+#                   price: "45",
 #                   year: "#{Date.current.year}",
 #                   active: true
 #                 },
 #                 {
-#                   kind: "5 finger Kosheklach",
-#                   price: "12",
+#                   kind: "Blowout Set",
+#                   price: "65",
 #                   year: "#{Date.current.year}",
 #                   active: true
-#                 },
-#                 {
-#                   kind: "Crown Kosheklach",
-#                   price: "18",
-#                   year: "#{Date.current.year}",
-#                   active: true
-#                 }
+#                 }])
+#                 # {
+#                 #   kind: "Crown Kosheklach",
+#                 #   price: "18",
+#                 #   year: "#{Date.current.year}",
+#                 #   active: true
+#                 # },
+#                 # {
+#                 #   kind: "Extra 1",
+#                 #   price: "18",
+#                 #   year: "#{Date.current.year}",
+#                 #   active: true
+#                 # },
+#                 # {
+#                 #   kind: "Extra 2",
+#                 #   price: "5",
+#                 #   year: "#{Date.current.year}",
+#                 #   active: true
+#                 # }
 #               ])
 #
 # Aravot.create!([
@@ -195,32 +211,44 @@
 #                ])
 #
 # Esrog.create!([
+#                 # {
+#                 #   kind: "Moroccan",
+#                 #   pitum: false,
+#                 #   year: "#{Date.current.year}",
+#                 #   active: true
+#                 # },
+#                 # {
+#                 #   kind: "Yanover w pitum",
+#                 #   pitum: true,
+#                 #   year: "#{Date.current.year}",
+#                 #   active: true
+#                 # },
+#                 # {
+#                 #   kind: "Yanover no pitum",
+#                 #   pitum: false,
+#                 #   year: "#{Date.current.year}",
+#                 #   active: true
+#                 # },
+#                 # {
+#                 #   kind: "ChazIsh Morocco",
+#                 #   pitum: false,
+#                 #   year: "#{Date.current.year}",
+#                 #   active: true
+#                 # },
+#                 # {
+#                 #   kind: "ChazIsh Cali",
+#                 #   pitum: false,
+#                 #   year: "#{Date.current.year}",
+#                 #   active: true
+#                 # },
 #                 {
-#                   kind: "Moroccan",
+#                   kind: "Text Esrog 1",
 #                   pitum: false,
 #                   year: "#{Date.current.year}",
 #                   active: true
 #                 },
 #                 {
-#                   kind: "Yanover w pitum",
-#                   pitum: true,
-#                   year: "#{Date.current.year}",
-#                   active: true
-#                 },
-#                 {
-#                   kind: "Yanover no pitum",
-#                   pitum: false,
-#                   year: "#{Date.current.year}",
-#                   active: true
-#                 },
-#                 {
-#                   kind: "ChazIsh Morocco",
-#                   pitum: false,
-#                   year: "#{Date.current.year}",
-#                   active: true
-#                 },
-#                 {
-#                   kind: "ChazIsh Cali",
+#                   kind: "Test Esrog 2",
 #                   pitum: false,
 #                   year: "#{Date.current.year}",
 #                   active: true

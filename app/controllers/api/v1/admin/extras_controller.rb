@@ -1,0 +1,49 @@
+class Api::V1::Admin::ExtrasController < ApplicationController
+  before_action :authenticate_admin
+
+  # GET /api/v1/admin/extras
+  def index
+    @extras = Extra.where(year: Date.today.year).order(:id)
+    render json: @extras
+  end
+
+  # POST /api/v1/admin/extras
+  def create
+    @extra = Extra.new(extra_params)
+    @extra.year ||= Date.today.year.to_s
+    @extra.active = true if @extra.active.nil?
+
+    if @extra.save
+      render json: @extra, status: :created
+    else
+      render json: @extra.errors, status: :unprocessable_entity
+    end
+  end
+
+  # PATCH/PUT /api/v1/admin/extras/1
+  def update
+    @extra = Extra.find(params[:id])
+    if @extra.update(extra_params)
+      render json: @extra
+    else
+      render json: @extra.errors, status: :unprocessable_entity
+    end
+  end
+
+  # DELETE /api/v1/admin/extras/1
+  def destroy
+    @extra = Extra.find(params[:id])
+    @extra.destroy
+    render json: { status: :ok }
+  end
+
+  private
+
+  def extra_params
+    if params[:extra].present?
+      params.require(:extra).permit(:kind, :price, :year, :active)
+    else
+      params.permit(:kind, :price, :year, :active, :id)
+    end
+  end
+end

@@ -34,6 +34,12 @@ Rails.application.routes.draw do
         get '/daily-totals' => 'admin#get_daily_totals'
         get '/mordys' => 'admin#get_current_mordys'
         post '/send-text-message' => 'admin#send_text_message'
+
+        resources :esrogs
+        resources :aravots
+        resources :lulavs
+        resources :extras
+        resources :grades
       end
     end
   end
