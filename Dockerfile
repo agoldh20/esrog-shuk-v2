@@ -12,8 +12,8 @@ RUN apt-get update -qq && \
 
 WORKDIR /app
 
-# Install gems
-COPY Gemfile Gemfile.lock ./
+# Copy Gemfile, Gemfile.lock, and .ruby-version for bundle install
+COPY Gemfile Gemfile.lock .ruby-version ./
 RUN gem install bundler && \
     bundle config set --local deployment 'true' && \
     bundle config set --local without 'development test' && \
