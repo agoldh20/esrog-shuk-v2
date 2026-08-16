@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   db:
-    image: postgres:16-alpine
+    image: postgres:17-alpine
     restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-esrog_user}
@@ -33,9 +33,25 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    command: caddy reverse-proxy --from esrog-backend.duckdns.org --to web:3000
+    command: caddy reverse-proxy --from esrog-backend.duckdns.org --to web:3000 --internal-tls
     depends_on:
       - web
+
+  db-backup:
+    image: postgres:17-alpine
+    restart: always
+    depends_on:
+      - db
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-esrog_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secure_db_password_123}
+      POSTGRES_DB: ${POSTGRES_DB:-esrog_shuk_production}
+    volumes:
+      - /home/adam/Projects/Ruby/esrog-shuk-v2/db/db_dumps:/app/db/db_dumps
+      - ./scripts/daily_backup.sh:/daily_backup.sh
+    entrypoint: ["/bin/sh", "-c", "chmod +x /daily_backup.sh && echo '0 4 * * * /daily_backup.sh >> /var/log/backup.log 2>&1' | crontab - && crond -f -l 2"]
 
 volumes:
   postgres_data:
