@@ -27,5 +27,15 @@ services:
       RAILS_LOG_TO_STDOUT: "true"
       DATABASE_URL: postgres://${POSTGRES_USER:-esrog_user}:${POSTGRES_PASSWORD:-secure_db_password_123}@db:5432/${POSTGRES_DB:-esrog_shuk_production}
 
+  caddy:
+    image: caddy:2-alpine
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    command: caddy reverse-proxy --from esrog-backend.duckdns.org --to web:3000
+    depends_on:
+      - web
+
 volumes:
   postgres_data:
