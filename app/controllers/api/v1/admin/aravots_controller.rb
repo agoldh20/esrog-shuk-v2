@@ -44,10 +44,6 @@ class Api::V1::Admin::AravotsController < ApplicationController
   private
 
   def aravot_params
-    if params[:aravot].present?
-      params.require(:aravot).permit(:kind, :price, :year, :active)
-    else
-      params.permit(:kind, :price, :year, :active, :id)
-    end
+    params.permit(:kind, :price, :year, :active)
   end
 end

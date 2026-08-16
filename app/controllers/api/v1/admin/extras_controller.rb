@@ -44,10 +44,6 @@ class Api::V1::Admin::ExtrasController < ApplicationController
   private
 
   def extra_params
-    if params[:extra].present?
-      params.require(:extra).permit(:kind, :price, :year, :active)
-    else
-      params.permit(:kind, :price, :year, :active, :id)
-    end
+    params.permit(:kind, :price, :year, :active)
   end
 end

@@ -4,15 +4,19 @@ set -e
 # Remove a potentially pre-existing server.pid for Rails.
 rm -f /app/tmp/pids/server.pid
 
-# Wait for PostgreSQL database to be responsive
 if [ -n "$DATABASE_URL" ]; then
-  echo "Waiting for database connection..."
-  until bundle exec rails db:prepare; do
-    echo "Database is unavailable or preparing... retrying in 2 seconds"
+  echo "Waiting for PostgreSQL database connection..."
+  
+  # Wait for Postgres port to be open
+  until pg_isready -h db -p 5432; do
+    echo "PostgreSQL is booting... retrying in 2 seconds"
     sleep 2
   done
-  echo "Database is ready and migrations are applied."
+
+  echo "PostgreSQL port is ready! Preparing database schema & migrations..."
+  bundle exec rails db:prepare || bundle exec rails db:migrate
+  echo "Database is ready and up to date."
 fi
 
-# Then exec the container's main process (what's set as CMD in Dockerfile).
+# Then exec the container's main process (CMD in Dockerfile).
 exec "$@"

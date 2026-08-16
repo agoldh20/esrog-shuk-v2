@@ -44,10 +44,6 @@ class Api::V1::Admin::LulavsController < ApplicationController
   private
 
   def lulav_params
-    if params[:lulav].present?
-      params.require(:lulav).permit(:kind, :price, :year, :active)
-    else
-      params.permit(:kind, :price, :year, :active, :id)
-    end
+    params.permit(:kind, :price, :year, :active)
   end
 end

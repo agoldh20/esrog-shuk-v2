@@ -45,10 +45,6 @@ class Api::V1::Admin::EsrogsController < ApplicationController
   private
 
   def esrog_params
-    if params[:esrog].present?
-      params.require(:esrog).permit(:kind, :pitum, :year, :active)
-    else
-      params.permit(:kind, :pitum, :year, :active, :id)
-    end
+    params.permit(:kind, :pitum, :year, :active)
   end
 end
