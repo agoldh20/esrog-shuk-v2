@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
           user_id: user.id, # the data to encode
           exp: 7.days.from_now.to_i, # the expiration time
         },
-        Rails.application.credentials.fetch(:secret_key_base), # the secret key
+        ENV['SECRET_KEY_BASE'] || Rails.application.credentials.secret_key_base || Rails.application.secret_key_base, # the secret key
         "HS256" # the encryption algorithm
       )
       render json: {

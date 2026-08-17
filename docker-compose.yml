@@ -25,6 +25,7 @@ services:
     environment:
       RAILS_ENV: production
       RAILS_LOG_TO_STDOUT: "true"
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE:-f5b746816a70e7a17ddc2657e23114948a39a2f790bd46700c283897f1f1d19842a2b0e8b15d97f26f6eefc4c01d9f4e5a9c0494df3a35b1d402f1712a1f0a2e}
       DATABASE_URL: postgres://${POSTGRES_USER:-esrog_user}:${POSTGRES_PASSWORD:-secure_db_password_123}@db:5432/${POSTGRES_DB:-esrog_shuk_production}
 
   caddy:
