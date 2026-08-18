@@ -32,7 +32,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    command: caddy reverse-proxy --from esrog-backend.duckdns.org --to web:3000
+    command: caddy reverse-proxy --from esrog-backend.duckdns.org --to web:3000 --internal-certs
     depends_on:
       - web
 
