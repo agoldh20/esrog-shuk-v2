@@ -27,9 +27,7 @@ services:
       DATABASE_URL: postgres://${POSTGRES_USER:-esrog_user}:${POSTGRES_PASSWORD:-secure_db_password_123}@db:5432/${POSTGRES_DB:-esrog_shuk_production}
 
   caddy:
-    build:
-      context: .
-      dockerfile: Dockerfile.caddy
+    image: serf5/caddy-duckdns:latest
     restart: always
     ports:
       - "80:80"
@@ -38,7 +36,6 @@ services:
       - .env
     environment:
       DUCKDNS_TOKEN: ${DUCKDNS_TOKEN}
-    command: caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
