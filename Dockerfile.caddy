@@ -1,9 +1,9 @@
-FROM caddy:2.9-builder AS builder
+FROM caddy:builder AS builder
 
 RUN xcaddy build \
-    --with github.com/caddy-dns/duckdns
+    --with github.com/caddy-dns/duckdns@v0.4.0
 
-FROM caddy:2.9-alpine
+FROM caddy:alpine
 
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 
