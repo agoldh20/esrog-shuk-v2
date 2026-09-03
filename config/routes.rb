@@ -40,6 +40,7 @@ Rails.application.routes.draw do
         resources :lulavs
         resources :extras
         resources :grades
+        resources :hadasims
       end
     end
   end
