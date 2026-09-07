@@ -44,4 +44,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  match '*path', to: proc { [204, { 'Access-Control-Allow-Origin' => '*', 'Access-Control-Allow-Methods' => 'GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD', 'Access-Control-Allow-Headers' => '*' }, []] }, via: :options
 end
