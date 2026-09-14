@@ -2,9 +2,14 @@ class Api::V1::Admin::AdminController < ApplicationController
   before_action :authenticate_admin
 
   def get_open_orders
-    orders = Order.where(status: "open", year: Date.today.year).joins(:customer).order(:last_name)
+    orders = Order.where(status: "open", year: Date.today.year)
+                  .includes(:customer, :note, :discount, :voucher, :mordy, :line_items)
+                  .joins(:customer)
+                  .order("customers.last_name ASC")
 
-    render json: orders, include: :customer
+    render json: orders.as_json(
+      include: [:customer, :note, :discount, :voucher, :mordy, :line_items]
+    )
   end
 
   def get_current_mordys
@@ -17,7 +22,7 @@ class Api::V1::Admin::AdminController < ApplicationController
   def get_daily_totals
     date = Date.parse(params[:date]).all_day || Time.current.all_day
 
-    orders = Order. where(status: "paid", updated_at: date)
+    orders = Order.where(status: "paid", updated_at: date)
     totals = []
 
     ["cash", "check", "quick pay", "other", "credit card"].each do |type|

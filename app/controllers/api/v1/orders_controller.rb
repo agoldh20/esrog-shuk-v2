@@ -16,14 +16,18 @@ class Api::V1::OrdersController < ApplicationController
     custom_params[:customer_id] = customer_id if customer_id
     custom_params[:updated_at] = date if date
 
-    @api_v1_orders = Order.where(custom_params).order(updated_at: :desc)
+    @api_v1_orders = Order.where(custom_params)
+                          .includes(:note, :discount, :voucher, :mordy, :line_items)
+                          .order(updated_at: :desc)
 
-    render json: @api_v1_orders
+    render json: @api_v1_orders.as_json(
+      include: [:note, :discount, :voucher, :mordy, :line_items]
+    )
   end
 
   # GET /api/v1/orders/1
   def show
-    render json: @api_v1_order
+    render_order_json(@api_v1_order)
   end
 
   # POST /api/v1/orders
@@ -36,7 +40,7 @@ class Api::V1::OrdersController < ApplicationController
                               })
 
     if @api_v1_order.save!
-      render json: @api_v1_order, status: :created
+      render_order_json(@api_v1_order, :created)
     else
       render json: @api_v1_order.errors, status: :unprocessable_entity
     end
@@ -55,7 +59,7 @@ class Api::V1::OrdersController < ApplicationController
 
     if @api_v1_order.save!
       Customer.find(@api_v1_order.customer_id).update(last_purchase_year: Date.today.year) if @api_v1_order.status == "paid"
-      render json: @api_v1_order
+      render_order_json(@api_v1_order)
     else
       render json: @api_v1_order.errors, status: :unprocessable_entity
     end
@@ -73,9 +77,14 @@ class Api::V1::OrdersController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_api_v1_order
-    @api_v1_order = Order.find(params[:id])
+    @api_v1_order = Order.includes(:note, :discount, :voucher, :mordy, :line_items).find(params[:id])
+  end
+
+  def render_order_json(order, status_code = :ok)
+    render json: order.as_json(
+      include: [:note, :discount, :voucher, :mordy, :line_items]
+    ), status: status_code
   end
 
   # Only allow a list of trusted parameters through.
